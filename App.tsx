@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Preloader from './components/Preloader';
 import { ArrowUp, Phone } from 'lucide-react';
 import zaloIconImg from './image/logo/zaloimage.png';
 
@@ -20,7 +21,12 @@ const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   // Default to Dark Mode
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const scrollTopBtnRef = useRef<HTMLButtonElement>(null);
+
+  const handlePreloaderComplete = () => {
+    setIsLoading(false);
+  };
 
   // Toggle Theme Function
   const toggleTheme = () => {
@@ -74,6 +80,10 @@ const App: React.FC = () => {
   return (
     <Router basename="/yen-lac-dragon-city-V3">
       <div className="w-full min-h-screen overflow-x-hidden font-sans relative transition-colors duration-500 bg-white dark:bg-navy-950">
+        
+        {/* Preloader */}
+        {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
+
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         
         <main>
