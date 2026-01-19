@@ -72,7 +72,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router>
+    <Router basename="/yen-lac-dragon-city-V3">
       <div className="w-full min-h-screen overflow-x-hidden font-sans relative transition-colors duration-500 bg-white dark:bg-navy-950">
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         
