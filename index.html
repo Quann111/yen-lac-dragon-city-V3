@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yên Lạc Dragon City - Luxury Real Estate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@200;300;400;500;600&family=Lexend+Mega:wght@400;800&family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Marcellus&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Enable class-based dark mode
+        theme: {
+          extend: {
+            colors: {
+              royal: {
+                50: '#F0F5FF',
+                100: '#E0EBFF',
+                200: '#C2D6FF',
+                300: '#94B8FF',
+                400: '#5C91FF',
+                500: '#2E66FF',
+                600: '#003D8D', // The requested Royal Blue
+                700: '#002E6A',
+                800: '#002350',
+                900: '#001530',
+              },
+              gold: {
+                50: '#FCF9F0',
+                100: '#F9F1D8',
+                200: '#F2E2B5',
+                300: '#EBD292',
+                400: '#E4C26F',
+                500: '#D4AF37', // Classic Gold
+                600: '#AA8C2C',
+                700: '#806921',
+                800: '#554616',
+                900: '#2B230B',
+              },
+              navy: {
+                800: '#1E293B',
+                900: '#0B1120',
+                950: '#02040a', // Deepest black-blue
+              }
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Manrope"', 'sans-serif'],
+              museo: ['"MuseoModerno"', 'cursive'],
+              lexend: ['"Lexend Mega"', 'sans-serif'],
+              leyton: ['"Bodoni Moda"', 'serif'],
+              marschel: ['"Cormorant Garamond"', 'serif'],
+              marcellus: ['"Marcellus"', 'serif'],
+            },
+            letterSpacing: {
+              'luxury': '0.2em',
+              'super-wide': '0.35em',
+            },
+            boxShadow: {
+              'glow-gold': '0 0 20px rgba(212, 175, 55, 0.5)',
+              'glow-royal': '0 0 20px rgba(0, 61, 141, 0.4)',
+            },
+            backgroundImage: {
+              'gradient-gold': 'linear-gradient(135deg, #AA8C2C 0%, #D4AF37 50%, #AA8C2C 100%)',
+              'gradient-royal': 'linear-gradient(135deg, #002E6A 0%, #003D8D 50%, #2E66FF 100%)',
+              'gradient-dark': 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-padding-top: 80px;
+      }
+      body {
+        /* Default to Light Mode Colors */
+        background-color: #ffffff; 
+        color: #1a202c;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+      /* Dark Mode Overrides */
+      html.dark body {
+        background-color: #02040a;
+        color: white;
+      }
+
+      ::selection {
+        background: #003D8D;
+        color: #fff;
+      }
+      html.dark ::selection {
+        background: #D4AF37;
+        color: #000;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      html.dark ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d97706;
+        border-radius: 10px;
+      }
+      html.dark ::-webkit-scrollbar-thumb {
+        background: #d97706;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #b45309;
+      }
+      html.dark ::-webkit-scrollbar-thumb:hover {
+        background: #b45309;
+      }
+      
+      /* JS Reveal Animation Classes */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+      }
+      .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Button Hover Effects */
+      .btn-luxury {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      .btn-luxury::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.2);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s ease;
+      }
+      .btn-luxury:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
