@@ -131,6 +131,11 @@ const LocationSection: React.FC = () => {
             scrollTrigger: {
               trigger: mapContainerRef.current,
               start: 'top 70%',
+            },
+            onComplete: () => {
+              if (mapInstanceRef.current) {
+                mapInstanceRef.current.invalidateSize();
+              }
             }
           }
         );
@@ -218,7 +223,7 @@ const LocationSection: React.FC = () => {
           </div>
 
           {/* Map Visual (Interactive Leaflet Map) */}
-          <div ref={mapContainerRef} className="w-full lg:w-1/2 h-[40vh] lg:h-auto relative bg-gray-200 overflow-hidden shadow-2xl z-0">
+          <div ref={mapContainerRef} className="w-full lg:w-1/2 h-[40vh] lg:h-auto min-h-[400px] relative bg-gray-200 overflow-hidden shadow-2xl z-0">
              <div ref={mapElementRef} className="w-full h-full z-0" style={{ filter: 'grayscale(0.1)' }}></div>
              
              {/* Decorative Overlay for Theme Integration */}
