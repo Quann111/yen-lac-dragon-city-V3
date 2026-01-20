@@ -14,7 +14,7 @@ interface LocationCardProps {
 }
 
 const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time }) => (
-  <div className="reveal-on-scroll flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
+  <div className="location-card flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
     bg-white text-royal-900 border-royal-500 hover:shadow-xl
     dark:bg-navy-800 dark:text-white dark:border-gold-500 dark:hover:shadow-glow-gold"
   >
@@ -35,6 +35,7 @@ const LocationSection: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapElementRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
+  const textContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -119,6 +120,7 @@ const LocationSection: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Map Animation
       if (mapContainerRef.current) {
         gsap.fromTo(mapContainerRef.current,
           { opacity: 0, scale: 0.95, filter: 'blur(10px)' },
@@ -140,7 +142,32 @@ const LocationSection: React.FC = () => {
           }
         );
       }
-    }, mapContainerRef);
+
+      // Text Animation
+      if (textContainerRef.current) {
+        const textElements = textContainerRef.current.querySelectorAll('.animate-text');
+        const cards = textContainerRef.current.querySelectorAll('.location-card');
+        
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: textContainerRef.current,
+            start: 'top 80%',
+          }
+        });
+
+        tl.fromTo(textElements, 
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
+        );
+
+        tl.fromTo(cards,
+          { opacity: 0, x: -30 },
+          { opacity: 1, x: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.2)' },
+          "-=0.4"
+        );
+      }
+
+    }, [mapContainerRef, textContainerRef]);
 
     return () => ctx.revert();
   }, []);
@@ -177,13 +204,13 @@ const LocationSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row h-full">
           
           {/* Text Content */}
-          <div className="w-full lg:w-1/2 py-16 px-8 lg:pl-16 flex flex-col justify-center relative z-10">
-            <h2 className="text-4xl lg:text-5xl font-serif mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
+          <div ref={textContainerRef} className="w-full lg:w-1/2 py-16 px-8 lg:pl-16 flex flex-col justify-center relative z-10">
+            <h2 className="animate-text text-4xl lg:text-5xl font-serif mb-6 leading-tight transition-colors duration-300
               text-royal-600 dark:text-gold-500"
             >
               Vị Thế Kim Cương: <br /> Nơi Giá Trị Hội Tụ
             </h2>
-            <p className="font-light mb-10 leading-relaxed transition-colors duration-300 reveal-on-scroll
+            <p className="animate-text font-light mb-10 leading-relaxed transition-colors duration-300
               text-gray-600 dark:text-gray-300"
             >
               Tọa lạc tại tâm điểm thịnh vượng, kết nối mọi tiện ích sống, làm việc và giải trí. Một vị trí chiến lược, đảm bảo cuộc sống tiện nghi và tiềm năng đầu tư vượt trội.
@@ -214,7 +241,7 @@ const LocationSection: React.FC = () => {
 
             <button 
               onClick={scrollToContact}
-              className="btn-luxury self-start flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-serif text-sm font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-300 reveal-on-scroll
+              className="animate-text btn-luxury self-start flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-serif text-sm font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-300
               bg-royal-600 text-white hover:bg-royal-700 hover:shadow-royal-500/50
               dark:bg-gold-500 dark:text-navy-900 dark:hover:bg-white dark:hover:text-royal-900 dark:shadow-glow-gold"
             >
