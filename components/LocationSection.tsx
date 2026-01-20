@@ -95,6 +95,16 @@ const LocationSection: React.FC = () => {
 
     mapInstanceRef.current = map;
 
+    // Fix: Invalidate size after a short delay to ensure map renders correctly
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 500);
+    
+    // Fix: Invalidate size again after GSAP animation (approx 1.5s)
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 2000);
+
     // Cleanup
     return () => {
       map.remove();
