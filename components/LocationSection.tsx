@@ -123,16 +123,16 @@ const LocationSection: React.FC = () => {
       // Map Animation
       if (mapContainerRef.current) {
         gsap.fromTo(mapContainerRef.current,
-          { opacity: 0, scale: 0.95, filter: 'blur(10px)' },
+          { autoAlpha: 0, scale: 0.95, filter: 'blur(10px)' },
           {
-            opacity: 1,
+            autoAlpha: 1,
             scale: 1,
             filter: 'blur(0px)',
             duration: 1.5,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: mapContainerRef.current,
-              start: 'top 70%',
+              start: 'top 85%', // Trigger earlier
             },
             onComplete: () => {
               if (mapInstanceRef.current) {
@@ -151,23 +151,28 @@ const LocationSection: React.FC = () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: textContainerRef.current,
-            start: 'top 80%',
+            start: 'top 85%', // Trigger earlier
           }
         });
 
         tl.fromTo(textElements, 
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
+          { autoAlpha: 0, y: 30 },
+          { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
         );
 
         tl.fromTo(cards,
-          { opacity: 0, x: -30 },
-          { opacity: 1, x: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.2)' },
+          { autoAlpha: 0, x: -30 },
+          { autoAlpha: 1, x: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.2)' },
           "-=0.4"
         );
       }
 
     }, [mapContainerRef, textContainerRef]);
+
+    // Refresh ScrollTrigger to ensure correct positions after layout updates
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1000);
 
     return () => ctx.revert();
   }, []);

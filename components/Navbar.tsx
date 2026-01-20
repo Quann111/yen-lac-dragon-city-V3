@@ -142,7 +142,10 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
         });
         
         // Update hash without scrolling again
-        window.history.pushState(null, '', `/#${id}`);
+        const baseUrl = import.meta.env.BASE_URL.endsWith('/') 
+          ? import.meta.env.BASE_URL.slice(0, -1) 
+          : import.meta.env.BASE_URL;
+        window.history.pushState(null, '', `${baseUrl}/#${id}`);
       }
     }
   };
