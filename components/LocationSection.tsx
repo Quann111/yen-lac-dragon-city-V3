@@ -95,18 +95,23 @@ const LocationSection: React.FC = () => {
 
     mapInstanceRef.current = map;
 
-    // Fix: Invalidate size after a short delay to ensure map renders correctly
+    // Use ResizeObserver to ensure map adjusts to container size changes
+    const resizeObserver = new ResizeObserver(() => {
+      map.invalidateSize();
+    });
+
+    if (mapElementRef.current) {
+      resizeObserver.observe(mapElementRef.current);
+    }
+
+    // Initial invalidation to ensure correct rendering on load
     setTimeout(() => {
       map.invalidateSize();
-    }, 500);
-    
-    // Fix: Invalidate size again after GSAP animation (approx 1.5s)
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 2000);
+    }, 200);
 
     // Cleanup
     return () => {
+      resizeObserver.disconnect();
       map.remove();
       mapInstanceRef.current = null;
     };
