@@ -4,8 +4,7 @@ import gsap from 'gsap';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
-import { ArrowUp, Phone } from 'lucide-react';
-import zaloIconImg from './image/logo/zaloimage.png';
+import { ArrowUp } from 'lucide-react';
 
 // Lazy load pages for performance optimization
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -83,36 +82,11 @@ const App: React.FC = () => {
         <button 
           ref={scrollTopBtnRef}
           onClick={scrollToTop}
-          className="fixed bottom-48 right-8 z-40 p-4 rounded-full shadow-lg transition-colors duration-300 hover:scale-110 opacity-0 translate-y-12 bg-royal-600 text-white border border-royal-500 hover:bg-royal-700 shadow-glow-royal"
+          className="fixed bottom-8 right-8 z-40 p-4 rounded-full shadow-lg transition-colors duration-300 hover:scale-110 opacity-0 translate-y-12 bg-royal-600 text-white border border-royal-500 hover:bg-royal-700 shadow-glow-royal"
           aria-label="Scroll to top"
         >
           <ArrowUp size={24} />
         </button>
-
-        {/* Contact Buttons */}
-        <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4 items-center">
-            {/* Zalo */}
-            <a 
-              href="https://zalo.me/0972979717" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-14 h-14 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 block overflow-hidden"
-              aria-label="Chat on Zalo"
-              title="Nhắn tin Zalo: 0972 979 717"
-            >
-              <img src={zaloIconImg} alt="Zalo" className="w-full h-full object-cover" />
-            </a>
-
-            {/* Phone */}
-            <a 
-              href="tel:0972979717" 
-              className="flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 bg-red-600 text-white border-2 border-white"
-              aria-label="Call Now"
-              title="Gọi ngay: 0972 979 717"
-            >
-              <Phone size={24} />
-            </a>
-        </div>
       </div>
     </Router>
   );

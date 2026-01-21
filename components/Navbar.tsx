@@ -290,7 +290,7 @@ const Navbar: React.FC = () => {
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className={`text-sm uppercase tracking-widest transition-all duration-300 font-sans relative group py-2 font-medium ${getTextColorClass(isActive)}`}
+                  className={`text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
                 >
                   {link.name}
                   <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ease-out 

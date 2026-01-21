@@ -23,11 +23,11 @@ const AmenitiesSection: React.FC = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center reveal-on-scroll">
-        <h2 className="text-3xl md:text-5xl font-serif text-white mb-8 drop-shadow-lg leading-tight transition-colors duration-500">
+        <h2 className="text-3xl md:text-5xl font-body font-bold text-white mb-8 drop-shadow-lg leading-tight transition-colors duration-500">
           Tiện ích đa dạng, đẳng cấp của <br/> dự án Yên Lạc Dragon City
         </h2>
         
-        <div className="text-white font-light text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
+        <div className="text-white font-body text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
           <p>
             Dự án khu đô thị Yên Lạc Dragon City với quy mô 50 ha và mật độ xây dựng chỉ gần 56%, dự án dành tới 20 ha cho không gian cây xanh, mặt nước để kiến tạo lên những mảng tiện ích xanh như hồ điều hòa, công viên Gym, công viên...
           </p>
@@ -42,7 +42,7 @@ const AmenitiesSection: React.FC = () => {
             <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
                <Landmark className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Văn Hoá & Hành Chính</h3>
+            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Văn Hoá & Hành Chính</h3>
           </div>
 
           {/* Mixed Use Complex */}
@@ -50,7 +50,7 @@ const AmenitiesSection: React.FC = () => {
             <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
                <Building2 className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Công Trình Hỗn Hợp</h3>
+            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Công Trình Hỗn Hợp</h3>
           </div>
 
           {/* Square & Parking */}
@@ -58,13 +58,13 @@ const AmenitiesSection: React.FC = () => {
             <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
                <Car className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Quảng Trường & Khu Vực Đỗ Xe</h3>
+            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Quảng Trường & Khu Vực Đỗ Xe</h3>
           </div>
         </div>
 
         <button 
           onClick={scrollToLocation}
-          className="btn-luxury inline-flex items-center gap-2 px-10 py-4 rounded-full backdrop-blur-md border border-white/30 text-white uppercase tracking-widest font-serif text-sm font-bold shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300
+          className="btn-luxury inline-flex items-center gap-2 px-10 py-4 rounded-full backdrop-blur-md border border-white/30 text-white uppercase tracking-widest font-body font-bold text-sm shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300
           bg-black/40 border-gold-400 text-gold-100 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500"
         >
           <MapPin size={18} /> Xem Vị Trí

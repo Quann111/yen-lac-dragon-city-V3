@@ -31,10 +31,10 @@ const ContactSection: React.FC = () => {
           bg-white/60 border-white/50"
         >
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-serif mb-4 transition-colors duration-300 text-royal-600">
+            <h2 className="text-3xl md:text-4xl font-body font-bold mb-4 transition-colors duration-300 text-royal-600">
               Lời Mời Tư Vấn Riêng Biệt
             </h2>
-            <p className="font-light text-sm md:text-base leading-relaxed transition-colors duration-300 text-gray-700">
+            <p className="font-body text-sm md:text-base leading-relaxed transition-colors duration-300 text-gray-700">
               Chúng tôi trân trọng mời quý vị trải nghiệm một buổi tư vấn riêng tư, nơi mọi mong muốn và khát vọng về không gian sống đẳng cấp sẽ được lắng nghe và hiện thực hóa.
             </p>
           </div>
@@ -45,7 +45,7 @@ const ContactSection: React.FC = () => {
                 type="text" 
                 name="name"
                 placeholder="Họ và tên quý vị" 
-                className="w-full rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner
+                className="w-full font-body rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner
                   bg-white border border-gray-200 text-gray-800 focus:border-royal-500 focus:shadow-lg"
                 value={formData.name}
                 onChange={handleChange}
@@ -54,7 +54,7 @@ const ContactSection: React.FC = () => {
                 type="tel" 
                 name="phone"
                 placeholder="Số điện thoại" 
-                className="w-full rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner
+                className="w-full font-body rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner
                   bg-white border border-gray-200 text-gray-800 focus:border-royal-500 focus:shadow-lg"
                 value={formData.phone}
                 onChange={handleChange}
@@ -65,7 +65,7 @@ const ContactSection: React.FC = () => {
               type="email" 
               name="email"
               placeholder="Email của quý vị" 
-              className="w-full rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner
+              className="w-full font-body rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner
                   bg-white border border-gray-200 text-gray-800 focus:border-royal-500 focus:shadow-lg"
               value={formData.email}
               onChange={handleChange}
@@ -75,7 +75,7 @@ const ContactSection: React.FC = () => {
               name="message"
               rows={3}
               placeholder="Nội dung tư vấn (yêu cầu đặc biệt, thời gian phù hợp...)" 
-              className="w-full rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner resize-none
+              className="w-full font-body rounded-xl px-5 py-4 focus:outline-none transition-all duration-300 shadow-inner resize-none
                   bg-white border border-gray-200 text-gray-800 focus:border-royal-500 focus:shadow-lg"
               value={formData.message}
               onChange={handleChange}
@@ -83,7 +83,7 @@ const ContactSection: React.FC = () => {
 
             <button 
               type="button" 
-              className="w-full font-bold py-4 rounded-full shadow-lg mt-4 transform hover:-translate-y-1 transition-all duration-300
+              className="w-full font-body font-bold py-4 rounded-full shadow-lg mt-4 transform hover:-translate-y-1 transition-all duration-300
                 bg-gradient-royal text-white hover:shadow-royal-500/50"
             >
               Gửi Lời Mời & Nhận Tư Vấn

@@ -15,7 +15,7 @@ interface LocationCardProps {
 
 const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time }) => (
   <div className="location-card flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
-    bg-white text-royal-900 border-royal-500 hover:shadow-xl"
+    bg-white text-royal-900 border-royal-500 hover:shadow-xl font-body"
   >
     <div className="p-3 rounded-full transition-colors duration-300
       bg-royal-100 text-royal-600"
@@ -155,12 +155,12 @@ const LocationSection: React.FC = () => {
           
           {/* Text Content */}
           <div className="w-full lg:w-1/2 py-16 px-8 lg:pl-16 flex flex-col justify-center relative z-10">
-            <h2 className="text-4xl lg:text-5xl font-serif mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
+            <h2 className="text-4xl lg:text-5xl font-body font-bold mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
               text-royal-600"
             >
               Vị Thế Kim Cương: <br /> Nơi Giá Trị Hội Tụ
             </h2>
-            <p className="font-light mb-10 leading-relaxed transition-colors duration-300 reveal-on-scroll
+            <p className="font-body mb-10 leading-relaxed transition-colors duration-300 reveal-on-scroll
               text-gray-600"
             >
               Tọa lạc tại tâm điểm thịnh vượng, kết nối mọi tiện ích sống, làm việc và giải trí. Một vị trí chiến lược, đảm bảo cuộc sống tiện nghi và tiềm năng đầu tư vượt trội.
@@ -191,7 +191,7 @@ const LocationSection: React.FC = () => {
 
             <button 
               onClick={scrollToContact}
-              className="btn-luxury self-start flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-serif text-sm font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-300 reveal-on-scroll
+              className="btn-luxury self-start flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-body font-bold text-sm shadow-lg transform hover:-translate-y-1 transition-all duration-300 reveal-on-scroll
               bg-royal-600 text-white hover:bg-royal-700 hover:shadow-royal-500/50"
             >
               Liên Hệ Ngay

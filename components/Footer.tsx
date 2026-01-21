@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="transition-colors duration-500 pt-16 pb-8 font-light
+    <footer className="transition-colors duration-500 pt-16 pb-8 font-body
       bg-royal-900 text-gray-300 border-t border-white/10"
     >
       <div className="container mx-auto px-6">
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
           
           {/* Brand Column */}
           <div className="col-span-1 lg:col-span-1">
-            <h3 className="text-2xl font-serif text-white mb-4">Yên Lạc Dragon City</h3>
+            <h3 className="text-2xl font-body font-bold text-white mb-4">Yên Lạc Dragon City</h3>
             <p className="mb-6 text-sm leading-relaxed">
               Yên Lạc Dragon City - Nơi Kiến Tạo Cuộc Sống Đẳng Cấp, mang đến những giá trị bền vững và phong cách sống thượng lưu cho cộng đồng.
             </p>
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
 
           {/* Links */}
           <div className="col-span-1">
-             <h4 className="text-white font-serif mb-6 text-lg">Liên kết nhanh</h4>
+             <h4 className="text-white font-body font-bold mb-6 text-lg">Liên kết nhanh</h4>
              <ul className="space-y-3 text-sm">
                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="hover:text-white transition-colors">Trang chủ</a></li>
                <li><a href="#collection" onClick={(e) => handleNavClick(e, 'collection')} className="hover:text-white transition-colors">Dự án</a></li>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
 
            {/* Contact Info */}
            <div className="col-span-1 lg:col-span-2">
-             <h4 className="text-white font-serif mb-6 text-lg">Liên hệ chúng tôi</h4>
+             <h4 className="text-white font-body font-bold mb-6 text-lg">Liên hệ chúng tôi</h4>
              <ul className="space-y-4 text-sm">
                <li className="flex items-start gap-3">
                  <MapPin size={18} className="mt-0.5 shrink-0 text-gold-400" />
@@ -80,11 +80,11 @@ const Footer: React.FC = () => {
                  <span>contact@yenlacdragoncity.com</span>
                </li>
                <li className="flex items-center gap-3">
-                 <div className="w-[18px] text-center font-bold shrink-0 text-gold-400">@</div>
+                 <div className="w-[18px] text-center font-body font-bold shrink-0 text-gold-400">@</div>
                  <span>yenlacdragoncity.com</span>
                </li>
                <li className="flex items-center gap-3">
-                 <div className="w-[18px] text-center font-bold shrink-0 text-gold-400">©</div>
+                 <div className="w-[18px] text-center font-body font-bold shrink-0 text-gold-400">©</div>
                  <span>Mã cửa T2 - CN</span>
                </li>
              </ul>

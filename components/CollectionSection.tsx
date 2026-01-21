@@ -21,7 +21,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({ title, image, onClick }
     className="group cursor-pointer reveal-on-scroll"
   >
     {/* Title - Centered, Blue, Bold */}
-    <h3 className="text-center text-royal-700 text-xl font-bold uppercase mb-4 group-hover:text-royal-600 transition-colors">
+    <h3 className="text-center text-royal-700 text-xl font-body font-bold uppercase mb-4 group-hover:text-royal-600 transition-colors">
       {title}
     </h3>
 
@@ -157,10 +157,10 @@ const CollectionSection: React.FC = () => {
 
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-16 reveal-on-scroll">
-          <h2 className="text-3xl md:text-5xl font-serif mb-4 transition-colors duration-300 text-royal-600">
+          <h2 className="text-3xl md:text-5xl font-body font-bold mb-4 transition-colors duration-300 text-royal-600">
             Bộ Sưu Tập Độc Quyền: Không <br className="hidden md:block"/> Gian Sống Riêng
           </h2>
-          <p className="max-w-2xl mx-auto font-light transition-colors duration-300 text-gray-600">
+          <p className="max-w-2xl mx-auto font-body transition-colors duration-300 text-gray-600">
             Khám phá những lựa chọn đẳng cấp, từ biệt thự sang trọng, căn hộ tinh tế đến shophouse đa năng, mỗi loại hình là một tuyên ngôn về phong cách và sự tiện nghi vượt trội.
           </p>
         </div>
@@ -179,7 +179,7 @@ const CollectionSection: React.FC = () => {
         <div className="text-center reveal-on-scroll">
            <button 
             onClick={scrollToAmenities}
-            className="btn-luxury px-12 py-4 rounded-full uppercase tracking-widest font-serif text-sm font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-300
+            className="btn-luxury px-12 py-4 rounded-full uppercase tracking-widest font-body font-bold text-sm shadow-lg transform hover:-translate-y-1 transition-all duration-300
               bg-black/40 backdrop-blur-md border-2 border-gold-400 text-gold-100 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500"
           >
             Khám Phá Tiện Ích
@@ -232,7 +232,7 @@ const CollectionSection: React.FC = () => {
                 {/* Info Section */}
                 <div className="w-full md:w-1/3 p-6 md:p-8 flex flex-col">
                     <div className="flex justify-between items-start mb-6">
-                        <h3 className="text-2xl md:text-3xl font-serif text-royal-700">
+                        <h3 className="text-2xl md:text-3xl font-body font-bold text-royal-700">
                             {selectedCollection}
                         </h3>
                         <button 
@@ -244,7 +244,7 @@ const CollectionSection: React.FC = () => {
                     </div>
 
                     <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                        <p className="text-gray-600 mb-6 font-light leading-relaxed">
+                        <p className="text-gray-600 mb-6 font-body leading-relaxed">
                             {galleryData[selectedCollection].description}
                         </p>
                         
@@ -252,8 +252,8 @@ const CollectionSection: React.FC = () => {
                         <div className="mb-6 bg-gray-50 p-4 rounded-lg space-y-2 border border-gray-100">
                              {galleryData[selectedCollection].details.map((detail, idx) => (
                                 <div key={idx} className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-500 font-medium">{detail.label}</span>
-                                    <span className="text-royal-800 font-bold">{detail.value}</span>
+                                    <span className="text-gray-500 font-body font-medium">{detail.label}</span>
+                                    <span className="text-royal-800 font-body font-bold">{detail.value}</span>
                                 </div>
                              ))}
                         </div>
@@ -278,7 +278,7 @@ const CollectionSection: React.FC = () => {
                     <div className="mt-6 pt-6 border-t border-gray-200">
                         <button 
                             onClick={handleContactClick}
-                            className="w-full py-3 rounded-lg bg-royal-600 hover:bg-royal-700 text-white font-medium transition-colors shadow-lg"
+                            className="w-full py-3 rounded-lg bg-royal-600 hover:bg-royal-700 text-white font-body font-bold transition-colors shadow-lg"
                         >
                             Đăng Ký Tư Vấn
                         </button>
