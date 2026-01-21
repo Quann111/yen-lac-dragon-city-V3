@@ -158,7 +158,7 @@ const LocationSection: React.FC = () => {
             <h2 className="text-4xl lg:text-5xl font-body font-bold mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
               text-royal-600"
             >
-              Vị Thế Kim Cương: <br /> Nơi Giá Trị Hội Tụ
+              Vị Thế Kim Cương: <br className="hidden md:block" /> Nơi Giá Trị Hội Tụ
             </h2>
             <p className="font-body mb-10 leading-relaxed transition-colors duration-300 reveal-on-scroll
               text-gray-600"

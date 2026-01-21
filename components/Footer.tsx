@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Links */}
-          <div className="col-span-1">
+          <div className="col-span-1 hidden md:block">
              <h4 className="text-white font-body font-bold mb-6 text-lg">Liên kết nhanh</h4>
              <ul className="space-y-3 text-sm">
                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="hover:text-white transition-colors">Trang chủ</a></li>

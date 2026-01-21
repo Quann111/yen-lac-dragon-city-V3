@@ -457,7 +457,7 @@ const NewsPage: React.FC = () => {
               Tin Tức & Sự Kiện
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-6 drop-shadow-2xl">
-              Nhịp Sống <br/> <span className="text-gold-400">Yên Lạc Dragon City</span>
+              Nhịp Sống <br className="hidden md:block"/> <span className="text-gold-400">Yên Lạc Dragon City</span>
             </h1>
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light">
               Cập nhật những thông tin mới nhất về tiến độ dự án, sự kiện nổi bật và xu hướng thị trường bất động sản.

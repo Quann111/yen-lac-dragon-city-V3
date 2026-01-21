@@ -24,7 +24,7 @@ const AmenitiesSection: React.FC = () => {
 
       <div className="relative z-10 container mx-auto px-6 text-center reveal-on-scroll">
         <h2 className="text-3xl md:text-5xl font-body font-bold text-white mb-8 drop-shadow-lg leading-tight transition-colors duration-500">
-          Tiện ích đa dạng, đẳng cấp của <br/> dự án Yên Lạc Dragon City
+          Tiện ích đa dạng, đẳng cấp của <br className="hidden md:block"/> dự án Yên Lạc Dragon City
         </h2>
         
         <div className="text-white font-body text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
