@@ -14,7 +14,7 @@ interface LocationCardProps {
 }
 
 const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time }) => (
-  <div className="reveal-on-scroll flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
+  <div className="location-card flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
     bg-white text-royal-900 border-royal-500 hover:shadow-xl"
   >
     <div className="p-3 rounded-full transition-colors duration-300
@@ -33,6 +33,8 @@ const LocationSection: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapElementRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const textContentRef = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -124,8 +126,30 @@ const LocationSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
+  // Initialize Intersection Observer for lazy-loaded content
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      const elements = sectionRef.current.querySelectorAll('.reveal-on-scroll');
+      elements.forEach((el) => observer.observe(el));
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative w-full overflow-hidden transition-colors duration-500 bg-white">
+    <section ref={sectionRef} className="relative w-full overflow-hidden transition-colors duration-500 bg-white">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row h-full items-center">
           
