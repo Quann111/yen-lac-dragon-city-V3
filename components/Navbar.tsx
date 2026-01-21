@@ -7,6 +7,15 @@ import facebookIcon from '../image/logo/facebookicon.png';
 import youtubeIcon from '../image/logo/youtube.png';
 import tiktokIcon from '../image/logo/tiktok.png';
 
+const navLinks = [
+  { name: 'Tổng quan', id: 'home' },
+  { name: 'Vị trí', id: 'location' },
+  { name: 'Sản phẩm', id: 'collection' },
+  { name: 'Tiện ích', id: 'amenities' },
+  { name: 'Tin tức', id: 'news' },
+  { name: 'Liên hệ', id: 'contact' },
+];
+
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -82,6 +91,42 @@ const Navbar: React.FC = () => {
     };
   }, [isLogoMenuOpen]);
 
+  // Handle scroll spy
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+
+    const handleScrollSpy = () => {
+      const scrollPosition = window.scrollY + 100; // Offset for sticky header
+
+      // Check if we are at the bottom of the page
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        setActiveSection('contact');
+        return;
+      }
+
+      for (const link of navLinks) {
+        if (link.id === 'news') continue; // Skip news as it's a separate page
+        
+        const element = document.getElementById(link.id);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(link.id);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSpy);
+    // Initial check
+    handleScrollSpy();
+    
+    return () => window.removeEventListener('scroll', handleScrollSpy);
+  }, [location.pathname]);
+
   // Handle Navbar background on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -104,15 +149,6 @@ const Navbar: React.FC = () => {
     window.addEventListener('nav-change', handleNavChange);
     return () => window.removeEventListener('nav-change', handleNavChange);
   }, []);
-
-  const navLinks = [
-    { name: 'Tổng quan', id: 'home' },
-    { name: 'Vị trí', id: 'location' },
-    { name: 'Sản phẩm', id: 'collection' },
-    { name: 'Tiện ích', id: 'amenities' },
-    { name: 'Tin tức', id: 'news' },
-    { name: 'Liên hệ', id: 'contact' },
-  ];
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
