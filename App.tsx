@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import LoadingScreen from './components/LoadingScreen';
 import { ArrowUp, Phone } from 'lucide-react';
 import zaloIconImg from './image/logo/zaloimage.png';
 
@@ -17,6 +18,7 @@ const LoadingFallback = () => (
 );
 
 const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const scrollTopBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -61,6 +63,8 @@ const App: React.FC = () => {
 
   return (
     <Router basename="/yen-lac-dragon-city-V3">
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      
       <div className="w-full min-h-screen overflow-x-hidden font-sans relative transition-colors duration-500 bg-white">
         <Navbar />
         

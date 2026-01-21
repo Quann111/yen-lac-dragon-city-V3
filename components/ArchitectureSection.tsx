@@ -8,7 +8,7 @@ const ArchitectureSection: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[80vh] w-full flex items-end pb-20 md:pb-32 overflow-hidden bg-white">
+    <section className="relative min-h-[80vh] h-auto md:h-[80vh] w-full flex items-end pb-20 md:pb-32 overflow-hidden bg-white">
        {/* Background Image */}
        <div className="absolute inset-0 z-0">
         <img 
