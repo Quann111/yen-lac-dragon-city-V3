@@ -268,13 +268,28 @@ const Navbar: React.FC = () => {
 
           {/* Social Icons & Tools (Right) */}
           <div className="hidden md:flex items-center gap-4 ml-6">
-             <a href="#" className="transition-transform duration-300 hover:scale-110">
+             <a 
+               href="https://www.facebook.com/dragoncity.yenlac/" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="transition-transform duration-300 hover:scale-110"
+             >
                <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
              </a>
-             <a href="#" className="transition-transform duration-300 hover:scale-110">
+             <a 
+               href="https://www.youtube.com/results?search_query=yên+lạc+dragon+city" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="transition-transform duration-300 hover:scale-110"
+             >
                <img src={youtubeIcon} alt="Youtube" className="w-8 h-8 object-contain" />
              </a>
-             <a href="#" className="transition-transform duration-300 hover:scale-110">
+             <a 
+               href="https://www.tiktok.com/search?q=yên%20lạc%20dragon%20city" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="transition-transform duration-300 hover:scale-110"
+             >
                <img src={tiktokIcon} alt="Tiktok" className="w-8 h-8 object-contain" />
              </a>
           </div>
