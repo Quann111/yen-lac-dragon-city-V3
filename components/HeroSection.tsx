@@ -23,15 +23,16 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-24 left-6 md:left-20 z-10 text-left max-w-5xl reveal-on-scroll">
+      <div className="absolute bottom-40 md:bottom-24 left-6 md:left-20 z-10 text-left max-w-5xl reveal-on-scroll">
         {/* Badge */}
         <div className="inline-block bg-[#FDB913] text-black font-bold px-4 py-1.5 rounded-md text-xs md:text-sm mb-6 tracking-widest uppercase shadow-lg">
            Bất Động Sản
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-6xl lg:text-8xl font-orbitron mb-6 leading-tight drop-shadow-2xl font-bold tracking-widest md:whitespace-nowrap uppercase text-white">
-          <span className="font-qbone">Yên Lạc</span> <span>Dragon City</span>
+        <h1 className="text-4xl md:text-6xl lg:text-8xl font-orbitron mb-6 leading-tight drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] font-bold tracking-widest md:whitespace-nowrap uppercase text-white">
+          <span className="font-qbone block md:inline mb-2 md:mb-0">Yên Lạc</span>
+          <span className="block md:inline">Dragon City</span>
         </h1>
 
         {/* Divider */}
