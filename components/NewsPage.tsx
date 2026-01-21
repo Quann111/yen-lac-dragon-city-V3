@@ -13,10 +13,6 @@ import img07 from '../image/anhTintuc/07.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface NewsPageProps {
-  isDarkMode: boolean;
-}
-
 interface NewsArticle {
   title: string;
   date: string;
@@ -26,7 +22,7 @@ interface NewsArticle {
   content: string;
 }
 
-const NewsModal = ({ article, onClose, isDarkMode }: { article: NewsArticle, onClose: () => void, isDarkMode: boolean }) => {
+const NewsModal = ({ article, onClose }: { article: NewsArticle, onClose: () => void }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -85,8 +81,7 @@ const NewsModal = ({ article, onClose, isDarkMode }: { article: NewsArticle, onC
       {/* Modal Container */}
       <div 
         ref={modalRef}
-        className={`relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-3xl shadow-2xl flex flex-col
-          ${isDarkMode ? 'bg-navy-900 text-white' : 'bg-white text-royal-900'}`}
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-3xl shadow-2xl flex flex-col bg-white text-royal-900"
       >
         {/* Close Button */}
         <button 
@@ -114,8 +109,7 @@ const NewsModal = ({ article, onClose, isDarkMode }: { article: NewsArticle, onC
         <div className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
           <div ref={contentRef} className="max-w-3xl mx-auto space-y-6">
             {/* Meta Info */}
-            <div className={`flex items-center gap-2 text-sm opacity-60 font-mono border-b pb-4
-              ${isDarkMode ? 'border-white/10' : 'border-royal-900/10'}`}>
+            <div className="flex items-center gap-2 text-sm opacity-60 font-mono border-b pb-4 border-royal-900/10">
               <Calendar size={16} />
               <span>{article.date}</span>
               <span className="mx-2">|</span>
@@ -129,7 +123,7 @@ const NewsModal = ({ article, onClose, isDarkMode }: { article: NewsArticle, onC
             </p>
             
             {/* Main Content Body */}
-            <div className={`prose prose-lg max-w-none ${isDarkMode ? 'prose-invert' : 'prose-stone'}`}>
+            <div className="prose prose-lg max-w-none prose-stone">
                {article.content.split('\n\n').map((paragraph, idx) => (
                  <p key={idx} className="mb-4 text-justify leading-relaxed opacity-80">
                    {paragraph}
@@ -143,7 +137,7 @@ const NewsModal = ({ article, onClose, isDarkMode }: { article: NewsArticle, onC
   );
 };
 
-const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
+const NewsPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -436,14 +430,13 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
   }, [paginatedNews]); // Re-run when news list changes
 
   return (
-    <div ref={containerRef} className={`min-h-screen transition-colors duration-500 ${isDarkMode ? 'bg-navy-950 text-white' : 'bg-gray-50 text-royal-900'}`}>
+    <div ref={containerRef} className="min-h-screen transition-colors duration-500 bg-gray-50 text-royal-900">
       
       {/* Modal Popup */}
       {selectedArticle && (
         <NewsModal 
           article={selectedArticle} 
           onClose={() => setSelectedArticle(null)} 
-          isDarkMode={isDarkMode} 
         />
       )}
 
@@ -455,7 +448,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
             alt="News Hero" 
             className="w-full h-full object-cover"
           />
-          <div className={`absolute inset-0 ${isDarkMode ? 'bg-navy-950/70' : 'bg-royal-900/60'}`}></div>
+          <div className="absolute inset-0 bg-royal-900/60"></div>
         </div>
         
         <div className="relative z-10 container mx-auto px-6 text-center">
@@ -476,13 +469,12 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
       <div className="container mx-auto px-6 py-16">
         {/* Featured News */}
         <div ref={featuredRef} className="mb-20">
-          <h2 className={`text-2xl font-serif mb-8 flex items-center gap-3 ${isDarkMode ? 'text-gold-200' : 'text-royal-800'}`}>
+          <h2 className="text-2xl font-serif mb-8 flex items-center gap-3 text-royal-800">
             <span className="w-8 h-[2px] bg-current"></span>
             Tâm Điểm
           </h2>
           
-          <div className={`group relative grid md:grid-cols-2 gap-0 overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-glow-gold
-            ${isDarkMode ? 'bg-navy-900' : 'bg-white'}`}>
+          <div className="group relative grid md:grid-cols-2 gap-0 overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-glow-gold bg-white">
             <div className="relative h-64 md:h-auto overflow-hidden">
               <img 
                 src={featuredNews.image} 
@@ -498,17 +490,15 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
                 <Calendar size={16} />
                 <span>{featuredNews.date}</span>
               </div>
-              <h3 className={`text-2xl md:text-3xl font-serif font-bold mb-4 transition-colors duration-300 group-hover:text-gold-500
-                ${isDarkMode ? 'text-white' : 'text-royal-900'}`}>
+              <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4 transition-colors duration-300 group-hover:text-gold-500 text-royal-900">
                 {featuredNews.title}
               </h3>
-              <p className={`mb-8 line-clamp-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <p className="mb-8 line-clamp-3 text-gray-600">
                 {featuredNews.description}
               </p>
               <button 
                 onClick={() => setSelectedArticle(featuredNews)}
-                className={`flex items-center gap-2 font-bold uppercase text-sm tracking-wider transition-all duration-300
-                ${isDarkMode ? 'text-gold-400 hover:text-white' : 'text-royal-600 hover:text-royal-800'}`}
+                className="flex items-center gap-2 font-bold uppercase text-sm tracking-wider transition-all duration-300 text-royal-600 hover:text-royal-800"
               >
                 Đọc Thêm <ArrowRight size={18} />
               </button>
@@ -526,9 +516,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
                 className={`px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300
                   ${item === activeCategory
                     ? 'bg-gold-500 text-navy-900 shadow-lg scale-105' 
-                    : isDarkMode 
-                      ? 'bg-navy-800 text-gray-300 hover:bg-navy-700' 
-                      : 'bg-white text-gray-600 hover:bg-gray-100 shadow-sm'
+                    : 'bg-white text-gray-600 hover:bg-gray-100 shadow-sm'
                   }`}
               >
                 {item}
@@ -536,10 +524,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
             ))}
           </div>
           
-          <div className={`flex items-center px-4 py-2 rounded-full w-full md:w-64 border transition-colors
-            ${isDarkMode 
-              ? 'bg-navy-900 border-navy-700 focus-within:border-gold-500/50' 
-              : 'bg-white border-gray-200 focus-within:border-royal-500/50'}`}>
+          <div className="flex items-center px-4 py-2 rounded-full w-full md:w-64 border transition-colors bg-white border-gray-200 focus-within:border-royal-500/50">
             <Search size={18} className="opacity-50 mr-2" />
             <input 
               type="text" 
@@ -557,8 +542,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
             <div 
               key={index} 
               onClick={() => setSelectedArticle(news)}
-              className={`news-card group flex flex-col h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer
-                ${isDarkMode ? 'bg-navy-900' : 'bg-white'}`}
+              className="news-card group flex flex-col h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer bg-white"
             >
               <div className="relative h-56 overflow-hidden">
                 <img 
@@ -578,21 +562,19 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
                   <span>{news.date}</span>
                 </div>
                 
-                <h3 className={`text-xl font-serif font-bold mb-3 line-clamp-2 transition-colors duration-300 group-hover:text-gold-500
-                  ${isDarkMode ? 'text-white' : 'text-royal-900'}`}>
+                <h3 className="text-xl font-serif font-bold mb-3 line-clamp-2 transition-colors duration-300 group-hover:text-gold-500 text-royal-900">
                   {news.title}
                 </h3>
                 
-                <p className={`text-sm mb-6 line-clamp-3 flex-grow ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className="text-sm mb-6 line-clamp-3 flex-grow text-gray-600">
                   {news.description}
                 </p>
                 
-                <div className={`pt-4 border-t ${isDarkMode ? 'border-white/10' : 'border-gray-100'}`}>
-                  <button className={`flex items-center justify-between w-full text-sm font-bold uppercase transition-colors
-                    ${isDarkMode ? 'text-gray-300 group-hover:text-gold-400' : 'text-gray-600 group-hover:text-royal-600'}`}>
+                <div className="pt-4 border-t border-gray-100">
+                  <button className="flex items-center justify-between w-full text-sm font-bold uppercase transition-colors text-gray-600 group-hover:text-royal-600">
                     Xem Chi Tiết
                     <span className="bg-current p-1 rounded-full text-navy-900 group-hover:rotate-45 transition-transform duration-300">
-                      <ChevronRight size={14} className={isDarkMode ? 'text-navy-900' : 'text-white'} />
+                      <ChevronRight size={14} className="text-white" />
                     </span>
                   </button>
                 </div>
@@ -611,9 +593,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-300
                   ${item === currentPage 
                     ? 'bg-gold-500 text-navy-900 shadow-lg' 
-                    : isDarkMode 
-                      ? 'bg-navy-800 text-white hover:bg-navy-700' 
-                      : 'bg-white text-royal-900 hover:bg-gray-100'}`}
+                    : 'bg-white text-royal-900 hover:bg-gray-100'}`}
               >
                 {item}
               </button>
@@ -621,8 +601,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
             <button 
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300
-              ${isDarkMode ? 'bg-navy-800 text-white hover:bg-navy-700' : 'bg-white text-royal-900 hover:bg-gray-100'}
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 bg-white text-royal-900 hover:bg-gray-100
               ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <ChevronRight size={20} />
@@ -639,9 +618,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-300 shadow-lg hover:scale-110
                   ${item === currentPage 
                     ? 'bg-gold-500 text-navy-900' 
-                    : isDarkMode 
-                      ? 'bg-navy-800 text-white hover:bg-gold-500 hover:text-navy-900' 
-                      : 'bg-white text-royal-900 hover:bg-royal-600 hover:text-white'}`}
+                    : 'bg-white text-royal-900 hover:bg-royal-600 hover:text-white'}`}
               >
                 {item}
               </button>
@@ -649,8 +626,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ isDarkMode }) => {
             <button 
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-110
-              ${isDarkMode ? 'bg-navy-800 text-white hover:bg-gold-500 hover:text-navy-900' : 'bg-white text-royal-900 hover:bg-royal-600 hover:text-white'}
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-110 bg-white text-royal-900 hover:bg-royal-600 hover:text-white
               ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <ChevronRight size={20} />

@@ -4,6 +4,7 @@ import { Trees, Landmark, Building2, MapPin, Car } from 'lucide-react';
 const AmenitiesSection: React.FC = () => {
   const scrollToLocation = () => {
     document.getElementById('location')?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#location');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'location' }));
   };
 
@@ -17,9 +18,8 @@ const AmenitiesSection: React.FC = () => {
         />
         {/* 
           Light Mode: No overlay (Day time)
-          Dark Mode: Heavy overlay (80%) for deep dark mode feel
         */}
-        <div className="absolute inset-0 transition-opacity duration-700 opacity-0 dark:opacity-100 bg-black/80"></div>
+        <div className="absolute inset-0 transition-opacity duration-700 opacity-0 bg-black/80"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center reveal-on-scroll">
@@ -27,7 +27,7 @@ const AmenitiesSection: React.FC = () => {
           Tiện ích đa dạng, đẳng cấp của <br/> dự án Yên Lạc Dragon City
         </h2>
         
-        <div className="text-white font-light text-base md:text-lg max-w-5xl mx-auto mb-16 drop-shadow-md space-y-6 text-justify md:text-center transition-colors duration-500">
+        <div className="text-white font-light text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
           <p>
             Dự án khu đô thị Yên Lạc Dragon City với quy mô 50 ha và mật độ xây dựng chỉ gần 56%, dự án dành tới 20 ha cho không gian cây xanh, mặt nước để kiến tạo lên những mảng tiện ích xanh như hồ điều hòa, công viên Gym, công viên...
           </p>
@@ -38,35 +38,34 @@ const AmenitiesSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {/* Cultural & Admin */}
-          <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 dark:bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-royal-200 dark:border-white/20 hover:bg-white dark:hover:bg-white/20 transition-all duration-300 h-full shadow-lg dark:shadow-none">
-            <div className="w-20 h-20 rounded-full border border-royal-200 dark:border-white/30 bg-royal-50 dark:bg-white/10 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-royal-600 shrink-0">
-               <Landmark className="w-10 h-10 text-royal-600 dark:text-white group-hover:text-inherit transition-colors" />
+          <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-royal-200 hover:bg-white transition-all duration-300 h-full shadow-lg">
+            <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
+               <Landmark className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 dark:text-white font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Văn Hoá & Hành Chính</h3>
+            <h3 className="text-royal-900 font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Văn Hoá & Hành Chính</h3>
           </div>
 
           {/* Mixed Use Complex */}
-          <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 dark:bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-royal-200 dark:border-white/20 hover:bg-white dark:hover:bg-white/20 transition-all duration-300 h-full shadow-lg dark:shadow-none">
-            <div className="w-20 h-20 rounded-full border border-royal-200 dark:border-white/30 bg-royal-50 dark:bg-white/10 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-gold-500 shrink-0">
-               <Building2 className="w-10 h-10 text-royal-600 dark:text-white group-hover:text-inherit transition-colors" />
+          <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-royal-200 hover:bg-white transition-all duration-300 h-full shadow-lg">
+            <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
+               <Building2 className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 dark:text-white font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Công Trình Hỗn Hợp</h3>
+            <h3 className="text-royal-900 font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Công Trình Hỗn Hợp</h3>
           </div>
 
           {/* Square & Parking */}
-          <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 dark:bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-royal-200 dark:border-white/20 hover:bg-white dark:hover:bg-white/20 transition-all duration-300 h-full shadow-lg dark:shadow-none">
-            <div className="w-20 h-20 rounded-full border border-royal-200 dark:border-white/30 bg-royal-50 dark:bg-white/10 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-green-600 shrink-0">
-               <Car className="w-10 h-10 text-royal-600 dark:text-white group-hover:text-inherit transition-colors" />
+          <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-royal-200 hover:bg-white transition-all duration-300 h-full shadow-lg">
+            <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
+               <Car className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 dark:text-white font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Quảng Trường & Khu Vực Đỗ Xe</h3>
+            <h3 className="text-royal-900 font-light tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Quảng Trường & Khu Vực Đỗ Xe</h3>
           </div>
         </div>
 
         <button 
           onClick={scrollToLocation}
           className="btn-luxury inline-flex items-center gap-2 px-10 py-4 rounded-full backdrop-blur-md border border-white/30 text-white uppercase tracking-widest font-serif text-sm font-bold shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300
-          bg-black/40 border-gold-400 text-gold-100 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500
-          dark:hover:bg-gold-500 dark:hover:text-navy-900"
+          bg-black/40 border-gold-400 text-gold-100 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500"
         >
           <MapPin size={18} /> Xem Vị Trí
         </button>

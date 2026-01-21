@@ -1,17 +1,39 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, MapPin, Phone, Mail } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    window.dispatchEvent(new CustomEvent('nav-change', { detail: id }));
+    
+    if (location.pathname !== '/') {
+      navigate(`/#${id}`);
+      return;
+    }
+
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+
+      // Update URL with full base path
+      window.history.pushState(null, '', `/yen-lac-dragon-city-V3/#${id}`);
+      window.dispatchEvent(new CustomEvent('nav-change', { detail: id }));
+    }
   };
 
   return (
     <footer className="transition-colors duration-500 pt-16 pb-8 font-light
-      bg-royal-900 text-gray-300 border-t border-white/10
-      dark:bg-navy-950 dark:text-gray-400 dark:border-white/5"
+      bg-royal-900 text-gray-300 border-t border-white/10"
     >
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">

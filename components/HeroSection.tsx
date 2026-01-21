@@ -1,57 +1,55 @@
 import React from 'react';
+import heroBg from '../image/anhTintuc/06.webp';
 
 const HeroSection: React.FC = () => {
   const scrollToArchitecture = () => {
     document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#architecture');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'architecture' }));
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image with Zoom Effect */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop" 
-          alt="Luxury Building Exterior" 
-          className="w-full h-full object-cover transition-all duration-1000 brightness-100 dark:brightness-[0.5] scale-105 dark:animate-[pulse_30s_ease-in-out_infinite]"
+          src={heroBg}
+          alt="Yên Lạc Dragon City" 
+          className="w-full h-full object-cover transition-all duration-1000 brightness-100 scale-105"
         />
-        {/* Gradient Overlay - Only visible in Dark Mode */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70 opacity-0 dark:opacity-100 transition-opacity duration-1000"></div>
+        {/* Gradient Overlay - Reduced opacity for better balance */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 reveal-on-scroll">
-        <h2 className="text-gold-400 font-marschel tracking-[0.2em] text-sm md:text-base uppercase mb-4 drop-shadow-lg font-bold transition-colors duration-300">
-          Tinh Hoa Bất Động Sản
-        </h2>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-marschel text-gold-100 mb-6 leading-tight drop-shadow-xl font-bold tracking-tight transition-colors duration-300">
-          Yên Lạc <span className="text-gold-500 transition-colors duration-300">Dragon City</span>
+      <div className="absolute bottom-24 left-6 md:left-20 z-10 text-left max-w-5xl reveal-on-scroll">
+        {/* Badge */}
+        <div className="inline-block bg-[#FDB913] text-black font-bold px-4 py-1.5 rounded-md text-xs md:text-sm mb-6 tracking-widest uppercase shadow-lg">
+           Bất Động Sản
+        </div>
+
+        {/* Title */}
+        <h1 className="text-4xl md:text-6xl lg:text-8xl font-orbitron mb-6 leading-tight drop-shadow-2xl font-bold tracking-widest md:whitespace-nowrap uppercase text-white">
+          <span className="font-qbone">Yên Lạc</span> <span>Dragon City</span>
         </h1>
-        <div className="h-[2px] w-24 bg-gold-500 mx-auto mb-8 shadow-glow-gold transition-colors duration-300"></div>
-        <p className="font-marschel font-medium text-lg md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-lg text-shadow transition-colors duration-300">
-          <span className="bg-black/50 backdrop-blur-md rounded px-2 py-0.5 box-decoration-clone text-gray-100 dark:bg-transparent dark:backdrop-blur-none transition-all duration-300">
-            Kiến tạo những kiệt tác sống vượt thời gian, nơi đẳng cấp hội tụ cùng sự thịnh vượng bền vững.
-          </span>
-        </p>
+
+        {/* Divider */}
+        <div className="h-[1px] w-full max-w-2xl bg-white/40 mb-8"></div>
         
-        {/* Button - Gold theme in both Light and Dark Mode */}
-        <button 
-          onClick={scrollToArchitecture}
-          className="btn-luxury group relative px-10 py-4 rounded-full font-marschel uppercase tracking-widest transition-all duration-300 cursor-pointer transform hover:-translate-y-1 hover:shadow-2xl
-          bg-black/40 backdrop-blur-md shadow-lg border-2
-          border-gold-400 text-gold-100 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500"
-        >
-          <span className="relative z-10 font-bold text-lg">Khám Phá Ngay</span>
-        </button>
+        {/* Description */}
+        <p className="font-light text-lg md:text-xl text-white max-w-3xl leading-relaxed drop-shadow-sm mb-0">
+          Lấy cảm hứng từ những đô thị phồn hoa bậc nhất, từ trái tim Yên Lạc – Thủ Phủ Thương Nghiệp Miền Bắc, một đô thị đầu tiên đạt chuẩn hiện đại đang hình thành, kiến tạo hài hòa giữa tiện nghi, thẩm mỹ và giá trị đầu tư bền vững.
+        </p>
       </div>
 
       {/* Scroll Indicator */}
       <div 
         onClick={scrollToArchitecture}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer p-4 z-20 group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer p-2 z-20 group"
         aria-label="Scroll down"
       >
-        <div className="w-[2px] h-16 bg-gradient-to-b from-transparent via-white to-transparent group-hover:h-20 transition-all duration-500 shadow-glow-gold"></div>
+        <div className="w-2 h-2 border-r border-b border-white rotate-45 mx-auto"></div>
       </div>
     </section>
   );

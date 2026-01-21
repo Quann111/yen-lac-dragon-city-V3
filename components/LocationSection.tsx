@@ -14,19 +14,17 @@ interface LocationCardProps {
 }
 
 const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time }) => (
-  <div className="location-card flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
-    bg-white text-royal-900 border-royal-500 hover:shadow-xl
-    dark:bg-navy-800 dark:text-white dark:border-gold-500 dark:hover:shadow-glow-gold"
+  <div className="reveal-on-scroll flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
+    bg-white text-royal-900 border-royal-500 hover:shadow-xl"
   >
     <div className="p-3 rounded-full transition-colors duration-300
-      bg-royal-100 text-royal-600
-      dark:bg-gold-500/20 dark:text-gold-400"
+      bg-royal-100 text-royal-600"
     >
       {icon}
     </div>
     <div>
       <h4 className="font-bold text-sm md:text-base leading-tight">{title}</h4>
-      <p className="text-xs mt-1 transition-colors text-gray-500 dark:text-gray-400">{time}</p>
+      <p className="text-xs mt-1 transition-colors text-gray-500">{time}</p>
     </div>
   </div>
 );
@@ -35,10 +33,10 @@ const LocationSection: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapElementRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
-  const textContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#contact');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'contact' }));
   };
 
@@ -49,9 +47,9 @@ const LocationSection: React.FC = () => {
     // Fix for default marker icon issues in some builds, though we use custom icon below
     // Initialize Map
     const map = L.map(mapElementRef.current, {
-      center: [21.1695, 105.5768],
+      center: [21.245444, 105.722583],
       zoom: 16,
-      scrollWheelZoom: true, // Enable scroll zoom
+      scrollWheelZoom: true, // Enable scroll zoom as requested
       zoomControl: false,
       attributionControl: false
     });
@@ -89,30 +87,15 @@ const LocationSection: React.FC = () => {
     });
 
     // Add Marker
-    L.marker([21.1695, 105.5768], { icon: customIcon })
+    L.marker([21.245444, 105.722583], { icon: customIcon })
       .addTo(map)
       .bindPopup('<div class="text-center"><b class="text-royal-600">Yên Lạc Dragon City</b><br/><span class="text-xs text-gray-600">Tâm điểm thịnh vượng</span></div>')
       .openPopup();
 
     mapInstanceRef.current = map;
 
-    // Use ResizeObserver to ensure map adjusts to container size changes
-    const resizeObserver = new ResizeObserver(() => {
-      map.invalidateSize();
-    });
-
-    if (mapElementRef.current) {
-      resizeObserver.observe(mapElementRef.current);
-    }
-
-    // Initial invalidation to ensure correct rendering on load
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 200);
-
     // Cleanup
     return () => {
-      resizeObserver.disconnect();
       map.remove();
       mapInstanceRef.current = null;
     };
@@ -120,103 +103,41 @@ const LocationSection: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Map Animation
       if (mapContainerRef.current) {
         gsap.fromTo(mapContainerRef.current,
-          { autoAlpha: 0, scale: 0.95, filter: 'blur(10px)' },
+          { opacity: 0, scale: 0.95, filter: 'blur(10px)' },
           {
-            autoAlpha: 1,
+            opacity: 1,
             scale: 1,
             filter: 'blur(0px)',
             duration: 1.5,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: mapContainerRef.current,
-              start: 'top 85%', // Trigger earlier
-            },
-            onComplete: () => {
-              if (mapInstanceRef.current) {
-                mapInstanceRef.current.invalidateSize();
-              }
+              start: 'top 70%',
             }
           }
         );
       }
-
-      // Text Animation
-      if (textContainerRef.current) {
-        const textElements = textContainerRef.current.querySelectorAll('.animate-text');
-        const cards = textContainerRef.current.querySelectorAll('.location-card');
-        
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: textContainerRef.current,
-            start: 'top 85%', // Trigger earlier
-          }
-        });
-
-        tl.fromTo(textElements, 
-          { autoAlpha: 0, y: 30 },
-          { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
-        );
-
-        tl.fromTo(cards,
-          { autoAlpha: 0, x: -30 },
-          { autoAlpha: 1, x: 0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.2)' },
-          "-=0.4"
-        );
-      }
-
-    }, [mapContainerRef, textContainerRef]);
-
-    // Refresh ScrollTrigger to ensure correct positions after layout updates
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 1000);
+    }, mapContainerRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Handle Scroll Locking when interacting with Map
-  useEffect(() => {
-    const container = mapContainerRef.current;
-    if (!container) return;
-
-    const handleMouseEnter = () => {
-      // Prevent body scroll
-      document.body.style.overflow = 'hidden';
-    };
-
-    const handleMouseLeave = () => {
-      // Restore body scroll
-      document.body.style.overflow = 'auto';
-    };
-
-    container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      container.removeEventListener('mouseenter', handleMouseEnter);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-      // Ensure scroll is restored if component unmounts
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
-
   return (
-    <section className="relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-navy-900">
+    <section className="relative w-full overflow-hidden transition-colors duration-500 bg-white">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row h-full">
+        <div className="flex flex-col lg:flex-row h-full items-center">
           
           {/* Text Content */}
-          <div ref={textContainerRef} className="w-full lg:w-1/2 py-16 px-8 lg:pl-16 flex flex-col justify-center relative z-10">
-            <h2 className="animate-text text-4xl lg:text-5xl font-serif mb-6 leading-tight transition-colors duration-300
-              text-royal-600 dark:text-gold-500"
+          <div className="w-full lg:w-1/2 py-16 px-8 lg:pl-16 flex flex-col justify-center relative z-10">
+            <h2 className="text-4xl lg:text-5xl font-serif mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
+              text-royal-600"
             >
               Vị Thế Kim Cương: <br /> Nơi Giá Trị Hội Tụ
             </h2>
-            <p className="animate-text font-light mb-10 leading-relaxed transition-colors duration-300
-              text-gray-600 dark:text-gray-300"
+            <p className="font-light mb-10 leading-relaxed transition-colors duration-300 reveal-on-scroll
+              text-gray-600"
             >
               Tọa lạc tại tâm điểm thịnh vượng, kết nối mọi tiện ích sống, làm việc và giải trí. Một vị trí chiến lược, đảm bảo cuộc sống tiện nghi và tiềm năng đầu tư vượt trội.
             </p>
@@ -246,20 +167,19 @@ const LocationSection: React.FC = () => {
 
             <button 
               onClick={scrollToContact}
-              className="animate-text btn-luxury self-start flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-serif text-sm font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-300
-              bg-royal-600 text-white hover:bg-royal-700 hover:shadow-royal-500/50
-              dark:bg-gold-500 dark:text-navy-900 dark:hover:bg-white dark:hover:text-royal-900 dark:shadow-glow-gold"
+              className="btn-luxury self-start flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-serif text-sm font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-300 reveal-on-scroll
+              bg-royal-600 text-white hover:bg-royal-700 hover:shadow-royal-500/50"
             >
               Liên Hệ Ngay
             </button>
           </div>
 
           {/* Map Visual (Interactive Leaflet Map) */}
-          <div ref={mapContainerRef} className="w-full lg:w-1/2 h-[40vh] lg:h-auto min-h-[400px] relative bg-gray-200 overflow-hidden shadow-2xl z-0">
+          <div ref={mapContainerRef} className="w-full lg:w-1/2 h-[400px] lg:h-[500px] relative bg-gray-200 overflow-hidden shadow-2xl z-0 rounded-2xl">
              <div ref={mapElementRef} className="w-full h-full z-0" style={{ filter: 'grayscale(0.1)' }}></div>
              
              {/* Decorative Overlay for Theme Integration */}
-             <div className="absolute inset-0 pointer-events-none border-[10px] border-white/50 dark:border-navy-900/50 shadow-inner z-10"></div>
+             <div className="absolute inset-0 pointer-events-none border-[10px] border-white/50 shadow-inner z-10"></div>
           </div>
 
         </div>

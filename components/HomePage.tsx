@@ -8,11 +8,7 @@ import ContactSection from './ContactSection';
 // Lazy load LocationSection to split Leaflet library
 const LocationSection = lazy(() => import('./LocationSection'));
 
-interface HomePageProps {
-  isDarkMode: boolean;
-}
-
-const HomePage: React.FC<HomePageProps> = ({ isDarkMode }) => {
+const HomePage: React.FC = () => {
   // Intersection Observer for Reveal Animations
   useEffect(() => {
     const observerOptions = {
@@ -37,19 +33,19 @@ const HomePage: React.FC<HomePageProps> = ({ isDarkMode }) => {
     }, 100);
 
     return () => observer.disconnect();
-  }, [isDarkMode]);
+  }, []);
 
   return (
     <>
       <div id="home"><HeroSection /></div>
       <div id="architecture"><ArchitectureSection /></div>
-      <div id="collection"><CollectionSection /></div>
-      <div id="amenities"><AmenitiesSection /></div>
       <div id="location">
-        <Suspense fallback={<div className="h-[500px] w-full bg-gray-100 dark:bg-navy-900 animate-pulse flex items-center justify-center text-gray-400 dark:text-gray-600">Loading Map...</div>}>
+        <Suspense fallback={<div className="h-[500px] w-full bg-gray-100 animate-pulse flex items-center justify-center text-gray-400">Loading Map...</div>}>
           <LocationSection />
         </Suspense>
       </div>
+      <div id="collection"><CollectionSection /></div>
+      <div id="amenities"><AmenitiesSection /></div>
       <div id="contact"><ContactSection /></div>
     </>
   );
