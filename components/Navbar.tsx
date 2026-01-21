@@ -221,9 +221,11 @@ const Navbar: React.FC = () => {
     <>
       <nav 
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          isScrolled 
-            ? 'backdrop-blur-md py-3 shadow-lg bg-white/95 border-b border-royal-600/10'
-            : 'bg-transparent py-6'
+          isMobileMenuOpen 
+            ? 'bg-white py-4 shadow-md'
+            : isScrolled
+              ? 'backdrop-blur-md py-3 shadow-lg bg-white/95 border-b border-royal-600/10'
+              : 'bg-transparent py-6'
         }`}
       >
         {/* Top Accent Line */}
@@ -241,9 +243,7 @@ const Navbar: React.FC = () => {
               <img 
                 src={logo} 
                 alt="Yên Lạc Dragon City" 
-                className={`h-9 md:h-12 w-auto transition-all duration-500 transform group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] ${
-                  (!isScrolled && !isMobileMenuOpen) ? 'brightness-0 invert' : ''
-                }`}
+                className="h-9 md:h-12 w-auto transition-all duration-500 transform group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
               />
             </div>
 
@@ -333,38 +333,51 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
             <button 
-              className={`transition-colors ${!isScrolled ? 'text-white' : 'text-royal-900 hover:text-royal-600'}`}
+              className={`transition-colors ${(!isScrolled && !isMobileMenuOpen) ? 'text-white' : 'text-royal-900 hover:text-royal-600'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {isMobileMenuOpen ? <X size={32} strokeWidth={3} /> : <Menu size={32} strokeWidth={3} />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Container */}
       <div 
-        className={`fixed inset-0 z-40 flex items-center justify-center transition-all duration-300 md:hidden bg-white/90 backdrop-blur-md ${
+        className={`fixed inset-x-0 bottom-0 top-[84px] z-40 md:hidden transition-all duration-500 ${
           isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-center space-y-8">
-          {navLinks.map((link) => {
-             const isActive = activeSection === link.id;
-             return (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`text-2xl font-serif transition-colors tracking-wide ${
-                  isActive 
-                  ? 'text-royal-600 font-bold scale-110' 
-                  : 'text-gray-800 hover:text-royal-500'
-                }`}
-              >
-                {link.name}
-              </button>
-            );
-          })}
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-black/20 backdrop-blur-[2px]"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+
+        {/* Menu Drawer */}
+        <div 
+          className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl flex flex-col px-6 transition-transform duration-500 ease-out ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <div className="flex flex-col w-full">
+            {navLinks.map((link) => {
+               const isActive = activeSection === link.id;
+               return (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`w-full text-left py-5 border-b border-royal-100 font-body uppercase tracking-widest text-sm transition-all duration-300 ${
+                    isActive 
+                    ? 'text-royal-800 font-bold pl-2 bg-royal-50/50' 
+                    : 'text-gray-600 hover:text-royal-600 hover:pl-2 hover:bg-royal-50/30'
+                  }`}
+                >
+                  {link.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

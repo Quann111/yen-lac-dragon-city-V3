@@ -23,11 +23,11 @@ const AmenitiesSection: React.FC = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center reveal-on-scroll">
-        <h2 className="text-3xl md:text-5xl font-body font-bold text-white mb-8 drop-shadow-lg leading-tight transition-colors duration-500">
+        <h2 className="text-xl md:text-5xl font-body font-normal text-white mb-8 drop-shadow-lg leading-tight transition-colors duration-500 capitalize whitespace-nowrap">
           Tiện ích đa dạng, đẳng cấp của <br className="hidden md:block"/> dự án Yên Lạc Dragon City
         </h2>
         
-        <div className="text-white font-body text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
+        <div className="hidden md:block text-white font-body text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
           <p>
             Dự án khu đô thị Yên Lạc Dragon City với quy mô 50 ha và mật độ xây dựng chỉ gần 56%, dự án dành tới 20 ha cho không gian cây xanh, mặt nước để kiến tạo lên những mảng tiện ích xanh như hồ điều hòa, công viên Gym, công viên...
           </p>

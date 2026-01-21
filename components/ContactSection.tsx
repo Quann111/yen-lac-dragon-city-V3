@@ -31,7 +31,7 @@ const ContactSection: React.FC = () => {
           bg-white/60 border-white/50"
         >
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-body font-bold mb-4 transition-colors duration-300 text-royal-600">
+            <h2 className="text-2xl md:text-4xl font-body font-normal mb-4 transition-colors duration-300 text-royal-600 capitalize whitespace-nowrap">
               Lời Mời Tư Vấn Riêng Biệt
             </h2>
             <p className="font-body text-sm md:text-base leading-relaxed transition-colors duration-300 text-gray-700">
