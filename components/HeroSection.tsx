@@ -24,7 +24,7 @@ const HeroSection: React.FC = () => {
       {/* Content */}
       <div className="absolute bottom-10 md:bottom-10 left-3 md:left-10 lg:left-20 z-10 text-left max-w-[95%] md:max-w-5xl reveal-on-scroll drop-shadow-2xl">
         {/* Badge */}
-        <div className="inline-block bg-[#FDB913] text-black font-body font-bold px-4 py-1.5 md:px-4 md:py-1.5 rounded-full md:rounded-md text-[10px] md:text-sm mb-3 md:mb-6 tracking-widest uppercase shadow-lg border-none">
+        <div className="inline-block bg-[#FDB913] text-black font-body font-bold px-4 py-1.5 md:px-4 md:py-1.5 rounded-full md:rounded-md text-[10px] md:text-xs mb-3 md:mb-6 tracking-widest uppercase shadow-lg border-none">
            Bất Động Sản
         </div>
 
