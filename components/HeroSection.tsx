@@ -1,5 +1,6 @@
 import React from 'react';
-import heroBg from '../image/TongThe.webp';
+import heroBgWebp from '../image/TongThe.webp';
+import heroBgPng from '../image/TongThe.png';
 
 const HeroSection: React.FC = () => {
   const scrollToArchitecture = () => {
@@ -12,11 +13,14 @@ const HeroSection: React.FC = () => {
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image with Zoom Effect */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroBg}
-          alt="Yên Lạc Dragon City" 
-          className="w-full h-full object-cover md:object-cover object-[72%_center] md:object-center transition-all duration-1000 brightness-110 scale-100 md:scale-105"
-        />
+        <picture>
+          <source media="(max-width: 1024px)" srcSet={heroBgWebp} />
+          <img 
+            src={heroBgPng}
+            alt="Yên Lạc Dragon City" 
+            className="w-full h-full object-cover md:object-cover object-[72%_center] md:object-center transition-all duration-1000 brightness-110 scale-100 md:scale-105"
+          />
+        </picture>
         {/* Gradient Overlay - Dark bottom, bright top */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
       </div>
