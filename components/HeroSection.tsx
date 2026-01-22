@@ -1,5 +1,5 @@
 import React from 'react';
-import heroBg from '../image/TongThe.png';
+import heroBg from '../image/TongThe.webp';
 
 const HeroSection: React.FC = () => {
   const scrollToArchitecture = () => {
