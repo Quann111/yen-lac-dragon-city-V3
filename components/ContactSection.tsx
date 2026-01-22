@@ -34,7 +34,7 @@ const ContactSection: React.FC = () => {
             <h2 className="text-xl md:text-3xl font-body font-bold mb-4 transition-colors duration-300 text-royal-600 uppercase whitespace-nowrap">
               Liên Hệ
             </h2>
-            <p className="font-body text-sm md:text-base leading-relaxed transition-colors duration-300 text-gray-700">
+            <p className="font-body text-sm md:text-base leading-relaxed transition-colors duration-300 text-gray-700 [text-wrap:pretty]">
               Chúng tôi trân trọng mời quý vị trải nghiệm một buổi tư vấn riêng tư, nơi mọi mong muốn và khát vọng về không gian sống đẳng cấp sẽ được lắng nghe và hiện thực hóa.
             </p>
           </div>

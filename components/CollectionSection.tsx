@@ -160,7 +160,7 @@ const CollectionSection: React.FC = () => {
           <h2 className="text-xl md:text-3xl font-body font-bold mb-4 transition-colors duration-300 text-royal-600 uppercase whitespace-nowrap">
             Sản Phẩm
           </h2>
-          <p className="max-w-2xl mx-auto font-body transition-colors duration-300 text-gray-600">
+          <p className="max-w-2xl mx-auto font-body transition-colors duration-300 text-gray-600 [text-wrap:pretty]">
             Khám phá những lựa chọn đẳng cấp, từ biệt thự sang trọng, căn hộ tinh tế đến shophouse đa năng, mỗi loại hình là một tuyên ngôn về phong cách và sự tiện nghi vượt trội.
           </p>
         </div>

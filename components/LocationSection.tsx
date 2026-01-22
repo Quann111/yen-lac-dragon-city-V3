@@ -155,13 +155,13 @@ const LocationSection: React.FC = () => {
           
           {/* Text Content */}
           <div className="w-full lg:w-1/2 py-16 px-8 lg:pl-16 flex flex-col justify-center relative z-10">
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-body font-bold mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
-      text-royal-600 uppercase whitespace-nowrap"
+            <h2 className="text-lg md:text-2xl lg:text-3xl font-body font-bold mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
+      text-royal-600 uppercase"
     >
-              Vị Thế Kim Cương: <br className="hidden md:block" /> Nơi Giá Trị Hội Tụ
+              Vị Thế Kim Cương: <br /> Nơi Giá Trị Hội Tụ
             </h2>
             <p className="font-body mb-10 leading-relaxed transition-colors duration-300 reveal-on-scroll
-              text-gray-600"
+              text-gray-600 [text-wrap:pretty]"
             >
               Tọa lạc tại tâm điểm thịnh vượng, kết nối mọi tiện ích sống, làm việc và giải trí. Một vị trí chiến lược, đảm bảo cuộc sống tiện nghi và tiềm năng đầu tư vượt trội.
             </p>
