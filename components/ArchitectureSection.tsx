@@ -8,7 +8,7 @@ const ArchitectureSection: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[80vh] h-auto md:h-[80vh] w-full flex items-end pb-20 md:pb-32 overflow-hidden bg-white">
+    <section className="relative min-h-[80vh] h-auto lg:h-[80vh] w-full flex items-end pb-20 lg:pb-32 overflow-hidden bg-white">
        {/* Background Image */}
        <div className="absolute inset-0 z-0">
         <img 
@@ -22,15 +22,15 @@ const ArchitectureSection: React.FC = () => {
         "></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-start gap-6 max-w-4xl reveal-on-scroll pt-20 md:pt-0 font-body">
-        <div className="bg-white/90 backdrop-blur-xl p-8 md:p-12 rounded-2xl shadow-2xl border border-white/50 transform transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
-          <h2 className="text-2xl md:text-5xl lg:text-6xl font-body font-normal leading-tight transition-colors duration-300
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 flex flex-col items-start gap-6 max-w-4xl reveal-on-scroll pt-20 lg:pt-0 font-body">
+        <div className="bg-white/90 backdrop-blur-xl p-8 lg:p-12 rounded-2xl shadow-2xl border border-white/50 transform transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+          <h2 className="text-2xl md:text-3xl lg:text-6xl font-body font-normal leading-tight transition-colors duration-300
             text-royal-600 drop-shadow-md mb-6 capitalize whitespace-nowrap"
           >
             Tổng quan dự án
           </h2>
           
-          <p className="text-base md:text-lg font-body font-bold leading-relaxed transition-colors duration-300
+          <p className="text-base lg:text-lg font-body font-bold leading-relaxed transition-colors duration-300
             text-navy-900 drop-shadow-sm text-justify"
           >
             Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển mới.

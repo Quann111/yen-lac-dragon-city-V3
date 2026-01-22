@@ -158,7 +158,7 @@ const CollectionSection: React.FC = () => {
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-16 reveal-on-scroll">
           <h2 className="text-xl md:text-5xl font-body font-normal mb-4 transition-colors duration-300 text-royal-600 capitalize whitespace-nowrap">
-            Bộ Sưu Tập Độc Quyền: Không <br className="hidden md:block"/> Gian Sống Riêng
+            Sản Phẩm
           </h2>
           <p className="max-w-2xl mx-auto font-body transition-colors duration-300 text-gray-600">
             Khám phá những lựa chọn đẳng cấp, từ biệt thự sang trọng, căn hộ tinh tế đến shophouse đa năng, mỗi loại hình là một tuyên ngôn về phong cách và sự tiện nghi vượt trội.

@@ -231,7 +231,7 @@ const Navbar: React.FC = () => {
         {/* Top Accent Line */}
         <div className={`absolute top-0 left-0 w-full h-[3px] transition-all duration-500 bg-gradient-to-r from-royal-700 via-royal-400 to-royal-700 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}></div>
 
-        <div className="w-full px-6 md:px-20 flex items-center justify-between">
+        <div className="w-full px-6 md:px-10 lg:px-20 flex items-center justify-between">
           {/* Logo Container */}
           <div className="relative group -ml-2">
             {/* Logo */}

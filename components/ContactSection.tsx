@@ -32,7 +32,7 @@ const ContactSection: React.FC = () => {
         >
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-4xl font-body font-normal mb-4 transition-colors duration-300 text-royal-600 capitalize whitespace-nowrap">
-              Lời Mời Tư Vấn Riêng Biệt
+              Liên Hệ
             </h2>
             <p className="font-body text-sm md:text-base leading-relaxed transition-colors duration-300 text-gray-700">
               Chúng tôi trân trọng mời quý vị trải nghiệm một buổi tư vấn riêng tư, nơi mọi mong muốn và khát vọng về không gian sống đẳng cấp sẽ được lắng nghe và hiện thực hóa.
