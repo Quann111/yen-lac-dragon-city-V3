@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Building2, GraduationCap, ShoppingBag, PlusSquare } from 'lucide-react';
+import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import 'leaflet/dist/leaflet.css';
@@ -75,7 +75,7 @@ const LocationSection: React.FC = () => {
         display: flex;
         align-items: center;
         justify-content: center;
-      ">
+        ">
         <div style="
           width: 10px; 
           height: 10px; 
@@ -155,8 +155,8 @@ const LocationSection: React.FC = () => {
           
           {/* Text Content */}
           <div className="w-full lg:w-1/2 py-16 px-8 lg:pl-16 flex flex-col justify-center relative z-10">
-            <h2 className="text-xl md:text-4xl lg:text-5xl font-body font-normal mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
-      text-royal-600 capitalize whitespace-nowrap"
+            <h2 className="text-xl md:text-3xl lg:text-4xl font-body font-bold mb-6 leading-tight transition-colors duration-300 reveal-on-scroll
+      text-royal-600 uppercase whitespace-nowrap"
     >
               Vị Thế Kim Cương: <br className="hidden md:block" /> Nơi Giá Trị Hội Tụ
             </h2>
@@ -189,13 +189,26 @@ const LocationSection: React.FC = () => {
                />
             </div>
 
-            <button 
-              onClick={scrollToContact}
-              className="btn-luxury self-start flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-body font-bold text-sm shadow-lg transform hover:-translate-y-1 transition-all duration-300 reveal-on-scroll
-              bg-royal-600 text-white hover:bg-royal-700 hover:shadow-royal-500/50"
-            >
-              Liên Hệ Ngay
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 reveal-on-scroll">
+              <button 
+                onClick={scrollToContact}
+                className="btn-luxury flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-body font-bold text-sm shadow-lg transform hover:-translate-y-1 transition-all duration-300
+                bg-royal-600 text-white hover:bg-royal-700 hover:shadow-royal-500/50"
+              >
+                Liên Hệ Ngay
+              </button>
+              
+              <a 
+                href="https://www.google.com/maps/dir/?api=1&destination=21.245444,105.722583"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-luxury flex items-center justify-center gap-2 px-10 py-4 rounded-full uppercase tracking-widest font-body font-bold text-sm shadow-lg transform hover:-translate-y-1 transition-all duration-300
+                bg-white text-royal-600 border border-royal-600 hover:bg-royal-50 hover:shadow-md"
+              >
+                <MapIcon size={18} />
+                Chỉ đường
+              </a>
+            </div>
           </div>
 
           {/* Map Visual (Interactive Leaflet Map) */}

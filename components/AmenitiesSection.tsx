@@ -23,7 +23,7 @@ const AmenitiesSection: React.FC = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center reveal-on-scroll">
-        <h2 className="text-xl md:text-5xl font-body font-normal text-white mb-8 drop-shadow-lg leading-tight transition-colors duration-500 capitalize whitespace-nowrap">
+        <h2 className="text-xl md:text-3xl font-body font-bold text-white mb-8 drop-shadow-lg leading-tight transition-colors duration-500 uppercase whitespace-nowrap">
           Tiện ích
         </h2>
         

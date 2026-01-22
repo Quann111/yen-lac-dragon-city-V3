@@ -283,7 +283,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-8">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -303,7 +303,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Social Icons & Tools (Right) */}
-          <div className="hidden md:flex items-center gap-4 ml-6">
+          <div className="hidden xl:flex items-center gap-4 ml-6">
              <a 
                href="https://www.facebook.com/dragoncity.yenlac/" 
                target="_blank" 
@@ -331,7 +331,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 xl:hidden">
             <button 
               className={`transition-colors ${(!isScrolled && !isMobileMenuOpen) ? 'text-white' : 'text-royal-900 hover:text-royal-600'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -344,7 +344,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu Container */}
       <div 
-        className={`fixed inset-x-0 bottom-0 top-[84px] z-40 md:hidden transition-all duration-500 ${
+        className={`fixed inset-x-0 bottom-0 top-[84px] z-40 xl:hidden transition-all duration-500 ${
           isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >

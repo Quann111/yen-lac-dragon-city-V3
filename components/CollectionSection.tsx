@@ -21,7 +21,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({ title, image, onClick }
     className="group cursor-pointer reveal-on-scroll"
   >
     {/* Title - Centered, Blue, Bold */}
-    <h3 className="text-center text-royal-700 text-xl font-body font-normal capitalize mb-4 group-hover:text-royal-600 transition-colors">
+    <h3 className="text-center text-royal-700 text-lg md:text-xl font-body font-bold uppercase mb-4 group-hover:text-royal-600 transition-colors">
       {title}
     </h3>
 
@@ -157,7 +157,7 @@ const CollectionSection: React.FC = () => {
 
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-16 reveal-on-scroll">
-          <h2 className="text-xl md:text-5xl font-body font-normal mb-4 transition-colors duration-300 text-royal-600 capitalize whitespace-nowrap">
+          <h2 className="text-xl md:text-3xl font-body font-bold mb-4 transition-colors duration-300 text-royal-600 uppercase whitespace-nowrap">
             Sản Phẩm
           </h2>
           <p className="max-w-2xl mx-auto font-body transition-colors duration-300 text-gray-600">

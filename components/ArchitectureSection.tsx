@@ -24,8 +24,8 @@ const ArchitectureSection: React.FC = () => {
 
       <div className="relative z-10 container mx-auto px-6 lg:px-12 flex flex-col items-start gap-6 max-w-4xl reveal-on-scroll pt-20 lg:pt-0 font-body">
         <div className="bg-white/90 backdrop-blur-xl p-8 lg:p-12 rounded-2xl shadow-2xl border border-white/50 transform transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
-          <h2 className="text-2xl md:text-3xl lg:text-6xl font-body font-normal leading-tight transition-colors duration-300
-            text-royal-600 drop-shadow-md mb-6 capitalize whitespace-nowrap"
+          <h2 className="text-xl md:text-2xl lg:text-4xl font-body font-bold leading-tight transition-colors duration-300
+            text-royal-600 drop-shadow-md mb-6 uppercase whitespace-nowrap"
           >
             Tổng quan dự án
           </h2>
