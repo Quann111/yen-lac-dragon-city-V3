@@ -15,27 +15,27 @@ const HeroSection: React.FC = () => {
         <img 
           src={heroBg}
           alt="Yên Lạc Dragon City" 
-          className="w-full h-full object-cover md:object-cover object-center transition-all duration-1000 brightness-100 scale-100 md:scale-105"
+          className="w-full h-full object-cover md:object-cover object-[65%_center] transition-all duration-1000 brightness-100 scale-100 md:scale-105"
         />
         {/* Gradient Overlay - Dark bottom, bright top */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-12 md:bottom-24 left-3 md:left-20 z-10 text-left max-w-[95%] md:max-w-5xl reveal-on-scroll drop-shadow-2xl">
+      <div className="absolute bottom-12 md:bottom-12 left-3 md:left-20 z-10 text-left max-w-[95%] md:max-w-5xl reveal-on-scroll drop-shadow-2xl">
         {/* Badge */}
-        <div className="inline-block bg-[#FDB913] text-black font-body font-bold px-4 py-1.5 md:px-4 md:py-1.5 rounded-full md:rounded-md text-[10px] md:text-sm mb-3 md:mb-6 tracking-widest uppercase shadow-lg border-none">
+        <div className="inline-block bg-[#FDB913] text-black font-body font-bold px-4 py-1.5 md:px-4 md:py-1.5 rounded-full md:rounded-md text-[10px] md:text-xs mb-3 md:mb-6 tracking-widest uppercase shadow-lg border-none">
            Bất Động Sản
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-qbone mb-2 md:mb-6 leading-none drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] font-bold tracking-wide md:tracking-widest text-white md:whitespace-nowrap">
+        <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-qbone mb-2 md:mb-6 leading-none drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] font-bold tracking-wide md:tracking-widest text-white md:whitespace-nowrap">
           <span className="block md:inline mr-0 md:mr-4">Yên Lạc</span>
           <span className="block md:inline">Dragon City</span>
         </h1>
 
         {/* Description */}
-        <p className="font-body font-medium text-sm md:text-lg text-white/90 max-w-2xl leading-relaxed drop-shadow-md mb-0 text-justify md:text-left pr-4 md:pr-0">
+        <p className="font-body font-normal text-sm md:text-base text-white/90 max-w-2xl leading-relaxed drop-shadow-md mb-0 text-justify md:text-left pr-4 md:pr-0 text-pretty">
           Lấy cảm hứng từ những đô thị phồn hoa bậc nhất, từ trái tim Yên Lạc – Thủ Phủ Thương Nghiệp Miền Bắc, một đô thị đầu tiên đạt chuẩn hiện đại đang hình thành, kiến tạo hài hòa giữa tiện nghi, thẩm mỹ và giá trị đầu tư bền vững.
         </p>
       </div>
