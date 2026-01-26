@@ -244,19 +244,18 @@ const Navbar: React.FC = () => {
             {/* Dropdown Menu */}
             <div 
               ref={logoMenuRef}
-              className="absolute top-full left-0 mt-2 w-72 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl z-50 bg-white/90 border border-royal-200 shadow-royal-900/10"
+              className="absolute top-full left-0 mt-4 w-64 md:w-80 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl z-50 bg-white/95 border border-royal-200 shadow-royal-900/10"
             >
-              <div className="p-2 flex flex-col gap-1">
+              <div className="p-3 flex flex-col gap-3">
                 <a 
                   href="https://google.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center p-3 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
+                  className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
                 >
-                  <div className="mr-3 p-2 rounded-full transition-all duration-300 transform group-hover/item:scale-110 group-hover/item:rotate-12 flex-shrink-0 bg-royal-100 text-royal-600">
-                    <ExternalLink size={18} />
+                  <div className="flex justify-center items-center w-full transition-all duration-300 transform group-hover/item:scale-105">
+                    <img src={logo} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
                   </div>
-                  <span className="text-sm font-bold truncate">Dự án 2</span>
                   <div className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r from-royal-500/10 via-transparent to-transparent" />
                 </a>
                 
@@ -264,12 +263,11 @@ const Navbar: React.FC = () => {
                   href="https://google.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center p-3 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
+                  className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
                 >
-                  <div className="mr-3 p-2 rounded-full transition-all duration-300 transform group-hover/item:scale-110 group-hover/item:rotate-12 flex-shrink-0 bg-royal-100 text-royal-600">
-                    <ExternalLink size={18} />
+                  <div className="flex justify-center items-center w-full transition-all duration-300 transform group-hover/item:scale-105">
+                    <img src={logo} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
                   </div>
-                  <span className="text-sm font-bold truncate">Dự án 3 - Khu đô thị mới</span>
                   <div className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r from-royal-500/10 via-transparent to-transparent" />
                 </a>
               </div>
