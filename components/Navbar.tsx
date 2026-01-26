@@ -209,11 +209,7 @@ const Navbar: React.FC = () => {
 
   // Helper to determine text color based on Scroll state
   const getTextColorClass = (isActive: boolean) => {
-    if (!isScrolled) {
-      // Always white/gold on top (Hero Image)
-      return isActive ? 'text-gold-400 font-bold' : 'text-white/90 hover:text-white';
-    }
-    // Scrolled state
+    // Always use scrolled/dark text color style because navbar is always white
     return isActive ? 'text-royal-800 font-bold drop-shadow-sm' : 'text-gray-600 hover:text-royal-600';
   };
 
@@ -223,13 +219,11 @@ const Navbar: React.FC = () => {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           isMobileMenuOpen 
             ? 'bg-white py-4 shadow-md'
-            : isScrolled
-              ? 'backdrop-blur-md py-3 shadow-lg bg-white/95 border-b border-royal-600/10'
-              : 'bg-transparent py-6'
+            : 'backdrop-blur-md py-3 shadow-lg bg-white/95 border-b border-royal-600/10'
         }`}
       >
         {/* Top Accent Line */}
-        <div className={`absolute top-0 left-0 w-full h-[3px] transition-all duration-500 bg-gradient-to-r from-royal-700 via-royal-400 to-royal-700 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}></div>
+        <div className="absolute top-0 left-0 w-full h-[3px] transition-all duration-500 bg-gradient-to-r from-royal-700 via-royal-400 to-royal-700 opacity-100"></div>
 
         <div className="w-full px-6 md:px-10 lg:px-20 flex items-center justify-between">
           {/* Logo Container */}
@@ -237,13 +231,13 @@ const Navbar: React.FC = () => {
             {/* Logo */}
             <div 
               ref={logoButtonRef}
-              className="cursor-pointer select-none p-2 rounded-lg transition-all duration-300 hover:bg-white/5"
+              className="cursor-pointer select-none p-2 rounded-lg transition-all duration-300 hover:bg-black/5"
               onClick={toggleLogoMenu}
             >
               <img 
                 src={logo} 
                 alt="Yên Lạc Dragon City" 
-                className="h-9 md:h-12 w-auto transition-all duration-500 transform group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                className="h-9 md:h-12 w-auto transition-all duration-500 transform group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]"
               />
             </div>
 
@@ -294,7 +288,7 @@ const Navbar: React.FC = () => {
                 >
                   {link.name}
                   <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ease-out 
-                    ${!isScrolled ? 'bg-gold-400' : 'bg-royal-600'}
+                    bg-royal-600
                     ${isActive ? 'w-full shadow-glow' : 'w-0 group-hover:w-1/2'}`}>
                   </span>
                 </button>
@@ -333,7 +327,7 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 xl:hidden">
             <button 
-              className={`transition-colors ${(!isScrolled && !isMobileMenuOpen) ? 'text-white' : 'text-royal-900 hover:text-royal-600'}`}
+              className="transition-colors text-royal-800"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={32} strokeWidth={3} /> : <Menu size={32} strokeWidth={3} />}

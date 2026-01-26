@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
 import { ArrowUp } from 'lucide-react';
+import zaloIcon from './image/logo/zaloimage.png';
+import facebookIcon from './image/logo/facebookicon.png';
 
 // Lazy load pages for performance optimization
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -78,14 +80,38 @@ const App: React.FC = () => {
 
         <Footer />
 
+        {/* Social Buttons */}
+        <div className={`fixed bottom-8 right-8 z-40 flex flex-col gap-3 transition-all duration-500 ${
+          showScrollTop 
+            ? 'opacity-100 translate-y-0 pointer-events-auto' 
+            : 'opacity-0 translate-y-12 pointer-events-none lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto'
+        }`}>
+          <a 
+            href="https://zalo.me/0972979717" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-full shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-white overflow-hidden"
+          >
+             <img src={zaloIcon} alt="Zalo" className="w-full h-full object-cover" />
+          </a>
+          <a 
+            href="https://www.facebook.com/yenlacdragoncity/?locale=vi_VN" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-full shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-white overflow-hidden"
+          >
+             <img src={facebookIcon} alt="Facebook" className="w-full h-full object-cover" />
+          </a>
+        </div>
+
         {/* Scroll To Top Button */}
         <button 
           ref={scrollTopBtnRef}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-4 rounded-full shadow-lg transition-colors duration-300 hover:scale-110 opacity-0 translate-y-12 bg-royal-600 text-white border border-royal-500 hover:bg-royal-700 shadow-glow-royal"
+          className="fixed bottom-36 right-8 z-40 w-10 h-10 flex items-center justify-center rounded-full shadow-lg transition-colors duration-300 hover:scale-110 opacity-0 translate-y-12 bg-royal-600 text-white border border-royal-500 hover:bg-royal-700 shadow-glow-royal"
           aria-label="Scroll to top"
         >
-          <ArrowUp size={24} />
+          <ArrowUp size={20} />
         </button>
       </div>
     </Router>
