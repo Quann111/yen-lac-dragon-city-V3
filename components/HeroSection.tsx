@@ -1,6 +1,5 @@
 import React from 'react';
-import heroBgWebp from '../image/TongThe.webp';
-import heroBgPng from '../image/TongThe.png';
+import heroBgAvif from '../image/TongTheDem.avif';
 
 const HeroSection: React.FC = () => {
   const scrollToArchitecture = () => {
@@ -14,7 +13,7 @@ const HeroSection: React.FC = () => {
       {/* Background Image with Zoom Effect */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={heroBgPng}
+          src={heroBgAvif}
           alt="Yên Lạc Dragon City" 
           className="w-full h-full object-cover md:object-cover object-[35%_center] lg:object-center transition-all duration-1000 brightness-110 scale-100 md:scale-105"
         />
