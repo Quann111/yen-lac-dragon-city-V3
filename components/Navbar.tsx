@@ -3,7 +3,7 @@ import { Menu, X, ExternalLink } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import logo from '../image/logo/logoXoaBack.png';
-import facebookIcon from '../image/logo/icon_face.png';
+import facebookIcon from '../image/logo/facebookicon.png';
 import youtubeIcon from '../image/logo/youtube.png';
 import tiktokIcon from '../image/logo/tiktok.png';
 

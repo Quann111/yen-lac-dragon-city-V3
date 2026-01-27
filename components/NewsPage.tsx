@@ -99,7 +99,7 @@ const NewsModal = ({ article, onClose }: { article: NewsArticle, onClose: () => 
             <span className="inline-block px-3 py-1 rounded-full bg-gold-500 text-navy-900 text-xs font-bold uppercase mb-3 shadow-lg">
               {article.category}
             </span>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-white leading-tight drop-shadow-md">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-plus font-semibold text-white leading-tight drop-shadow-md">
               {article.title}
             </h2>
           </div>
@@ -118,14 +118,14 @@ const NewsModal = ({ article, onClose }: { article: NewsArticle, onClose: () => 
             </div>
             
             {/* Intro/Description */}
-            <p className="text-lg font-medium leading-relaxed italic opacity-90">
+            <p className="text-lg font-body font-normal leading-relaxed opacity-90">
               {article.description}
             </p>
             
             {/* Main Content Body */}
             <div className="prose prose-lg max-w-none prose-stone">
                {article.content.split('\n\n').map((paragraph, idx) => (
-                 <p key={idx} className="mb-4 text-justify leading-relaxed opacity-80">
+                 <p key={idx} className="mb-4 text-justify leading-relaxed opacity-80 font-body font-normal">
                    {paragraph}
                  </p>
                ))}
@@ -456,10 +456,10 @@ const NewsPage: React.FC = () => {
             <span className="inline-block py-1 px-3 rounded-full border border-white/30 text-white text-xs font-bold tracking-widest uppercase mb-4 backdrop-blur-sm">
               Tin Tức & Sự Kiện
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-6 drop-shadow-2xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-plus font-semibold text-white mb-6 drop-shadow-2xl">
               Nhịp Sống <br className="hidden md:block"/> <span className="text-gold-400">Yên Lạc Dragon City</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light">
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-body font-normal">
               Cập nhật những thông tin mới nhất về tiến độ dự án, sự kiện nổi bật và xu hướng thị trường bất động sản.
             </p>
           </div>
@@ -469,7 +469,7 @@ const NewsPage: React.FC = () => {
       <div className="container mx-auto px-6 py-16">
         {/* Featured News */}
         <div ref={featuredRef} className="mb-20">
-          <h2 className="text-2xl font-serif mb-8 flex items-center gap-3 text-royal-800">
+          <h2 className="text-2xl font-plus font-semibold mb-8 flex items-center gap-3 text-royal-800">
             <span className="w-8 h-[2px] bg-current"></span>
             Tâm Điểm
           </h2>
@@ -490,10 +490,10 @@ const NewsPage: React.FC = () => {
                 <Calendar size={16} />
                 <span>{featuredNews.date}</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4 transition-colors duration-300 group-hover:text-gold-500 text-royal-900">
+              <h3 className="text-2xl md:text-3xl font-plus font-semibold mb-4 transition-colors duration-300 group-hover:text-gold-500 text-royal-900">
                 {featuredNews.title}
               </h3>
-              <p className="mb-8 line-clamp-3 text-gray-600">
+              <p className="mb-8 line-clamp-3 text-gray-600 font-body font-normal">
                 {featuredNews.description}
               </p>
               <button 
@@ -562,11 +562,11 @@ const NewsPage: React.FC = () => {
                   <span>{news.date}</span>
                 </div>
                 
-                <h3 className="text-xl font-serif font-bold mb-3 line-clamp-2 transition-colors duration-300 group-hover:text-gold-500 text-royal-900">
+                <h3 className="text-xl font-plus font-semibold mb-3 line-clamp-2 transition-colors duration-300 group-hover:text-gold-500 text-royal-900">
                   {news.title}
                 </h3>
                 
-                <p className="text-sm mb-6 line-clamp-3 flex-grow text-gray-600">
+                <p className="text-sm mb-6 line-clamp-3 flex-grow text-gray-600 font-body font-normal">
                   {news.description}
                 </p>
                 
