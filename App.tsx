@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
 import { ArrowUp } from 'lucide-react';
 import zaloIcon from './image/logo/icon_zalo.png';
-import facebookIcon from './image/logo/icon_face.png';
+import telephoneIcon from './image/logo/telephone.png';
 
 // Lazy load pages for performance optimization
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -81,7 +81,7 @@ const App: React.FC = () => {
         <Footer />
 
         {/* Social Buttons */}
-        <div className={`fixed bottom-8 right-8 z-40 flex flex-col gap-3 transition-all duration-500 ${
+        <div className={`fixed bottom-8 right-8 z-40 flex flex-col gap-3 transition-all duration-500 animate-shake-occasionally ${
           showScrollTop 
             ? 'opacity-100 translate-y-0 pointer-events-auto' 
             : 'opacity-0 translate-y-12 pointer-events-none lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto'
@@ -95,12 +95,10 @@ const App: React.FC = () => {
              <img src={zaloIcon} alt="Zalo" className="w-full h-full object-contain" />
           </a>
           <a 
-            href="https://www.facebook.com/yenlacdragoncity/?locale=vi_VN" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-10 h-10 shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent overflow-hidden"
+            href="tel:0375160586" 
+            className="w-10 h-10 shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent overflow-hidden rounded-full"
           >
-             <img src={facebookIcon} alt="Facebook" className="w-full h-full object-contain scale-125" />
+             <img src={telephoneIcon} alt="Hotline" className="w-full h-full object-contain scale-125" />
           </a>
         </div>
 

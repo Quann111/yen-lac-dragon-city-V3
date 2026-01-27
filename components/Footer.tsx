@@ -85,14 +85,10 @@ const Footer: React.FC = () => {
                </li>
                <li className="flex items-center gap-3">
                  <div className="w-[18px] text-center font-body font-bold shrink-0 text-gold-400">©</div>
-                 <span>Mã cửa T2 - CN</span>
-               </li>
-             </ul>
+                <span>Mở cửa T2 - CN</span>
+              </li>
+            </ul>
           </div>
-        </div>
-
-        <div className="border-t border-white/5 pt-8 text-center text-xs text-gray-500">
-           © 2023 Yên Lạc Dragon City. All rights reserved.
         </div>
       </div>
     </footer>

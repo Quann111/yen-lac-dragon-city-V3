@@ -1,6 +1,6 @@
 import React from 'react';
 import heroBgAvif from '../image/TongTheDem.avif';
-import mobileHeroBg from '../image/logo/backgroundMobile.avif';
+import mobileHeroBg from '../image/logo/mobileTongTheDemFix.png';
 
 const HeroSection: React.FC = () => {
   const scrollToArchitecture = () => {

@@ -6,6 +6,7 @@ import logo from '../image/logo/logoXoaBack.png';
 import facebookIcon from '../image/logo/facebookicon.png';
 import youtubeIcon from '../image/logo/youtube.png';
 import tiktokIcon from '../image/logo/tiktok.png';
+import telephoneIcon from '../image/logo/telephone.png';
 
 const navLinks = [
   { name: 'Tổng quan', id: 'home' },
@@ -372,6 +373,12 @@ const Navbar: React.FC = () => {
             
             <div className="w-full py-4 border-t border-royal-100">
               <div className="flex items-center justify-center gap-5">
+                <a 
+                  href="tel:0375160586" 
+                  className="transition-transform duration-300 hover:scale-110"
+                >
+                  <img src={telephoneIcon} alt="Hotline" className="w-8 h-8 object-contain rounded-full" />
+                </a>
                 <a 
                   href="https://www.facebook.com/dragoncity.yenlac/" 
                   target="_blank" 
