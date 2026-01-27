@@ -3,7 +3,7 @@ import { Menu, X, ExternalLink } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import logo from '../image/logo/logoXoaBack.png';
-import facebookIcon from '../image/logo/facebookicon.png';
+import facebookIcon from '../image/logo/icon_face.png';
 import youtubeIcon from '../image/logo/youtube.png';
 import tiktokIcon from '../image/logo/tiktok.png';
 
@@ -244,7 +244,7 @@ const Navbar: React.FC = () => {
             {/* Dropdown Menu */}
             <div 
               ref={logoMenuRef}
-              className="absolute top-full left-0 mt-4 w-64 md:w-80 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl z-50 bg-white/95 border border-royal-200 shadow-royal-900/10"
+              className="absolute top-full left-1/2 -ml-32 md:-ml-40 mt-4 w-64 md:w-80 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl z-50 bg-white/95 border border-royal-200 shadow-royal-900/10"
             >
               <div className="p-3 flex flex-col gap-3">
                 <a 

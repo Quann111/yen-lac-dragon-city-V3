@@ -5,8 +5,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
 import { ArrowUp } from 'lucide-react';
-import zaloIcon from './image/logo/zaloimage.png';
-import facebookIcon from './image/logo/facebookicon.png';
+import zaloIcon from './image/logo/icon_zalo.png';
+import facebookIcon from './image/logo/icon_face.png';
 
 // Lazy load pages for performance optimization
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -90,17 +90,17 @@ const App: React.FC = () => {
             href="https://zalo.me/0972979717" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-white overflow-hidden"
+            className="w-10 h-10 shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent overflow-hidden"
           >
-             <img src={zaloIcon} alt="Zalo" className="w-full h-full object-cover" />
+             <img src={zaloIcon} alt="Zalo" className="w-full h-full object-contain" />
           </a>
           <a 
             href="https://www.facebook.com/yenlacdragoncity/?locale=vi_VN" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-white overflow-hidden"
+            className="w-10 h-10 shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent overflow-hidden"
           >
-             <img src={facebookIcon} alt="Facebook" className="w-full h-full object-cover" />
+             <img src={facebookIcon} alt="Facebook" className="w-full h-full object-contain scale-125" />
           </a>
         </div>
 
