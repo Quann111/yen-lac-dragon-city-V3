@@ -7,15 +7,18 @@ interface ZoomableImageProps {
   src: string;
   alt: string;
   className?: string;
+  onNext?: () => void;
+  onPrev?: () => void;
 }
 
-const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) => {
+const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNext, onPrev }) => {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [showHint, setShowHint] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number, y: number } | null>(null);
   
   const [imgSize, setImgSize] = useState<{w: number, h: number} | null>(null);
   const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
@@ -125,15 +128,77 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className }) =>
     setIsDragging(false);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+
+    if (canDrag) {
+      setIsDragging(true);
+      setStartPos({ x: touch.clientX - position.x, y: touch.clientY - position.y });
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (canDrag && isDragging) {
+       e.preventDefault();
+       const touch = e.touches[0];
+       
+       let newX = touch.clientX - startPos.x;
+       let newY = touch.clientY - startPos.y;
+
+       const currentW = renderedWidth * scale;
+       const currentH = renderedHeight * scale;
+       
+       const maxTranslateX = Math.max(0, (currentW - containerSize.w) / 2);
+       const maxTranslateY = Math.max(0, (currentH - containerSize.h) / 2);
+
+       newX = Math.max(Math.min(newX, maxTranslateX), -maxTranslateX);
+       newY = Math.max(Math.min(newY, maxTranslateY), -maxTranslateY);
+
+       setPosition({ x: newX, y: newY });
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setIsDragging(false);
+
+    if (scale === 1 && touchStartRef.current) {
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - touchStartRef.current.x;
+        const deltaY = touch.clientY - touchStartRef.current.y;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            if (deltaX > 0 && onPrev) {
+                onPrev();
+            } else if (deltaX < 0 && onNext) {
+                onNext();
+            }
+        }
+    }
+    touchStartRef.current = null;
+  };
+
+  const toggleZoom = () => {
+    if (scale > 1) {
+        setScale(1);
+        setPosition({ x: 0, y: 0 });
+    } else {
+        setScale(2);
+    }
+  };
+
   return (
     <div 
         ref={containerRef}
-        className="relative w-full h-full overflow-hidden bg-black cursor-move"
+        className="relative w-full h-full overflow-hidden bg-black cursor-move touch-none"
         onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
     >
         <img 
             src={src} 
@@ -399,15 +464,15 @@ const CollectionSection: React.FC = () => {
     };
   }, [selectedCollection]);
 
-  const nextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (!selectedCollection) return;
     const images = galleryData[selectedCollection].images;
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
-  const prevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (!selectedCollection) return;
     const images = galleryData[selectedCollection].images;
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -482,6 +547,8 @@ const CollectionSection: React.FC = () => {
                         src={galleryData[selectedCollection].images[currentImageIndex]} 
                         alt={`${selectedCollection} ${currentImageIndex + 1}`} 
                         className="w-full h-full object-cover"
+                        onNext={() => nextImage()}
+                        onPrev={() => prevImage()}
                     />
                     
                     {/* Navigation Buttons */}
