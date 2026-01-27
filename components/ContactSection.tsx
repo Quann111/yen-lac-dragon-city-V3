@@ -84,7 +84,7 @@ const ContactSection: React.FC = () => {
             <button 
               type="button" 
               className="w-full font-body font-bold py-4 rounded-full shadow-lg mt-4 transform hover:-translate-y-1 transition-all duration-300
-                bg-gradient-royal text-white hover:shadow-royal-500/50"
+                bg-gradient-to-r from-royal-600 to-royal-800 text-white hover:shadow-royal-500/50"
             >
               Gửi Lời Mời & Nhận Tư Vấn
             </button>
