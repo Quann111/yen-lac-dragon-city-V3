@@ -129,6 +129,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    e.stopPropagation();
     const touch = e.touches[0];
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
 
@@ -139,8 +140,11 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    e.stopPropagation();
     if (canDrag && isDragging) {
-       e.preventDefault();
+       // Prevent default to stop scrolling (though touch-none handles this)
+       if (e.cancelable) e.preventDefault();
+       
        const touch = e.touches[0];
        
        let newX = touch.clientX - startPos.x;
@@ -160,14 +164,21 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    e.stopPropagation();
     setIsDragging(false);
 
-    if (scale === 1 && touchStartRef.current) {
+    // Allow swipe navigation if scale is close to 1 (not zoomed in)
+    // AND if we are not in a dragging state (or if we want to allow swipe even when dragging?)
+    // Let's allow swipe if the drag distance was significant in X direction
+    if (scale <= 1.1 && touchStartRef.current) {
         const touch = e.changedTouches[0];
         const deltaX = touch.clientX - touchStartRef.current.x;
         const deltaY = touch.clientY - touchStartRef.current.y;
 
+        // Threshold for swipe
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            // If we were dragging (canDrag=true), we might want to be careful.
+            // But if the user swiped > 50px, they likely want to navigate.
             if (deltaX > 0 && onPrev) {
                 onPrev();
             } else if (deltaX < 0 && onNext) {
@@ -191,6 +202,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
     <div 
         ref={containerRef}
         className="relative w-full h-full overflow-hidden bg-black cursor-move touch-none"
+        style={{ touchAction: 'none' }}
         onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}

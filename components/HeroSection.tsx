@@ -1,6 +1,6 @@
 import React from 'react';
 import heroBgAvif from '../image/TongTheDem.avif';
-import mobileHeroBg from '../image/logo/backgroundMobile.avif';
+import mobileHeroBg from '../image/logo/mobileTongTheDemFix.png';
 
 const HeroSection: React.FC = () => {
   const scrollToArchitecture = () => {
@@ -13,17 +13,15 @@ const HeroSection: React.FC = () => {
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image with Zoom Effect */}
       <div className="absolute inset-0 z-0 bg-black">
-        {/* Desktop Image */}
         <img 
           src={heroBgAvif}
           alt="Yên Lạc Dragon City" 
-          className="hidden lg:block w-full h-full object-cover object-center transition-all duration-1000 brightness-110 scale-105"
+          className="hidden lg:block w-full h-full object-cover lg:object-center transition-all duration-1000 brightness-110 scale-105"
         />
-        {/* Mobile Image */}
         <img 
           src={mobileHeroBg}
-          alt="Yên Lạc Dragon City" 
-          className="block lg:hidden w-full h-full object-fill object-top transition-all duration-1000 brightness-110"
+          alt="Yên Lạc Dragon City Mobile" 
+          className="block lg:hidden w-full h-full object-fill object-center transition-all duration-1000 brightness-110"
         />
         {/* Gradient Overlay - Dark bottom, bright top */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>

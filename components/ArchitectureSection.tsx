@@ -16,10 +16,7 @@ const ArchitectureSection: React.FC = () => {
           alt="Luxury Entrance" 
           className="w-full h-full object-cover"
         />
-        {/* Theme-aware Gradient Overlay */}
-        <div className="absolute inset-0 transition-colors duration-500
-          bg-gradient-to-t from-white/95 via-white/60 to-transparent
-        "></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 lg:px-12 flex flex-col items-start gap-6 max-w-4xl reveal-on-scroll pt-20 lg:pt-0 font-body">
