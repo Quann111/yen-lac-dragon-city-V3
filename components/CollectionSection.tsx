@@ -311,15 +311,15 @@ interface CollectionItemProps {
 const CollectionItem: React.FC<CollectionItemProps> = ({ title, image, onClick }) => (
   <div 
     onClick={onClick}
-    className="group cursor-pointer reveal-on-scroll"
+    className="group cursor-pointer reveal-on-scroll flex flex-col items-center"
   >
     {/* Title - Centered, Blue, Bold */}
-    <h3 className="text-center text-royal-700 text-lg md:text-xl font-body font-bold uppercase mb-4 group-hover:text-royal-600 transition-colors">
+    <h3 className="text-center text-royal-700 text-lg md:text-xl font-body font-bold uppercase mb-4 md:mb-8 lg:mb-4 group-hover:text-royal-600 transition-colors sm:whitespace-nowrap">
       {title}
     </h3>
 
     {/* Image Container */}
-    <div className="relative overflow-hidden rounded-lg shadow-md mb-6 aspect-[4/3]">
+    <div className="relative w-full overflow-hidden rounded-lg shadow-md mb-6 aspect-[4/3]">
       <img 
         src={image} 
         alt={title} 
