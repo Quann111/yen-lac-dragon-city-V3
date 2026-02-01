@@ -46,11 +46,11 @@ const ArchitectureSection: React.FC = () => {
 
           <div className="flex justify-center w-full mt-6">
             <button 
-              onClick={scrollToLocation}
+              onClick={scrollToContact}
               className="btn-luxury flex items-center justify-center gap-2 px-8 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
                 bg-royal-600 text-white shadow-lg hover:bg-royal-700 border-2 border-transparent hover:border-gold-400"
             >
-              <MapPin size={16} /> Xem Vị Trí
+              <Phone size={16} /> Liên Hệ Ngay
             </button>
           </div>
         </div>

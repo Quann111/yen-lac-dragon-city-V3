@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon, ShieldCheck, Landmark, Trophy } from 'lucide-react';
+import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon, ShieldCheck, Landmark, Trophy, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import 'leaflet/dist/leaflet.css';
@@ -54,15 +54,9 @@ const LocationSection: React.FC = () => {
   const routeLayerRef = useRef<L.LayerGroup | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [activeLocationId, setActiveLocationId] = useState<number | null>(null);
+  const [isMobilePopupOpen, setIsMobilePopupOpen] = useState(false);
 
-  const handleLocationClick = (location: typeof LOCATIONS_DATA[0]) => {
-    setActiveLocationId(location.id);
-    
-    // Scroll to map on mobile devices (width < 1024px)
-    if (window.innerWidth < 1024 && mapContainerRef.current) {
-      mapContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    
+  const updateMapRoute = (location: typeof LOCATIONS_DATA[0]) => {
     if (mapInstanceRef.current) {
       const map = mapInstanceRef.current;
       
@@ -106,6 +100,20 @@ const LocationSection: React.FC = () => {
 
       // Fit bounds with padding
       map.fitBounds(L.latLngBounds(latlngs), { padding: [50, 50], maxZoom: 16, animate: true, duration: 1 });
+    }
+  };
+
+  const handleLocationClick = (location: typeof LOCATIONS_DATA[0]) => {
+    setActiveLocationId(location.id);
+    
+    if (window.innerWidth < 1024) {
+      setIsMobilePopupOpen(true);
+      setTimeout(() => {
+        mapInstanceRef.current?.invalidateSize();
+        updateMapRoute(location);
+      }, 300);
+    } else {
+      updateMapRoute(location);
     }
   };
 
@@ -275,8 +283,43 @@ const LocationSection: React.FC = () => {
             </div>
           </div>
 
+          {/* Backdrop */}
+          {isMobilePopupOpen && (
+            <div 
+              className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm transition-opacity"
+              onClick={() => setIsMobilePopupOpen(false)}
+            ></div>
+          )}
+
           {/* Map Visual (Interactive Leaflet Map) */}
-          <div ref={mapContainerRef} className="w-full lg:w-1/2 h-[400px] lg:h-[500px] relative bg-gray-200 overflow-hidden shadow-2xl z-0 rounded-2xl">
+          <div 
+            ref={mapContainerRef} 
+            className={`transition-all duration-500 shadow-2xl overflow-hidden bg-gray-200
+              ${isMobilePopupOpen 
+                ? 'fixed top-1/2 left-1/2 w-[90vw] h-[60vh] rounded-2xl border-4 border-white' 
+                : 'w-full lg:w-1/2 h-[400px] lg:h-[500px] relative rounded-2xl z-0'
+              }
+            `}
+            style={{ 
+              transform: isMobilePopupOpen ? 'translate(-50%, -50%)' : undefined,
+              zIndex: isMobilePopupOpen ? 50 : undefined,
+              opacity: isMobilePopupOpen ? 1 : undefined,
+              filter: isMobilePopupOpen ? 'none' : undefined
+            }}
+          >
+             {/* Close Button */}
+             {isMobilePopupOpen && (
+               <button 
+                 onClick={(e) => {
+                   e.stopPropagation();
+                   setIsMobilePopupOpen(false);
+                 }}
+                 className="absolute top-2 right-2 z-[1000] p-2 bg-white rounded-full shadow-lg text-gray-800 hover:bg-gray-100 transition-colors"
+               >
+                 <X size={20} />
+               </button>
+             )}
+
              <div ref={mapElementRef} className="w-full h-full z-0" style={{ filter: 'grayscale(0.1)' }}></div>
              
              {/* Decorative Overlay for Theme Integration */}
