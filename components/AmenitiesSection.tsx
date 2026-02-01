@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trees, Landmark, Building2, MapPin, Car, Phone } from 'lucide-react';
+import { Trees, ShoppingBag, GraduationCap, MapPin, Car, Phone, Heart } from 'lucide-react';
 
 const AmenitiesSection: React.FC = () => {
   const scrollToContact = () => {
@@ -37,28 +37,28 @@ const AmenitiesSection: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {/* Cultural & Admin */}
+          {/* Commercial Center */}
           <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-royal-200 hover:bg-white transition-all duration-300 h-full shadow-lg">
             <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
-               <Landmark className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
+               <ShoppingBag className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Văn Hoá & Hành Chính</h3>
+            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Trung tâm Thương mại Dịch vụ</h3>
           </div>
 
-          {/* Mixed Use Complex */}
+          {/* International School */}
           <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-royal-200 hover:bg-white transition-all duration-300 h-full shadow-lg">
             <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
-               <Building2 className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
+               <GraduationCap className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Công Trình Hỗn Hợp</h3>
+            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Trường Liên cấp Q.Tế</h3>
           </div>
 
-          {/* Square & Parking */}
+          {/* Park, Parking & Health */}
           <div className="flex flex-col items-center gap-4 group cursor-pointer bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-royal-200 hover:bg-white transition-all duration-300 h-full shadow-lg">
             <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
-               <Car className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
+               <Heart className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Quảng Trường & Khu Vực Đỗ Xe</h3>
+            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Công viên, Parking & Hệ thống chăm sóc sức khoẻ</h3>
           </div>
         </div>
 

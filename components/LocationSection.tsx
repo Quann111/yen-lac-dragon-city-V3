@@ -58,6 +58,11 @@ const LocationSection: React.FC = () => {
   const handleLocationClick = (location: typeof LOCATIONS_DATA[0]) => {
     setActiveLocationId(location.id);
     
+    // Scroll to map on mobile devices (width < 1024px)
+    if (window.innerWidth < 1024 && mapContainerRef.current) {
+      mapContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
     if (mapInstanceRef.current) {
       const map = mapInstanceRef.current;
       
