@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { Menu, X, ExternalLink } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import logo from '../image/logo/logoXoaBack.png';
+import logo from '../image/logo/logo demo.png';
+import logoXoaBack from '../image/logo/logoXoaBack.png';
 import facebookIcon from '../image/logo/facebookicon.png';
 import youtubeIcon from '../image/logo/youtube.png';
 import tiktokIcon from '../image/logo/tiktok.png';
@@ -255,7 +256,7 @@ const Navbar: React.FC = () => {
                   className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
                 >
                   <div className="flex justify-center items-center w-full transition-all duration-300 transform group-hover/item:scale-105">
-                    <img src={logo} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
+                    <img src={logoXoaBack} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
                   </div>
                   <div className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r from-royal-500/10 via-transparent to-transparent" />
                 </a>
@@ -267,7 +268,7 @@ const Navbar: React.FC = () => {
                   className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
                 >
                   <div className="flex justify-center items-center w-full transition-all duration-300 transform group-hover/item:scale-105">
-                    <img src={logo} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
+                    <img src={logoXoaBack} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
                   </div>
                   <div className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r from-royal-500/10 via-transparent to-transparent" />
                 </a>
