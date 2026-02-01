@@ -1,11 +1,11 @@
 import React from 'react';
-import { Trees, Landmark, Building2, MapPin, Car } from 'lucide-react';
+import { Trees, Landmark, Building2, MapPin, Car, Phone } from 'lucide-react';
 
 const AmenitiesSection: React.FC = () => {
-  const scrollToLocation = () => {
-    document.getElementById('location')?.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#location');
-    window.dispatchEvent(new CustomEvent('nav-change', { detail: 'location' }));
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#contact');
+    window.dispatchEvent(new CustomEvent('nav-change', { detail: 'contact' }));
   };
 
   return (
@@ -63,11 +63,11 @@ const AmenitiesSection: React.FC = () => {
         </div>
 
         <button 
-          onClick={scrollToLocation}
+          onClick={scrollToContact}
           className="btn-luxury inline-flex items-center gap-2 px-10 py-4 rounded-full backdrop-blur-md border border-white/30 text-white uppercase tracking-widest font-body font-bold text-sm shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300
           bg-black/40 border-gold-400 text-gold-100 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500"
         >
-          <MapPin size={18} /> Xem Vị Trí
+          <Phone size={18} /> Liên Hệ Ngay
         </button>
       </div>
     </section>
