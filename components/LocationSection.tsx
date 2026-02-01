@@ -118,6 +118,12 @@ const LocationSection: React.FC = () => {
   };
 
 
+  const scrollToCollection = () => {
+    document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#collection');
+    window.dispatchEvent(new CustomEvent('nav-change', { detail: 'collection' }));
+  };
+
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#contact');
@@ -263,11 +269,12 @@ const LocationSection: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 reveal-on-scroll">
               <button 
-                onClick={scrollToContact}
+                onClick={scrollToCollection}
                 className="btn-luxury flex items-center justify-center px-10 py-4 rounded-full uppercase tracking-widest font-body font-bold text-sm shadow-lg transform hover:-translate-y-1 transition-all duration-300
                 bg-royal-600 text-white hover:bg-royal-700 hover:shadow-royal-500/50"
               >
-                Liên Hệ Ngay
+                <ShoppingBag size={18} className="mr-2" />
+                Sản Phẩm
               </button>
               
               <a 

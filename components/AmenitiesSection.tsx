@@ -50,7 +50,7 @@ const AmenitiesSection: React.FC = () => {
             <div className="w-20 h-20 rounded-full border border-royal-200 bg-royal-50 flex items-center justify-center transition-all duration-300 shadow-lg group-hover:scale-110 group-hover:bg-royal-600 group-hover:text-white shrink-0">
                <GraduationCap className="w-10 h-10 text-royal-600 group-hover:text-inherit transition-colors" />
             </div>
-            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Trường Liên cấp Q.Tế</h3>
+            <h3 className="text-royal-900 font-body font-bold tracking-wide text-lg uppercase text-shadow-sm h-14 flex items-center justify-center text-center transition-colors">Trường Liên cấp Quốc Tế</h3>
           </div>
 
           {/* Park, Parking & Health */}

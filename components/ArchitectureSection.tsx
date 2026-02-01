@@ -40,17 +40,17 @@ const ArchitectureSection: React.FC = () => {
             Tổng quan dự án
           </h2>
           
-          <p className="text-sm font-body font-medium leading-relaxed text-navy-900 text-left">
-            Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển mới.
+          <p className="text-sm font-body font-medium leading-relaxed text-navy-900 text-justify [text-wrap:pretty]">
+            Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển{'\u00A0'}mới.
           </p>
 
           <div className="flex justify-center w-full mt-6">
             <button 
-              onClick={scrollToContact}
+              onClick={scrollToLocation}
               className="btn-luxury flex items-center justify-center gap-2 px-8 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
                 bg-royal-600 text-white shadow-lg hover:bg-royal-700 border-2 border-transparent hover:border-gold-400"
             >
-              <Phone size={16} /> Liên Hệ Ngay
+              <MapPin size={16} /> Xem Vị Trí
             </button>
           </div>
         </div>
