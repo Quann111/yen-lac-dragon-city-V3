@@ -107,6 +107,7 @@ const LocationSection: React.FC = () => {
 
   const handleLocationClick = (location: typeof LOCATIONS_DATA[0]) => {
     setActiveLocationId(location.id);
+    setIsMapActive(true);
     
     if (window.innerWidth < 1024) {
       setIsMobilePopupOpen(true);
@@ -185,6 +186,14 @@ const LocationSection: React.FC = () => {
       .openPopup();
 
     mapInstanceRef.current = map;
+
+    // Check for active location and draw route if exists
+    if (activeLocationId) {
+      const location = LOCATIONS_DATA.find(l => l.id === activeLocationId);
+      if (location) {
+        updateMapRoute(location);
+      }
+    }
 
     // Cleanup
     return () => {
