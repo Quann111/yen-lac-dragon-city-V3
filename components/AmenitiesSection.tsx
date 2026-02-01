@@ -29,7 +29,7 @@ const AmenitiesSection: React.FC = () => {
         
         <div className="hidden md:block text-white font-body text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
           <p>
-            Dự án khu đô thị Yên Lạc Dragon City với quy mô 50 ha và mật độ xây dựng chỉ gần 56%, dự án dành tới 20 ha cho không gian cây xanh, mặt nước để kiến tạo lên những mảng tiện ích xanh như hồ điều hòa, công viên Gym, công viên...
+            Dự án khu đô thị Yên Lạc Dragon City với quy mô 38 ha và mật độ xây dựng chỉ gần 56%, dự án dành tới 20 ha cho không gian cây xanh, mặt nước để kiến tạo lên những mảng tiện ích xanh như hồ điều hòa, công viên Gym, công viên...
           </p>
           <p>
             Bên cạnh đó, hướng đến sự thoải mái và thuận tiện tối ưu, Khu đô thị Yên Lạc được quy hoạch với hệ thống tiện ích khép kín, đáp ứng mọi nhu cầu của cư dân.

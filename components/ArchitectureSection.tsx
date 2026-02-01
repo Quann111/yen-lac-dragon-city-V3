@@ -40,7 +40,7 @@ const ArchitectureSection: React.FC = () => {
             Tổng quan dự án
           </h2>
           
-          <p className="text-sm font-body font-medium leading-relaxed text-navy-900 text-justify [text-wrap:pretty]">
+          <p className="text-sm font-body font-medium leading-relaxed text-navy-900 text-left">
             Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển mới.
           </p>
 
@@ -56,7 +56,7 @@ const ArchitectureSection: React.FC = () => {
         </div>
 
         {/* Desktop View - Overlay Style */}
-        <div className="hidden lg:block absolute bottom-0 left-0 z-10 w-full p-12 pb-4 reveal-on-scroll font-body">
+        <div className="hidden lg:block absolute bottom-20 left-0 z-10 w-full p-6 pb-4 reveal-on-scroll font-body">
             <h2 className="text-4xl font-body font-bold leading-tight transition-colors duration-300
               text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2 uppercase whitespace-nowrap"
             >
@@ -64,7 +64,7 @@ const ArchitectureSection: React.FC = () => {
             </h2>
             
             <p className="text-base font-body font-medium leading-relaxed transition-colors duration-300
-              text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] text-left [text-wrap:pretty] max-w-4xl"
+              text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] text-left max-w-lg"
             >
               Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển mới.
             </p>
