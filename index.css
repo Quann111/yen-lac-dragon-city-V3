@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #1a202c;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar - Global */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d97706;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b45309;
+}
+
+::selection {
+  background: #003D8D;
+  color: #fff;
+}
+
+/* Shake Animation */
+@keyframes shake-occasionally {
+  0% { transform: rotate(0deg) scale(1); }
+  5% { transform: rotate(10deg) scale(1.1); }
+  10% { transform: rotate(-10deg) scale(1.1); }
+  15% { transform: rotate(10deg) scale(1.1); }
+  20% { transform: rotate(-10deg) scale(1.1); }
+  25% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.animate-shake-occasionally {
+  animation: shake-occasionally 3s infinite ease-in-out;
+  transform-origin: center;
+}  
+
+/* JS Reveal Animation Classes */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Text Shadow Utility */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Custom Font Classes - Keep if needed for specificity override, otherwise Tailwind handles it */
+.font-bodoni { font-family: 'Bodoni Moda', serif; }
+.font-manrope { font-family: 'Manrope', sans-serif; }
+.font-lexend { font-family: 'Lexend Mega', sans-serif; }
+.font-marschel { font-family: 'Marcellus', serif; }
+
+/* Custom Scrollbar Utility Class */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,0.3);
+}
