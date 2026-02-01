@@ -54,30 +54,30 @@ const Footer: React.FC = () => {
               Yên Lạc Dragon City - Nơi Kiến Tạo Cuộc Sống Đẳng Cấp, mang đến những giá trị bền vững và phong cách sống thượng lưu cho cộng đồng.
             </p>
             <div className="flex gap-4">
-               <a 
-                 href="https://www.facebook.com/dragoncity.yenlac/" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="transition-transform duration-300 hover:scale-110"
-               >
-                 <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
-               </a>
-               <a 
-                 href="https://www.youtube.com/results?search_query=yên+lạc+dragon+city" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="transition-transform duration-300 hover:scale-110"
-               >
-                 <img src={youtubeIcon} alt="Youtube" className="w-8 h-8 object-contain" />
-               </a>
-               <a 
-                 href="https://www.tiktok.com/search?q=yên%20lạc%20dragon%20city" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="transition-transform duration-300 hover:scale-110"
-               >
-                 <img src={tiktokIcon} alt="Tiktok" className="w-8 h-8 object-contain" />
-               </a>
+              <a 
+                href="https://www.facebook.com/dragoncity.yenlac/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transition-transform duration-300 hover:scale-110"
+              >
+                <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
+              </a>
+              <a 
+                href="https://www.youtube.com/results?search_query=yên+lạc+dragon+city" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transition-transform duration-300 hover:scale-110"
+              >
+                <img src={youtubeIcon} alt="Youtube" className="w-8 h-8 object-contain" />
+              </a>
+              <a 
+                href="https://www.tiktok.com/search?q=yên%20lạc%20dragon%20city" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transition-transform duration-300 hover:scale-110"
+              >
+                <img src={tiktokIcon} alt="Tiktok" className="w-8 h-8 object-contain" />
+              </a>
             </div>
           </div>
 
@@ -99,18 +99,17 @@ const Footer: React.FC = () => {
              <h4 className="text-white font-body font-bold mb-6 text-lg">Liên hệ chúng tôi</h4>
              <ul className="space-y-4 text-sm">
                <li className="flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 shrink-0 text-gold-400" />
-                <span>Lô CN7 Khu công nghiệp Phúc Yên, Vĩnh Phúc.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="shrink-0 text-gold-400" />
-                <span>0965066888</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="shrink-0 text-gold-400" />
-                <span>sales@cuulongcorp.com.vn</span>
-              </li>
-
+                 <MapPin size={18} className="mt-0.5 shrink-0 text-gold-400" />
+                 <span>88 Nguyễn Tất Thành, Phường Phúc Thắng, Phúc Yên, Vĩnh Phúc</span>
+               </li>
+               <li className="flex items-center gap-3">
+                 <Phone size={18} className="shrink-0 text-gold-400" />
+                 <span>0979 115 351</span>
+               </li>
+               <li className="flex items-center gap-3">
+                 <Mail size={18} className="shrink-0 text-gold-400" />
+                 <span>sales@cuulongcorp.com.vn</span>
+               </li>
                <li className="flex items-center gap-3">
                  <div className="w-[18px] text-center font-body font-bold shrink-0 text-gold-400">©</div>
                 <span>Mở cửa T2 - CN</span>

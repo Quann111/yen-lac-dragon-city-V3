@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon, ShieldCheck, Landmark, Trophy } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import 'leaflet/dist/leaflet.css';
@@ -9,16 +9,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface LocationCardProps {
   icon: React.ReactNode;
-  title: string;
+  title: React.ReactNode;
   time: string;
+  isActive?: boolean;
+  onClick?: () => void;
 }
 
-const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time }) => (
-  <div className="location-card flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2
-    bg-white text-royal-900 border-royal-500 hover:shadow-xl font-body"
+const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time, isActive, onClick }) => (
+  <div 
+    onClick={onClick}
+    className={`location-card flex items-center gap-4 p-5 rounded-2xl shadow-lg border-l-4 transition-all duration-300 hover:transform hover:translate-x-2 cursor-pointer
+    ${isActive ? 'bg-royal-50 border-royal-600 shadow-xl scale-105' : 'bg-white border-royal-500 hover:shadow-xl'} text-royal-900 font-body`}
   >
-    <div className="p-3 rounded-full transition-colors duration-300
-      bg-royal-100 text-royal-600"
+    <div className={`p-3 rounded-full transition-colors duration-300
+      ${isActive ? 'bg-royal-600 text-white' : 'bg-royal-100 text-royal-600'}`}
     >
       {icon}
     </div>
@@ -29,12 +33,77 @@ const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time }) => (
   </div>
 );
 
+const PROJECT_COORDS: [number, number] = [21.245444, 105.722583];
+
+const LOCATIONS_DATA = [
+  { id: 1, title: "UBND Huyện Yên Lạc", displayTitle: <>UBND Huyện<br/>Yên Lạc</>, time: "1 phút di chuyển", coords: [21.248444, 105.724583] as [number, number], icon: <Building2 size={22} /> },
+  { id: 2, title: "Trường THCS CLC", displayTitle: <>Trường THCS<br/>Chất Lượng Cao</>, time: "2 phút di chuyển", coords: [21.239444, 105.726583] as [number, number], icon: <GraduationCap size={22} /> },
+  { id: 3, title: "Công An Huyện", time: "2 phút di chuyển", coords: [21.250444, 105.717583] as [number, number], icon: <ShieldCheck size={22} /> },
+  { id: 4, title: "Quảng Trường", time: "3 phút di chuyển", coords: [21.255444, 105.722583] as [number, number], icon: <Landmark size={22} /> },
+  { id: 5, title: "Bệnh viện đa khoa", time: "3 phút di chuyển", coords: [21.237444, 105.714583] as [number, number], icon: <PlusSquare size={22} /> },
+  { id: 6, title: "Sân Vận Động", time: "4 phút di chuyển", coords: [21.257444, 105.727583] as [number, number], icon: <Trophy size={22} /> },
+  { id: 7, title: "Chợ TT. Yên Lạc", time: "4 phút di chuyển", coords: [21.233444, 105.724583] as [number, number], icon: <ShoppingBag size={22} /> },
+  { id: 8, title: "Trường THPT Yên Lạc", displayTitle: <>Trường THPT<br/>Yên Lạc</>, time: "5 phút di chuyển", coords: [21.260444, 105.712583] as [number, number], icon: <GraduationCap size={22} /> },
+  { id: 9, title: "Đảng Ủy Yên Lạc", time: "5 phút di chuyển", coords: [21.230444, 105.732583] as [number, number], icon: <Building2 size={22} /> },
+];
+
 const LocationSection: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapElementRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
+  const routeLayerRef = useRef<L.LayerGroup | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const textContentRef = useRef<HTMLDivElement>(null);
+  const [activeLocationId, setActiveLocationId] = useState<number | null>(null);
+
+  const handleLocationClick = (location: typeof LOCATIONS_DATA[0]) => {
+    setActiveLocationId(location.id);
+    
+    if (mapInstanceRef.current) {
+      const map = mapInstanceRef.current;
+      
+      // Initialize route layer if not exists
+      if (!routeLayerRef.current) {
+        routeLayerRef.current = L.layerGroup().addTo(map);
+      }
+      
+      const routeLayer = routeLayerRef.current;
+      routeLayer.clearLayers();
+
+      // Destination Marker
+      const destIcon = L.divIcon({
+        className: 'dest-pin',
+        html: `<div style="
+          background-color: #ef4444; 
+          width: 20px; 
+          height: 20px; 
+          border-radius: 50%; 
+          border: 3px solid white; 
+          box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        "></div>`,
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      });
+
+      L.marker(location.coords, { icon: destIcon })
+        .addTo(routeLayer)
+        .bindPopup(`<div class="text-center font-bold text-sm">${location.title}<br/><span class="text-gray-500 font-normal">${location.time}</span></div>`)
+        .openPopup();
+
+      // Route Line
+      const latlngs = [PROJECT_COORDS, location.coords];
+      L.polyline(latlngs, { 
+        color: '#D4AF37', 
+        weight: 4, 
+        opacity: 0.8, 
+        dashArray: '10, 10',
+        lineCap: 'round'
+      }).addTo(routeLayer);
+
+      // Fit bounds with padding
+      map.fitBounds(L.latLngBounds(latlngs), { padding: [50, 50], maxZoom: 16, animate: true, duration: 1 });
+    }
+  };
+
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -166,27 +235,17 @@ const LocationSection: React.FC = () => {
               Tọa lạc tại tâm điểm thịnh vượng, kết nối mọi tiện ích sống, làm việc và giải trí. Một vị trí chiến lược, đảm bảo cuộc sống tiện nghi và tiềm năng đầu tư vượt trội.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-5 mb-10">
-               <LocationCard 
-                  icon={<Building2 size={22} />}
-                  title="Trung tâm thành phố"
-                  time="5 phút di chuyển"
-               />
-                <LocationCard 
-                  icon={<GraduationCap size={22} />}
-                  title="Trường học quốc tế"
-                  time="10 phút di chuyển"
-               />
-                <LocationCard 
-                  icon={<ShoppingBag size={22} />}
-                  title="Trung tâm thương mại"
-                  time="15 phút di chuyển"
-               />
-                <LocationCard 
-                  icon={<PlusSquare size={22} />}
-                  title="Bệnh viện"
-                  time="12 phút di chuyển"
-               />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-10">
+               {LOCATIONS_DATA.map((loc) => (
+                 <LocationCard 
+                   key={loc.id}
+                   icon={loc.icon}
+                   title={loc.displayTitle || loc.title}
+                   time={loc.time}
+                   isActive={activeLocationId === loc.id}
+                   onClick={() => handleLocationClick(loc)}
+                 />
+               ))}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 reveal-on-scroll">

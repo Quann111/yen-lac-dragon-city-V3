@@ -77,6 +77,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setShowHint(false);
     const newScale = Math.min(Math.max(scale - e.deltaY * 0.001, 1), 3);
     setScale(newScale);
     
@@ -96,6 +97,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    setShowHint(false);
     if (canDrag) {
       e.preventDefault();
       setIsDragging(true);
@@ -106,6 +108,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging && canDrag) {
       e.preventDefault();
+      setShowHint(false);
       
       let newX = e.clientX - startPos.x;
       let newY = e.clientY - startPos.y;
@@ -130,6 +133,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
 
   const handleTouchStart = (e: React.TouchEvent) => {
     e.stopPropagation();
+    setShowHint(false);
     const touch = e.touches[0];
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
 
@@ -141,6 +145,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
 
   const handleTouchMove = (e: React.TouchEvent) => {
     e.stopPropagation();
+    setShowHint(false);
     if (canDrag && isDragging) {
        // Prevent default to stop scrolling (though touch-none handles this)
        if (e.cancelable) e.preventDefault();
@@ -166,30 +171,11 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
   const handleTouchEnd = (e: React.TouchEvent) => {
     e.stopPropagation();
     setIsDragging(false);
-
-    // Allow swipe navigation if scale is close to 1 (not zoomed in)
-    // AND if we are not in a dragging state (or if we want to allow swipe even when dragging?)
-    // Let's allow swipe if the drag distance was significant in X direction
-    if (scale <= 1.1 && touchStartRef.current) {
-        const touch = e.changedTouches[0];
-        const deltaX = touch.clientX - touchStartRef.current.x;
-        const deltaY = touch.clientY - touchStartRef.current.y;
-
-        // Threshold for swipe
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-            // If we were dragging (canDrag=true), we might want to be careful.
-            // But if the user swiped > 50px, they likely want to navigate.
-            if (deltaX > 0 && onPrev) {
-                onPrev();
-            } else if (deltaX < 0 && onNext) {
-                onNext();
-            }
-        }
-    }
     touchStartRef.current = null;
   };
 
   const toggleZoom = () => {
+    setShowHint(false);
     if (scale > 1) {
         setScale(1);
         setPosition({ x: 0, y: 0 });
@@ -266,17 +252,10 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt, className, onNe
 };
 
 
-import shophouse04 from '../image/sanpham/shophouse/slide_4.avif';
-import shophouse05 from '../image/sanpham/shophouse/slide_5.avif';
-import shophouse06 from '../image/sanpham/shophouse/slide_6.avif';
 import shophouse07 from '../image/sanpham/shophouse/slide_7.avif';
 import shophouse08 from '../image/sanpham/shophouse/slide_8.avif';
 import shophouse09 from '../image/sanpham/shophouse/slide_9.avif';
 
-import lienke11 from '../image/sanpham/nhapholienke/slide_11.avif';
-import lienke12 from '../image/sanpham/nhapholienke/slide_12.avif';
-import lienke13 from '../image/sanpham/nhapholienke/slide_13.avif';
-import lienke14 from '../image/sanpham/nhapholienke/slide_14.avif';
 import lienke15 from '../image/sanpham/nhapholienke/slide_15.avif';
 import lienke16 from '../image/sanpham/nhapholienke/slide_16.avif';
 import lienke17 from '../image/sanpham/nhapholienke/slide_17.avif';
@@ -285,21 +264,16 @@ import lienke19 from '../image/sanpham/nhapholienke/slide_19.avif';
 import lienke20 from '../image/sanpham/nhapholienke/slide_20.avif';
 import lienke21 from '../image/sanpham/nhapholienke/slide_21.avif';
 
-import songlap23 from '../image/sanpham/bietthusonglap/slide_23.avif';
 import songlap24 from '../image/sanpham/bietthusonglap/slide_24.avif';
 import songlap25 from '../image/sanpham/bietthusonglap/slide_25.avif';
 import songlap26 from '../image/sanpham/bietthusonglap/slide_26.avif';
 
-import donlap28 from '../image/sanpham/bietthuonlap/slide_28.avif';
 import donlap29 from '../image/sanpham/bietthuonlap/slide_29.avif';
 import donlap30 from '../image/sanpham/bietthuonlap/slide_30.avif';
 import donlap31 from '../image/sanpham/bietthuonlap/slide_31.avif';
 
-import bieutuong33 from '../image/sanpham/congtrinhbieutuong/slide_33.avif';
 import bieutuong34 from '../image/sanpham/congtrinhbieutuong/slide_34.avif';
-import bieutuong35 from '../image/sanpham/congtrinhbieutuong/slide_35.avif';
 import bieutuong36 from '../image/sanpham/congtrinhbieutuong/slide_36.avif';
-import bieutuong37 from '../image/sanpham/congtrinhbieutuong/slide_37.avif';
 import bieutuong38 from '../image/sanpham/congtrinhbieutuong/slide_38.avif';
 
 interface CollectionItemProps {
@@ -339,9 +313,6 @@ const galleryData: Record<string, CollectionData> = {
   "SHOPHOUSE": {
     images: [
       shophouse07,
-      shophouse04, 
-      shophouse05,
-      shophouse06,
       shophouse08,
       shophouse09
     ],
@@ -355,10 +326,6 @@ const galleryData: Record<string, CollectionData> = {
   "NHÀ PHỐ LIỀN KỀ": {
     images: [
       lienke19,
-      lienke11,
-      lienke12,
-      lienke13,
-      lienke14,
       lienke15,
       lienke16,
       lienke17,
@@ -376,7 +343,6 @@ const galleryData: Record<string, CollectionData> = {
   "BIỆT THỰ SONG LẬP": {
     images: [
       songlap25,
-      songlap23, 
       songlap24,
       songlap26
     ],
@@ -390,7 +356,6 @@ const galleryData: Record<string, CollectionData> = {
   "BIỆT THỰ ĐƠN LẬP": {
     images: [
       donlap31,
-      donlap28,
       donlap29,
       donlap30
     ],
@@ -404,18 +369,11 @@ const galleryData: Record<string, CollectionData> = {
   "CÔNG TRÌNH BIỂU TƯỢNG": {
     images: [
       bieutuong36,
-      bieutuong33,
       bieutuong34,
-      bieutuong35,
-      bieutuong37,
       bieutuong38
     ],
     description: "Những kiệt tác kiến trúc điểm nhấn, định hình diện mạo đô thị hiện đại và thịnh vượng của Yên Lạc Dragon City. Nơi hội tụ các dịch vụ, tiện ích và giải trí đỉnh cao.",
-    details: [
-      { label: "Quy mô:", value: "Tổ hợp đa năng" },
-      { label: "Chức năng:", value: "TM - DV - Văn phòng" },
-      { label: "Vị trí:", value: "Trung tâm dự án" }
-    ]
+    details: []
   }
 };
 
@@ -602,14 +560,16 @@ const CollectionSection: React.FC = () => {
                         </p>
                         
                         {/* Technical Details in Modal */}
-                        <div className="mb-6 bg-gray-50 p-4 rounded-lg space-y-2 border border-gray-100">
-                             {galleryData[selectedCollection].details.map((detail, idx) => (
-                                <div key={idx} className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-500 font-body font-medium">{detail.label}</span>
-                                    <span className="text-royal-800 font-body font-bold">{detail.value}</span>
-                                </div>
-                             ))}
-                        </div>
+                        {galleryData[selectedCollection].details.length > 0 && (
+                            <div className="mb-6 bg-gray-50 p-4 rounded-lg space-y-2 border border-gray-100">
+                                {galleryData[selectedCollection].details.map((detail, idx) => (
+                                    <div key={idx} className="flex justify-between items-center text-sm">
+                                        <span className="text-gray-500 font-body font-medium">{detail.label}</span>
+                                        <span className="text-royal-800 font-body font-bold">{detail.value}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
 
                         <div className="grid grid-cols-3 gap-2">
                             {galleryData[selectedCollection].images.map((img, idx) => (
