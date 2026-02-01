@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon, ShieldCheck, Landmark, Trophy, X } from 'lucide-react';
+import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon, ShieldCheck, Landmark, Trophy, X, MousePointerClick } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import locationBg from '../image/logo/Location_image_optimized.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +56,7 @@ const LocationSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeLocationId, setActiveLocationId] = useState<number | null>(null);
   const [isMobilePopupOpen, setIsMobilePopupOpen] = useState(false);
+  const [isMapActive, setIsMapActive] = useState(false);
 
   const updateMapRoute = (location: typeof LOCATIONS_DATA[0]) => {
     if (mapInstanceRef.current) {
@@ -132,7 +134,7 @@ const LocationSection: React.FC = () => {
 
   // Initialize Leaflet Map
   useEffect(() => {
-    if (!mapElementRef.current || mapInstanceRef.current) return;
+    if (!isMapActive || !mapElementRef.current || mapInstanceRef.current) return;
 
     // Fix for default marker icon issues in some builds, though we use custom icon below
     // Initialize Map
@@ -189,7 +191,7 @@ const LocationSection: React.FC = () => {
       map.remove();
       mapInstanceRef.current = null;
     };
-  }, []);
+  }, [isMapActive]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -327,7 +329,26 @@ const LocationSection: React.FC = () => {
                </button>
              )}
 
-             <div ref={mapElementRef} className="w-full h-full z-0" style={{ filter: 'grayscale(0.1)' }}></div>
+             {!isMapActive ? (
+               <div 
+                 className="w-full h-full relative group cursor-pointer"
+                 onClick={() => setIsMapActive(true)}
+               >
+                 <img 
+                   src={locationBg} 
+                   alt="Bản đồ vị trí" 
+                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                 />
+                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex flex-col items-center justify-center text-white">
+                    <div className="bg-white/20 backdrop-blur-md p-4 rounded-full border border-white/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+                      <MousePointerClick size={32} />
+                    </div>
+                    <span className="font-bold text-lg uppercase tracking-wider drop-shadow-md">Xem bản đồ</span>
+                 </div>
+               </div>
+             ) : (
+               <div ref={mapElementRef} className="w-full h-full z-0" style={{ filter: 'grayscale(0.1)' }}></div>
+             )}
              
              {/* Decorative Overlay for Theme Integration */}
              <div className="absolute inset-0 pointer-events-none border-[10px] border-white/50 shadow-inner z-10"></div>
