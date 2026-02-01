@@ -1,4 +1,5 @@
 import React from 'react';
+import { MapPin, Phone } from 'lucide-react';
 import architectureBg from '../image/TT006_optimized.jpg';
 
 const ArchitectureSection: React.FC = () => {
@@ -6,6 +7,18 @@ const ArchitectureSection: React.FC = () => {
     document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
     window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#collection');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'collection' }));
+  };
+
+  const scrollToLocation = () => {
+    document.getElementById('location')?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#location');
+    window.dispatchEvent(new CustomEvent('nav-change', { detail: 'location' }));
+  };
+
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#contact');
+    window.dispatchEvent(new CustomEvent('nav-change', { detail: 'contact' }));
   };
 
   return (
@@ -31,13 +44,21 @@ const ArchitectureSection: React.FC = () => {
             Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển mới.
           </p>
 
-          <div className="flex justify-center w-full">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center w-full mt-6">
             <button 
-              onClick={scrollToCollection}
-              className="btn-luxury mt-6 px-8 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
+              onClick={scrollToLocation}
+              className="btn-luxury flex items-center justify-center gap-2 px-6 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
+                bg-white text-royal-600 border border-royal-600 hover:bg-royal-50"
+            >
+              <MapPin size={16} /> Xem Vị Trí
+            </button>
+            
+            <button 
+              onClick={scrollToContact}
+              className="btn-luxury flex items-center justify-center gap-2 px-6 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
                 bg-royal-600 text-white shadow-lg hover:bg-royal-700 border-2 border-transparent hover:border-gold-400"
             >
-              Hành Trình Kiến Tạo +
+              <Phone size={16} /> Liên Hệ Ngay
             </button>
           </div>
         </div>
