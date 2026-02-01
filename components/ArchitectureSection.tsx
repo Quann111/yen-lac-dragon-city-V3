@@ -1,8 +1,10 @@
-import React from 'react';
-import { MapPin, Phone } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone, X, Info } from 'lucide-react';
 import architectureBg from '../image/TT006_optimized.jpg';
 
 const ArchitectureSection: React.FC = () => {
+  const [isMobilePopupOpen, setIsMobilePopupOpen] = useState(true);
+
   const scrollToCollection = () => {
     document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
     window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#collection');
@@ -35,25 +37,35 @@ const ArchitectureSection: React.FC = () => {
 
       <div className="relative z-10 w-full h-full flex items-center justify-center lg:block">
         {/* Mobile View - Card Style */}
-        <div className="lg:hidden w-[90%] min-h-[60vh] flex flex-col justify-center bg-white/90 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white/50 transform transition-all duration-500">
-          <h2 className="text-xl font-body font-bold leading-tight text-royal-600 mb-4 uppercase text-center">
-            Tổng quan dự án
-          </h2>
-          
-          <p className="text-sm font-body font-medium leading-relaxed text-navy-900 text-justify [text-wrap:pretty]">
-            Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển{'\u00A0'}mới.
-          </p>
-
-          <div className="flex justify-center w-full mt-6">
+        {isMobilePopupOpen && (
+          <div className="lg:hidden relative w-[90%] min-h-[60vh] flex flex-col justify-center bg-white/90 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white/50 transform transition-all duration-500 animate-in fade-in zoom-in-95">
             <button 
-              onClick={scrollToLocation}
-              className="btn-luxury flex items-center justify-center gap-2 px-8 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
-                bg-royal-600 text-white shadow-lg hover:bg-royal-700 border-2 border-transparent hover:border-gold-400"
+              onClick={() => setIsMobilePopupOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500 transition-colors"
+              aria-label="Close popup"
             >
-              <MapPin size={16} /> Xem Vị Trí
+              <X size={20} />
             </button>
+            
+            <h2 className="text-xl font-body font-bold leading-tight text-royal-600 mb-4 uppercase text-center">
+              Tổng quan dự án
+            </h2>
+            
+            <p className="text-sm font-body font-medium leading-relaxed text-navy-900 text-justify [text-wrap:pretty]">
+              Tọa lạc tại vị trí trung tâm Yên Lạc – Thủ Phủ Thương Nghiệp miền Bắc, Yên Lạc Dragon City kiến tạo một chuẩn mực đô thị hiện đại lần đầu tiên xuất hiện tại khu vực. Với quy mô hơn 38ha, quy hoạch đồng bộ với đa dạng loại hình bất động sản từ Shophouse, nhà phố, Biệt thự song lập, chung cư cao tầng. Yên Lạc Dragon City không chỉ là nơi an cư lý tưởng mà còn được kỳ vọng trở thành biểu tượng đô thị của tỉnh Phú Thọ trong kỷ nguyên phát triển{'\u00A0'}mới.
+            </p>
+
+            <div className="flex justify-center w-full mt-6">
+              <button 
+                onClick={scrollToLocation}
+                className="btn-luxury flex items-center justify-center gap-2 px-8 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
+                  bg-royal-600 text-white shadow-lg hover:bg-royal-700 border-2 border-transparent hover:border-gold-400"
+              >
+                <MapPin size={16} /> Xem Vị Trí
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Desktop View - Overlay Style */}
         <div className="hidden lg:block absolute bottom-20 left-0 z-10 w-full p-6 pb-4 reveal-on-scroll font-body">
@@ -70,6 +82,16 @@ const ArchitectureSection: React.FC = () => {
             </p>
         </div>
       </div>
+
+      {!isMobilePopupOpen && (
+        <button
+          onClick={() => setIsMobilePopupOpen(true)}
+          className="lg:hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-20 btn-luxury flex items-center justify-center gap-2 px-6 py-3 rounded-full font-body font-bold uppercase text-xs tracking-widest transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg
+            bg-white/90 backdrop-blur-md text-royal-600 shadow-lg border border-white/50 animate-in fade-in slide-in-from-bottom-4"
+        >
+          <Info size={18} /> Thông tin
+        </button>
+      )}
     </section>
   );
 };
