@@ -37,15 +37,15 @@ const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time, isActive
 const PROJECT_COORDS: [number, number] = [21.2333964, 105.5689985];
 
 const LOCATIONS_DATA = [
+  { id: 8, title: "Trường THPT Yên Lạc", displayTitle: <>Trường THPT<br/>Yên Lạc</>, time: "1 phút di chuyển", coords: [21.234309, 105.568033] as [number, number], icon: <GraduationCap size={22} /> },
   { id: 5, title: "Bệnh viện đa khoa", time: "1 phút di chuyển", coords: [21.232000, 105.570000] as [number, number], icon: <PlusSquare size={22} /> },
+  { id: 2, title: "Trường THCS CLC", displayTitle: <>Trường THCS<br/>Chất Lượng Cao</>, time: "2 phút di chuyển", coords: [21.229630, 105.564999] as [number, number], icon: <GraduationCap size={22} /> },
   { id: 4, title: "Quảng Trường", time: "2 phút di chuyển", coords: [21.235000, 105.572000] as [number, number], icon: <Landmark size={22} /> },
   { id: 6, title: "Sân Vận Động", time: "2 phút di chuyển", coords: [21.235000, 105.572000] as [number, number], icon: <Trophy size={22} /> },
   { id: 3, title: "Công An Huyện", time: "2 phút di chuyển", coords: [21.234500, 105.573500] as [number, number], icon: <ShieldCheck size={22} /> },
   { id: 1, title: "UBND Huyện Yên Lạc", displayTitle: <>UBND Huyện<br/>Yên Lạc</>, time: "2 phút di chuyển", coords: [21.234180, 105.574001] as [number, number], icon: <Building2 size={22} /> },
   { id: 9, title: "Đảng Ủy Yên Lạc", time: "3 phút di chuyển", coords: [21.233800, 105.574500] as [number, number], icon: <Building2 size={22} /> },
-  { id: 2, title: "Trường THCS CLC", displayTitle: <>Trường THCS<br/>Chất Lượng Cao</>, time: "3 phút di chuyển", coords: [21.235500, 105.575000] as [number, number], icon: <GraduationCap size={22} /> },
   { id: 7, title: "Chợ TT. Yên Lạc", time: "3 phút di chuyển", coords: [21.233000, 105.575000] as [number, number], icon: <ShoppingBag size={22} /> },
-  { id: 8, title: "Trường THPT Yên Lạc", displayTitle: <>Trường THPT<br/>Yên Lạc</>, time: "4 phút di chuyển", coords: [21.236000, 105.576000] as [number, number], icon: <GraduationCap size={22} /> },
 ];
 
 const LocationSection: React.FC = () => {
