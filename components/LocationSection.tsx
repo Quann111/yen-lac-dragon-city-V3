@@ -34,18 +34,18 @@ const LocationCard: React.FC<LocationCardProps> = ({ icon, title, time, isActive
   </div>
 );
 
-const PROJECT_COORDS: [number, number] = [21.245444, 105.722583];
+const PROJECT_COORDS: [number, number] = [21.2333964, 105.5689985];
 
 const LOCATIONS_DATA = [
-  { id: 1, title: "UBND Huyện Yên Lạc", displayTitle: <>UBND Huyện<br/>Yên Lạc</>, time: "1 phút di chuyển", coords: [21.248444, 105.724583] as [number, number], icon: <Building2 size={22} /> },
-  { id: 2, title: "Trường THCS CLC", displayTitle: <>Trường THCS<br/>Chất Lượng Cao</>, time: "2 phút di chuyển", coords: [21.239444, 105.726583] as [number, number], icon: <GraduationCap size={22} /> },
-  { id: 3, title: "Công An Huyện", time: "2 phút di chuyển", coords: [21.250444, 105.717583] as [number, number], icon: <ShieldCheck size={22} /> },
-  { id: 4, title: "Quảng Trường", time: "3 phút di chuyển", coords: [21.255444, 105.722583] as [number, number], icon: <Landmark size={22} /> },
-  { id: 5, title: "Bệnh viện đa khoa", time: "3 phút di chuyển", coords: [21.237444, 105.714583] as [number, number], icon: <PlusSquare size={22} /> },
-  { id: 6, title: "Sân Vận Động", time: "4 phút di chuyển", coords: [21.257444, 105.727583] as [number, number], icon: <Trophy size={22} /> },
-  { id: 7, title: "Chợ TT. Yên Lạc", time: "4 phút di chuyển", coords: [21.233444, 105.724583] as [number, number], icon: <ShoppingBag size={22} /> },
-  { id: 8, title: "Trường THPT Yên Lạc", displayTitle: <>Trường THPT<br/>Yên Lạc</>, time: "5 phút di chuyển", coords: [21.260444, 105.712583] as [number, number], icon: <GraduationCap size={22} /> },
-  { id: 9, title: "Đảng Ủy Yên Lạc", time: "5 phút di chuyển", coords: [21.230444, 105.732583] as [number, number], icon: <Building2 size={22} /> },
+  { id: 1, title: "UBND Huyện Yên Lạc", displayTitle: <>UBND Huyện<br/>Yên Lạc</>, time: "1 phút di chuyển", coords: [21.234180, 105.574001] as [number, number], icon: <Building2 size={22} /> },
+  { id: 2, title: "Trường THCS CLC", displayTitle: <>Trường THCS<br/>Chất Lượng Cao</>, time: "2 phút di chuyển", coords: [21.235500, 105.575000] as [number, number], icon: <GraduationCap size={22} /> },
+  { id: 3, title: "Công An Huyện", time: "2 phút di chuyển", coords: [21.234500, 105.573500] as [number, number], icon: <ShieldCheck size={22} /> },
+  { id: 4, title: "Quảng Trường", time: "3 phút di chuyển", coords: [21.235000, 105.572000] as [number, number], icon: <Landmark size={22} /> },
+  { id: 5, title: "Bệnh viện đa khoa", time: "3 phút di chuyển", coords: [21.232000, 105.570000] as [number, number], icon: <PlusSquare size={22} /> },
+  { id: 6, title: "Sân Vận Động", time: "4 phút di chuyển", coords: [21.235000, 105.572000] as [number, number], icon: <Trophy size={22} /> },
+  { id: 7, title: "Chợ TT. Yên Lạc", time: "4 phút di chuyển", coords: [21.233000, 105.575000] as [number, number], icon: <ShoppingBag size={22} /> },
+  { id: 8, title: "Trường THPT Yên Lạc", displayTitle: <>Trường THPT<br/>Yên Lạc</>, time: "5 phút di chuyển", coords: [21.236000, 105.576000] as [number, number], icon: <GraduationCap size={22} /> },
+  { id: 9, title: "Đảng Ủy Yên Lạc", time: "5 phút di chuyển", coords: [21.233800, 105.574500] as [number, number], icon: <Building2 size={22} /> },
 ];
 
 const LocationSection: React.FC = () => {
@@ -140,7 +140,7 @@ const LocationSection: React.FC = () => {
     // Fix for default marker icon issues in some builds, though we use custom icon below
     // Initialize Map
     const map = L.map(mapElementRef.current, {
-      center: [21.245444, 105.722583],
+      center: PROJECT_COORDS,
       zoom: 16,
       scrollWheelZoom: true, // Enable scroll zoom as requested
       zoomControl: false,
@@ -180,7 +180,7 @@ const LocationSection: React.FC = () => {
     });
 
     // Add Marker
-    L.marker([21.245444, 105.722583], { icon: customIcon })
+    L.marker(PROJECT_COORDS, { icon: customIcon })
       .addTo(map)
       .bindPopup('<div class="text-center"><b class="text-royal-600">Yên Lạc Dragon City</b><br/><span class="text-xs text-gray-600">Tâm điểm thịnh vượng</span></div>')
       .openPopup();
