@@ -40,7 +40,7 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/qquankun@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/sale@dragoncity.com.vn", {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',

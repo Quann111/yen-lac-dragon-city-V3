@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import logo from '../image/logo/logoXoaBack.png';
+import logo from '../image/logo/logoupdate2.png';
 
 interface LoadingScreenProps {
   onComplete: () => void;
