@@ -7,9 +7,56 @@ const ContactSection: React.FC = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { name, phone, email, message } = formData;
+    
+    // Simple validation
+    if (!name || !phone) {
+      alert('Vui lòng nhập họ tên và số điện thoại để chúng tôi có thể liên hệ lại.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/qquankun@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            "Họ và tên": name,
+            "Số điện thoại": phone,
+            "Email": email || "Không cung cấp",
+            "Nội dung tư vấn": message || "Không có nội dung",
+            "_subject": `Liên hệ mới từ ${name} - Yên Lạc Dragon City`,
+            "_template": "table",
+            "_captcha": "false"
+        })
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        alert('Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ lại với quý khách trong thời gian sớm nhất.');
+        setFormData({ name: '', phone: '', email: '', message: '' }); // Reset form
+      } else {
+        throw new Error('Gửi thất bại');
+      }
+    } catch (error) {
+      console.error('Lỗi gửi form:', error);
+      alert('Có lỗi xảy ra khi gửi thông tin. Quý khách vui lòng gọi trực tiếp hotline hoặc thử lại sau.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -83,10 +130,13 @@ const ContactSection: React.FC = () => {
 
             <button 
               type="button" 
-              className="w-full font-body font-bold py-4 rounded-full shadow-lg mt-4 transform hover:-translate-y-1 transition-all duration-300
-                bg-gradient-to-r from-royal-600 to-royal-800 text-white hover:shadow-royal-500/50"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+              className={`w-full font-body font-bold py-4 rounded-full shadow-lg mt-4 transform transition-all duration-300
+                bg-gradient-to-r from-royal-600 to-royal-800 text-white
+                ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:-translate-y-1 hover:shadow-royal-500/50'}`}
             >
-              Gửi Lời Mời & Nhận Tư Vấn
+              {isSubmitting ? 'Đang gửi...' : 'Gửi Lời Mời & Nhận Tư Vấn'}
             </button>
           </form>
         </div>
