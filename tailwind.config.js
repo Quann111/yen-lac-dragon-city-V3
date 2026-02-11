@@ -47,6 +47,15 @@ export default {
       boxShadow: {
         'glow': '0 0 15px rgba(255, 255, 255, 0.5)',
         'glow-gold': '0 0 20px rgba(212, 175, 55, 0.3)',
+      },
+      animation: {
+        'fade-in-up': 'fadeInUp 0.3s ease-out forwards',
+      },
+      keyframes: {
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(10px) scale(0.95)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
       }
     }
   },

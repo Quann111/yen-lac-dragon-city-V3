@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import NotificationModal from './NotificationModal';
 
-const ContactSection: React.FC = () => {
+const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -8,6 +9,15 @@ const ContactSection: React.FC = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [modalState, setModalState] = useState<{
+    isOpen: boolean;
+    type: 'success' | 'error';
+    message: string;
+  }>({
+    isOpen: false,
+    type: 'success',
+    message: ''
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +29,11 @@ const ContactSection: React.FC = () => {
     
     // Simple validation
     if (!name || !phone) {
-      alert('Vui lòng nhập họ tên và số điện thoại để chúng tôi có thể liên hệ lại.');
+      setModalState({
+        isOpen: true,
+        type: 'error',
+        message: 'Vui lòng nhập họ tên và số điện thoại để chúng tôi có thể liên hệ lại.'
+      });
       return;
     }
 
@@ -46,22 +60,36 @@ const ContactSection: React.FC = () => {
       const data = await response.json();
       
       if (response.ok) {
-        alert('Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ lại với quý khách trong thời gian sớm nhất.');
+        setModalState({
+          isOpen: true,
+          type: 'success',
+          message: 'Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ lại với quý khách trong thời gian sớm nhất.'
+        });
         setFormData({ name: '', phone: '', email: '', message: '' }); // Reset form
       } else {
         throw new Error('Gửi thất bại');
       }
     } catch (error) {
       console.error('Lỗi gửi form:', error);
-      alert('Có lỗi xảy ra khi gửi thông tin. Quý khách vui lòng gọi trực tiếp hotline hoặc thử lại sau.');
+      setModalState({
+        isOpen: true,
+        type: 'error',
+        message: 'Có lỗi xảy ra khi gửi thông tin. Quý khách vui lòng gọi trực tiếp hotline hoặc thử lại sau.'
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section className="relative py-24 md:py-32 flex items-center justify-center overflow-hidden">
-      {/* Background */}
+    <section id="contact" className="py-20 relative overflow-hidden bg-gray-50">
+      <NotificationModal
+        isOpen={modalState.isOpen}
+        onClose={() => setModalState(prev => ({ ...prev, isOpen: false }))}
+        type={modalState.type}
+        message={modalState.message}
+      />
+      {/* Background Elements */}
       <div className="absolute inset-0 z-0">
          <img 
             src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" 
@@ -73,7 +101,7 @@ const ContactSection: React.FC = () => {
          ></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-2xl px-6 reveal-on-scroll">
+      <div className="relative z-10 w-full max-w-2xl px-6 reveal-on-scroll mx-auto">
         <div className="p-8 md:p-12 rounded-3xl shadow-2xl transition-all duration-500 border
           bg-white/60 border-white/50"
         >
