@@ -3,7 +3,7 @@ import { Menu, X, ExternalLink } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import logo from '../image/logo/logoXoaBack.png';
-import logoDemo from '../image/logo/logo demo.png';
+import logoDemo from '../image/logo/logoupdate2.png';
 import facebookIcon from '../image/logo/facebookicon.png';
 import youtubeIcon from '../image/logo/youtube.png';
 import tiktokIcon from '../image/logo/tiktok.png';
@@ -239,7 +239,7 @@ const Navbar: React.FC = () => {
               <img 
                 src={logoDemo} 
                 alt="Yên Lạc Dragon City" 
-                className="h-9 md:h-12 w-auto transition-all duration-500 transform group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]"
+                className="h-6 md:h-9 w-auto transition-all duration-500 transform group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]"
               />
             </div>
 
