@@ -29,10 +29,10 @@ const AmenitiesSection: React.FC = () => {
         
         <div className="hidden md:block text-white font-body text-base md:text-lg max-w-5xl mx-auto mb-16 space-y-6 text-justify md:text-center transition-colors duration-500 bg-black/40 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-white/10">
           <p>
-            Dự án khu đô thị Yên Lạc Dragon City với quy mô 39 ha và mật độ xây dựng chỉ gần 56%, dự án dành tới 20 ha cho không gian cây xanh, mặt nước để kiến tạo lên những mảng tiện ích xanh như hồ điều hòa, công viên Gym, công viên...
+            Yên Lạc Dragon City kiến tạo không gian sống đẳng cấp với quần thể công viên cây xanh đa năng, khu vui chơi sáng tạo và khu BBQ ngoài trời. Trong bán kính vàng, cư dân dễ dàng tiếp cận với bệnh viên, khu thể thao cùng hệ thống giáo dục liên cấp mầm non tới cấp 3.
           </p>
           <p>
-            Bên cạnh đó, hướng đến sự thoải mái và thuận tiện tối ưu, Khu đô thị Yên Lạc được quy hoạch với hệ thống tiện ích khép kín, đáp ứng mọi nhu cầu của cư dân.
+            Đặc biệt, dự án ôm trọn khu vực Quảng Trường Trung Tâm và Sân Vận Động – nơi hội tụ các sự kiện văn hóa, giải trí và hoạt động thương mại sôi động bậc nhất khu vực.
           </p>
         </div>
 

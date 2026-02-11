@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import facebookIcon from '../image/logo/facebookicon.png';
 import youtubeIcon from '../image/logo/youtube.png';
@@ -96,22 +96,22 @@ const Footer: React.FC = () => {
 
            {/* Contact Info */}
            <div className="col-span-1 lg:col-span-2">
-             <h4 className="text-white font-body font-bold mb-6 text-lg">Liên hệ chúng tôi</h4>
+             <h4 className="text-white font-body font-bold mb-6 text-lg">Liên hệ:</h4>
              <ul className="space-y-4 text-sm">
                <li className="flex items-start gap-3">
                  <MapPin size={18} className="mt-0.5 shrink-0 text-gold-400" />
-                 <span>88 Nguyễn Tất Thành, Phường Phúc Thắng, Phúc Yên, Vĩnh Phúc</span>
+                 <span>Địa chỉ: VPBH Dragon City, đường Nguyễn Khắc Cần, Yên Lạc, Phú Thọ</span>
                </li>
                <li className="flex items-center gap-3">
                  <Phone size={18} className="shrink-0 text-gold-400" />
-                 <span>0979 115 351</span>
+                 <span>0388 591 596</span>
                </li>
                <li className="flex items-center gap-3">
                  <Mail size={18} className="shrink-0 text-gold-400" />
-                 <span>sales@cuulongcorp.com.vn</span>
+                 <span>sale@dragonctiy.com.vn</span>
                </li>
                <li className="flex items-center gap-3">
-                 <div className="w-[18px] text-center font-body font-bold shrink-0 text-gold-400">©</div>
+                 <Clock size={18} className="shrink-0 text-gold-400" />
                 <span>Mở cửa T2 - CN</span>
               </li>
             </ul>
