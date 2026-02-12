@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex gap-4">
               <a 
-                href="https://www.facebook.com/dragoncity.yenlac/" 
+                href="https://www.facebook.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="transition-transform duration-300 hover:scale-110"
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
                 <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
               </a>
               <a 
-                href="https://www.youtube.com/results?search_query=yên+lạc+dragon+city" 
+                href="https://www.youtube.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="transition-transform duration-300 hover:scale-110"
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                 <img src={youtubeIcon} alt="Youtube" className="w-8 h-8 object-contain" />
               </a>
               <a 
-                href="https://www.tiktok.com/search?q=yên%20lạc%20dragon%20city" 
+                href="https://www.tiktok.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="transition-transform duration-300 hover:scale-110"
