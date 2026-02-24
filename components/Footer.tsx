@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
       });
 
       // Update URL with full base path
-      window.history.pushState(null, '', `/yen-lac-dragon-city-V3/#${id}`);
+      window.history.pushState(null, '', `/#${id}`);
       window.dispatchEvent(new CustomEvent('nav-change', { detail: id }));
     }
   };

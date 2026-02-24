@@ -63,7 +63,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router basename="/yen-lac-dragon-city-V3">
+    <Router basename="/">
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       
       <div className="w-full min-h-screen overflow-x-hidden font-sans relative transition-colors duration-500 bg-white">
