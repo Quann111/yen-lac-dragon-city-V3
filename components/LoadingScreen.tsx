@@ -20,7 +20,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           gsap.to(containerRef.current, {
             opacity: 0,
             y: -50,
-            duration: 0.8,
+            duration: 0.4,
             ease: "power3.inOut",
             onComplete: onComplete
           });
@@ -30,13 +30,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       // Initial Logo Animation
       tl.fromTo(logoRef.current, 
         { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }
+        { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" }
       );
 
       // Progress Counter Animation
       tl.to(progressRef.current, {
         value: 100,
-        duration: 2.5,
+        duration: 1.2,
         ease: "power2.inOut",
         onUpdate: () => {
           setProgress(Math.round(progressRef.current.value));
@@ -46,7 +46,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       // Text Fade In/Out
       tl.fromTo(textRef.current,
         { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.5 },
+        { opacity: 1, y: 0, duration: 0.3 },
         "<"
       );
     }, containerRef);
