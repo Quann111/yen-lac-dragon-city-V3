@@ -62,8 +62,12 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const basename = window.location.pathname.startsWith('/yen-lac-dragon-city-V3')
+    ? '/yen-lac-dragon-city-V3'
+    : '/';
+
   return (
-    <Router basename="/">
+    <Router basename={basename}>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       
       <div className="w-full min-h-screen overflow-x-hidden font-sans relative transition-colors duration-500 bg-white">
