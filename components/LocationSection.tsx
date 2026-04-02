@@ -123,13 +123,13 @@ const LocationSection: React.FC = () => {
 
   const scrollToCollection = () => {
     document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#collection');
+    window.history.pushState(null, '', '/#collection');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'collection' }));
   };
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#contact');
+    window.history.pushState(null, '', '/#contact');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'contact' }));
   };
 

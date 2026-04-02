@@ -177,7 +177,7 @@ const Navbar: React.FC = () => {
         });
         
         // Update hash without scrolling again
-        window.history.pushState(null, '', `/yen-lac-dragon-city-V3/#${id}`);
+        window.history.pushState(null, '', `/#${id}`);
       }
     }
   };

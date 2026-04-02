@@ -386,7 +386,7 @@ const CollectionSection: React.FC = () => {
 
   const scrollToAmenities = () => {
     document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#amenities');
+    window.history.pushState(null, '', '/#amenities');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'amenities' }));
   };
 

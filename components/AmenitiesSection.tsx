@@ -4,7 +4,7 @@ import { Trees, ShoppingBag, GraduationCap, MapPin, Car, Phone, Heart } from 'lu
 const AmenitiesSection: React.FC = () => {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#contact');
+    window.history.pushState(null, '', '/#contact');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'contact' }));
   };
 

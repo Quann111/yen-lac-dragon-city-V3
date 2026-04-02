@@ -5,7 +5,7 @@ import mobileHeroBg from '../image/logo/mobileTongTheDemFix.png';
 const HeroSection: React.FC = () => {
   const scrollToArchitecture = () => {
     document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', '/yen-lac-dragon-city-V3/#architecture');
+    window.history.pushState(null, '', '/#architecture');
     window.dispatchEvent(new CustomEvent('nav-change', { detail: 'architecture' }));
   };
 
