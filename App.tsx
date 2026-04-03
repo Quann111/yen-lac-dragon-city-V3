@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -63,7 +63,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router basename="/">
+    <Router>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       
       <div className="w-full min-h-screen overflow-x-hidden font-sans relative transition-colors duration-500 bg-white">
