@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, X, Info } from 'lucide-react';
-import architectureBg from '../image/TT006_optimized.jpg';
+import architectureBg from '../image/optimized/TT006_optimized.avif';
 
 const ArchitectureSection: React.FC = () => {
   const [isMobilePopupOpen, setIsMobilePopupOpen] = useState(true);

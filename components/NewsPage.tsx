@@ -3,13 +3,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Calendar, ArrowRight, ChevronDown, ChevronRight, Search, Clock, X } from 'lucide-react';
 
-import img01 from '../image/anhTintuc/01.webp';
-import img02 from '../image/anhTintuc/02.webp';
-import img03 from '../image/anhTintuc/03.webp';
-import img04 from '../image/anhTintuc/04.webp';
-import img05 from '../image/anhTintuc/05.webp';
-import img06 from '../image/anhTintuc/06.webp';
-import img07 from '../image/anhTintuc/07.webp';
+import img01 from '../image/optimized/anhTintuc/01.avif';
+import img02 from '../image/optimized/anhTintuc/02.avif';
+import img03 from '../image/optimized/anhTintuc/03.avif';
+import img04 from '../image/optimized/anhTintuc/04.avif';
+import img05 from '../image/optimized/anhTintuc/05.avif';
+import img06 from '../image/optimized/anhTintuc/06.avif';
+import img07 from '../image/optimized/anhTintuc/07.avif';
 
 gsap.registerPlugin(ScrollTrigger);
 

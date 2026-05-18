@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { Menu, X, ExternalLink } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import logo from '../image/logo/logoXoaBack.png';
-import logoDemo from '../image/logo/logoupdate2.png';
-import facebookIcon from '../image/logo/facebookicon.png';
-import youtubeIcon from '../image/logo/youtube.png';
-import tiktokIcon from '../image/logo/tiktok.png';
-import telephoneIcon from '../image/logo/telephone.png';
+import logo from '../image/optimized/logo/CLLOGO-1.avif';
+import logo2 from '../image/optimized/logo/LOGO3.avif';
+import logoDemo from '../image/optimized/logo/logoupdate2.avif';
+import dParkLogo from '../image/optimized/logo/D_Park_logo.avif';
+import facebookIcon from '../image/optimized/logo/facebookicon.avif';
+import youtubeIcon from '../image/optimized/logo/youtube.avif';
+import tiktokIcon from '../image/optimized/logo/tiktok.avif';
+import telephoneIcon from '../image/optimized/logo/telephone.avif';
 
 const navLinks = [
   { name: 'Tổng quan', id: 'home' },
@@ -233,13 +235,18 @@ const Navbar: React.FC = () => {
             {/* Logo */}
             <div 
               ref={logoButtonRef}
-              className="cursor-pointer select-none p-2 rounded-lg transition-all duration-300 hover:bg-black/5"
+              className="cursor-pointer select-none p-2 rounded-lg transition-all duration-300 hover:bg-black/5 relative"
               onClick={toggleLogoMenu}
             >
               <img 
                 src={logoDemo} 
                 alt="Yên Lạc Dragon City" 
                 className="h-6 md:h-9 w-auto transition-all duration-500 transform group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]"
+              />
+              <img 
+                src={dParkLogo} 
+                alt="D'Park" 
+                className="absolute -top-1 left-1/2 -translate-x-1/2 h-5 md:h-6 w-auto"
               />
             </div>
 
@@ -249,29 +256,23 @@ const Navbar: React.FC = () => {
               className="absolute top-full left-1/2 -ml-32 md:-ml-40 mt-4 w-64 md:w-80 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl z-50 bg-white/95 border border-royal-200 shadow-royal-900/10"
             >
               <div className="p-3 flex flex-col gap-3">
-                <a 
-                  href="https://google.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
-                >
+                <div className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md cursor-pointer">
                   <div className="flex justify-center items-center w-full transition-all duration-300 transform group-hover/item:scale-105">
-                    <img src={logo} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
+                    <a href="https://cuulongcorp.com.vn/" target="_blank" rel="noopener noreferrer">
+                      <img src={logo} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
+                    </a>
                   </div>
                   <div className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r from-royal-500/10 via-transparent to-transparent" />
-                </a>
+                </div>
                 
-                <a 
-                  href="https://google.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md"
-                >
+                <div className="flex items-center justify-center p-4 rounded-xl transition-all duration-300 group/item relative overflow-hidden bg-royal-50/50 hover:bg-white text-royal-800 hover:text-royal-600 border border-transparent hover:border-royal-200 shadow-sm hover:shadow-md cursor-pointer">
                   <div className="flex justify-center items-center w-full transition-all duration-300 transform group-hover/item:scale-105">
-                    <img src={logo} alt="Project Logo" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
+                    <a href="https://quann111.github.io/KCN_xuancam_huonglam/" target="_blank" rel="noopener noreferrer">
+                      <img src={logo2} alt="Project Logo 2" className="w-[90%] h-auto object-contain drop-shadow-sm mx-auto" />
+                    </a>
                   </div>
                   <div className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r from-royal-500/10 via-transparent to-transparent" />
-                </a>
+                </div>
               </div>
             </div>
           </div>

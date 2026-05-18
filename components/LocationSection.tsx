@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import locationBg from '../image/logo/Location_image_optimized.webp';
+import locationBg from '../image/optimized/logo/Location_image_optimized.avif';
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import facebookIcon from '../image/logo/facebookicon.png';
-import youtubeIcon from '../image/logo/youtube.png';
-import tiktokIcon from '../image/logo/tiktok.png';
+import facebookIcon from '../image/optimized/logo/facebookicon.avif';
+import youtubeIcon from '../image/optimized/logo/youtube.avif';
+import tiktokIcon from '../image/optimized/logo/tiktok.avif';
 
 const Footer: React.FC = () => {
   const location = useLocation();
