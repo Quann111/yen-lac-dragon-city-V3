@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import logo from '../image/optimized/logo/CLLOGO-1.avif';
 import logo2 from '../image/optimized/logo/LOGO3.avif';
 import logoDemo from '../image/optimized/logo/logoupdate2.avif';
-import dParkLogo from '../image/optimized/logo/D_Park_logo.avif';
+import dParkLogo from '../image/logo/D_Park_logo(1).png';
 import facebookIcon from '../image/optimized/logo/facebookicon.avif';
 import youtubeIcon from '../image/optimized/logo/youtube.avif';
 import tiktokIcon from '../image/optimized/logo/tiktok.avif';
@@ -246,7 +246,7 @@ const Navbar: React.FC = () => {
               <img 
                 src={dParkLogo} 
                 alt="D'Park" 
-                className="absolute -top-1 left-1/2 -translate-x-1/2 h-5 md:h-6 w-auto"
+                className="absolute -top-1 left-1/2 -translate-x-1/2 h-5 md:h-6 w-auto object-contain"
               />
             </div>
 
