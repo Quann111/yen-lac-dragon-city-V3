@@ -1,6 +1,5 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize, Move } from 'lucide-react';
-import gsap from 'gsap';
 
 
 interface ZoomableImageProps {
@@ -397,28 +396,20 @@ const CollectionSection: React.FC = () => {
 
   const closeModal = () => {
     if (modalRef.current && overlayRef.current && contentRef.current) {
-        const tl = gsap.timeline({
-            onComplete: () => setSelectedCollection(null)
-        });
-        tl.to(contentRef.current, { scale: 0.8, opacity: 0, duration: 0.3, ease: "power2.in" })
-          .to(overlayRef.current, { opacity: 0, duration: 0.3 }, "-=0.2");
+      contentRef.current.style.transform = 'scale(0.8)';
+      contentRef.current.style.opacity = '0';
+      overlayRef.current.style.opacity = '0';
+      setTimeout(() => setSelectedCollection(null), 300);
     } else {
-        setSelectedCollection(null);
+      setSelectedCollection(null);
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (selectedCollection && modalRef.current && overlayRef.current && contentRef.current) {
-        const tl = gsap.timeline();
-        tl.fromTo(overlayRef.current, 
-            { opacity: 0 }, 
-            { opacity: 1, duration: 0.3 }
-        )
-        .fromTo(contentRef.current,
-            { scale: 0.8, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.2)" },
-            "-=0.1"
-        );
+      overlayRef.current.style.opacity = '1';
+      contentRef.current.style.transform = 'scale(1)';
+      contentRef.current.style.opacity = '1';
     }
   }, [selectedCollection]);
 

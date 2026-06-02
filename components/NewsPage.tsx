@@ -1,6 +1,4 @@
-import React, { useEffect, useRef, useLayoutEffect, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef, useState } from 'react';
 import { Calendar, ArrowRight, ChevronDown, ChevronRight, Search, Clock, X } from 'lucide-react';
 
 import img01 from '../image/optimized/anhTintuc/01.avif';
@@ -10,8 +8,6 @@ import img04 from '../image/optimized/anhTintuc/04.avif';
 import img05 from '../image/optimized/anhTintuc/05.avif';
 import img06 from '../image/optimized/anhTintuc/06.avif';
 import img07 from '../image/optimized/anhTintuc/07.avif';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface NewsArticle {
   title: string;
@@ -26,38 +22,26 @@ const NewsModal = ({ article, onClose }: { article: NewsArticle, onClose: () => 
   const modalRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [isAnimating, setIsAnimating] = useState(true);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Entry animation
-      gsap.fromTo(backdropRef.current, 
-        { opacity: 0 }, 
-        { opacity: 1, duration: 0.4 }
-      );
-      gsap.fromTo(modalRef.current, 
-        { y: 50, opacity: 0, scale: 0.95 }, 
-        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }
-      );
-      // Stagger content appearance
-      if (contentRef.current) {
-        gsap.fromTo(contentRef.current.children, 
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.4, stagger: 0.1, delay: 0.2 }
-        );
-      }
-    });
-    return () => ctx.revert();
+  useEffect(() => {
+    if (backdropRef.current && modalRef.current) {
+      backdropRef.current.style.opacity = '1';
+      modalRef.current.style.opacity = '1';
+      modalRef.current.style.transform = 'translateY(0) scale(1)';
+    }
+    setIsAnimating(false);
   }, []);
 
   const handleClose = () => {
-    const ctx = gsap.context(() => {
-      // Exit animation
-      gsap.to(backdropRef.current, { opacity: 0, duration: 0.3 });
-      gsap.to(modalRef.current, { 
-        y: 20, opacity: 0, scale: 0.95, duration: 0.3, 
-        onComplete: onClose 
-      });
-    });
+    if (backdropRef.current && modalRef.current) {
+      backdropRef.current.style.opacity = '0';
+      modalRef.current.style.opacity = '0';
+      modalRef.current.style.transform = 'translateY(20px) scale(0.95)';
+      setTimeout(onClose, 300);
+    } else {
+      onClose();
+    }
   };
 
   // Close on Escape key
@@ -335,9 +319,8 @@ const NewsPage: React.FC = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // Smooth scroll to top of grid
     if (gridRef.current) {
-      gsap.to(window, { duration: 1, scrollTo: { y: gridRef.current, offsetY: 100 }, ease: "power2.out" });
+      gridRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -352,81 +335,17 @@ const NewsPage: React.FC = () => {
     setCurrentPage(1);
   }, [activeCategory, searchQuery]);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Hero Animation - Parallax & Fade
-      const tl = gsap.timeline();
-      
-      tl.fromTo(heroRef.current,
-        { scale: 1.1, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.5, ease: 'power3.out' }
-      )
-      .fromTo(titleRef.current,
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power4.out' },
-        "-=1"
-      );
-
-      // Featured News Animation
-      gsap.fromTo(featuredRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: featuredRef.current,
-            start: 'top 80%',
-          }
-        }
-      );
-
-      // Pagination Animation
-      if (paginationRef.current && gridRef.current) {
-        gsap.fromTo(paginationRef.current,
-          { autoAlpha: 0, x: 50 },
-          {
-            autoAlpha: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: gridRef.current,
-              start: "top center", // Starts when top of grid hits center
-              end: "bottom center", // Ends when bottom of grid hits center
-              toggleActions: "play reverse play reverse", // Play on enter, reverse on leave, play on enter back, reverse on leave back
-            }
-          }
-        );
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Separate Effect for Grid Items to handle pagination updates
+  // Animation effect for grid items on page change
   useEffect(() => {
     if (!gridRef.current) return;
     
-    const ctx = gsap.context(() => {
-      const items = gridRef.current?.querySelectorAll('.news-card');
-      if (items && items.length > 0) {
-        gsap.fromTo(items,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          }
-        );
-      }
-    }, gridRef);
-
-    return () => ctx.revert();
+    const items = gridRef.current?.querySelectorAll('.news-card');
+    if (items && items.length > 0) {
+      items.forEach((item, index) => {
+        (item as HTMLElement).style.opacity = '1';
+        (item as HTMLElement).style.transform = 'translateY(0)';
+      });
+    }
   }, [paginatedNews]); // Re-run when news list changes
 
   return (

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ExternalLink } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import gsap from 'gsap';
 import logo from '../image/optimized/logo/CLLOGO-1.avif';
 import logo2 from '../image/optimized/logo/LOGO3.avif';
 import logoDemo from '../image/optimized/logo/logoupdate2.avif';
@@ -40,9 +39,9 @@ const Navbar: React.FC = () => {
   }, [location.pathname]);
 
   // Set initial state for Logo Menu
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (logoMenuRef.current) {
-      gsap.set(logoMenuRef.current, { display: 'none', opacity: 0, y: -20 });
+      logoMenuRef.current.style.display = 'none';
     }
   }, []);
 
@@ -52,20 +51,17 @@ const Navbar: React.FC = () => {
     if (!menu) return;
 
     if (isLogoMenuOpen) {
-      gsap.fromTo(menu, 
-        { opacity: 0, y: -20, display: 'none' },
-        { opacity: 1, y: 0, display: 'block', duration: 0.3, ease: 'power2.out' }
-      );
+      menu.style.display = 'block';
+      menu.style.opacity = '1';
+      menu.style.transform = 'translateY(0)';
     } else {
-      gsap.to(menu, {
-        opacity: 0,
-        y: -20,
-        duration: 0.3,
-        ease: 'power2.in',
-        onComplete: () => {
-          gsap.set(menu, { display: 'none' });
+      menu.style.opacity = '0';
+      menu.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        if (!isLogoMenuOpen && menu) {
+          menu.style.display = 'none';
         }
-      });
+      }, 300);
     }
   }, [isLogoMenuOpen]);
 

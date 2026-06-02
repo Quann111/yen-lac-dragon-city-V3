@@ -1,12 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon, ShieldCheck, Landmark, Trophy, X, MousePointerClick } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import locationBg from '../image/optimized/logo/Location_image_optimized.avif';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface LocationCardProps {
   icon: React.ReactNode;
@@ -203,26 +199,11 @@ const LocationSection: React.FC = () => {
   }, [isMapActive]);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (mapContainerRef.current) {
-        gsap.fromTo(mapContainerRef.current,
-          { opacity: 0, scale: 0.95, filter: 'blur(10px)' },
-          {
-            opacity: 1,
-            scale: 1,
-            filter: 'blur(0px)',
-            duration: 1.5,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: mapContainerRef.current,
-              start: 'top 70%',
-            }
-          }
-        );
-      }
-    }, mapContainerRef);
-
-    return () => ctx.revert();
+    if (mapContainerRef.current) {
+      mapContainerRef.current.style.opacity = '1';
+      mapContainerRef.current.style.transform = 'scale(1)';
+      mapContainerRef.current.style.filter = 'blur(0px)';
+    }
   }, []);
 
   // Initialize Intersection Observer for lazy-loaded content
