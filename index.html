@@ -26,7 +26,7 @@
       content="Yên Lạc Dragon City – đô thị hiện đại tại trung tâm Yên Lạc, quy mô hơn 39ha, đa dạng sản phẩm shophouse, nhà phố, biệt thự song lập, chung cư cao tầng."
     />
     <meta property="og:url" content="https://www.yenlac-dragoncity.com.vn/" />
-    <meta property="og:site_name" content="Yên Lạc Dragon City" /> <!-- SỬA LỖI: Đã đóng thẻ /> -->
+    <meta property="og:site_name" content="Yên Lạc Dragon City" />
     <meta property="og:updated_time" content="2026-06-03T00:00:00+07:00" />
     <meta property="og:image" content="https://www.yenlac-dragoncity.com.vn/image/thumnaill.jpg" />
     <meta property="og:image:alt" content="Khu đô thị Yên Lạc Dragon City - Tổng quan dự án" />
@@ -41,12 +41,9 @@
     <meta name="twitter:image" content="https://www.yenlac-dragoncity.com.vn/image/thumnaill.jpg" />
     <meta name="google-site-verification" content="o1-HT3qITez934_MLLOg2IYXRQyablFnIG30B93K0ck" />
 
-    <!-- Preload hero images for LCP optimization -->
-    <!-- TỐI ƯU: Bỏ bớt preconnect thừa đến chính domain gốc để tiết kiệm tài nguyên mạng -->
     <link rel="preload" as="image" href="/image/TongTheDem.avif" fetchpriority="high" media="(min-width: 1024px)" />
     <link rel="preload" as="image" href="/image/logo/mobileTongTheDemFix.avif" fetchpriority="high" media="(max-width: 1023px)" />
 
-    <!-- Google Rich Snippets & Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -139,19 +136,16 @@
                 "name": "Trang chủ",
                 "item": "https://www.yenlac-dragoncity.com.vn/"
               }
-            ] <!-- SỬA LỖI: Rút gọn về 1 phần tử cho trang chủ để tránh lỗi trùng lặp URL trên Google Search Console -->
+            ]
           }
         ]
       }
     </script>
   </head>
   <body>
-    <!-- TỐI ƯU: Đã xóa khối div ẩn chứa ảnh display:none để tránh thuật toán phạt lỗi ẩn nội dung (Cloaking) -->
-
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     <script>
-      // Simple Intersection Observer for reveal animations
       document.addEventListener('DOMContentLoaded', () => {
         const observerOptions = {
           threshold: 0.1
