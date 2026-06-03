@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+// Using optimized images for faster load times
 import heroBgAvif from '../image/TongTheDem.avif';
-import mobileHeroBg from '../image/logo/mobileTongTheDemFix.avif';
+import mobileHeroBg from '../image/optimized/logo/mobileTongTheDemFix_opt.avif';
 
 const HeroSection: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [mobileLoaded, setMobileLoaded] = useState(false);
+
   const scrollToArchitecture = () => {
     document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' });
     window.history.pushState(null, '', '/#architecture');
@@ -13,17 +17,37 @@ const HeroSection: React.FC = () => {
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image with Zoom Effect */}
       <div className="absolute inset-0 z-0 bg-black">
+        {/* Desktop Hero Image */}
         <img 
           src={heroBgAvif}
           alt="Yên Lạc Dragon City" 
-          className="hidden lg:block w-full h-full object-cover lg:object-center transition-all duration-1000 brightness-110 scale-105"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`hidden lg:block w-full h-full object-cover lg:object-center transition-all duration-1000 brightness-110 scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
+        {/* Desktop Placeholder - shown while loading */}
+        {!isLoaded && (
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-br from-royal-900 via-navy-900 to-royal-800 animate-pulse" />
+        )}
+        
+        {/* Mobile Hero Image */}
         <img 
           src={mobileHeroBg}
           alt="Yên Lạc Dragon City Mobile" 
-          className="block lg:hidden w-full h-full object-fill object-center transition-all duration-1000 brightness-110"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          onLoad={() => setMobileLoaded(true)}
+          className={`block lg:hidden w-full h-full object-fill object-center transition-all duration-1000 brightness-110 ${mobileLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
-        {/* Gradient Overlay - Dark bottom, bright top */}
+        {/* Mobile Placeholder - shown while loading */}
+        {!mobileLoaded && (
+          <div className="block lg:hidden absolute inset-0 bg-gradient-to-br from-royal-900 via-navy-900 to-royal-800 animate-pulse" />
+        )}
+        
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
       </div>
 
