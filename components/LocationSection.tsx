@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Building2, GraduationCap, ShoppingBag, PlusSquare, Map as MapIcon, ShieldCheck, Landmark, Trophy, X, MousePointerClick } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import locationBg from '../image/optimized/logo/Location_image_optimized.avif';
+import locationBg from '../image/optimized/1.avif';
 
 interface LocationCardProps {
   icon: React.ReactNode;
@@ -327,7 +327,7 @@ const LocationSection: React.FC = () => {
                  <img 
                    src={locationBg} 
                    alt="Bản đồ vị trí" 
-                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                   className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                  />
                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex flex-col items-center justify-center text-white">
                     <div className="bg-white/20 backdrop-blur-md p-4 rounded-full border border-white/50 mb-3 group-hover:scale-110 transition-transform duration-300">
