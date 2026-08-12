@@ -291,6 +291,15 @@ const Navbar: React.FC = () => {
                 </button>
               );
             })}
+            <a
+              href="#/tuyen-dung"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-1.5 py-2 text-sm font-medium uppercase tracking-widest text-gray-600 transition-all duration-300 hover:text-royal-600"
+            >
+              Tuyển dụng <ExternalLink size={14} />
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-royal-600 transition-all duration-300 group-hover:w-1/2" />
+            </a>
           </div>
 
           {/* Social Icons & Tools (Right) */}
@@ -368,6 +377,15 @@ const Navbar: React.FC = () => {
                 </button>
               );
             })}
+            <a
+              href="#/tuyen-dung"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex w-full items-center justify-between border-b border-royal-100 py-5 text-left font-body text-sm font-medium uppercase tracking-widest text-gray-600 transition-all duration-300 hover:bg-royal-50/30 hover:pl-2 hover:text-royal-600"
+            >
+              Tuyển dụng <ExternalLink size={16} />
+            </a>
             
             <div className="w-full py-4 border-t border-royal-100">
               <div className="flex items-center justify-center gap-5">

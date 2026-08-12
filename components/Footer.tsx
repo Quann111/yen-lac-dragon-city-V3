@@ -90,6 +90,7 @@ const Footer: React.FC = () => {
                <li><a href="#collection" onClick={(e) => handleNavClick(e, 'collection')} className="hover:text-white transition-colors">Sản phẩm</a></li>
                <li><a href="#amenities" onClick={(e) => handleNavClick(e, 'amenities')} className="hover:text-white transition-colors">Tiện ích</a></li>
                <li><a href="#news" onClick={(e) => handleNavClick(e, 'news')} className="hover:text-white transition-colors">Tin tức</a></li>
+               <li><a href="#/tuyen-dung" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Tuyển dụng</a></li>
                <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-white transition-colors">Liên hệ</a></li>
              </ul>
           </div>
