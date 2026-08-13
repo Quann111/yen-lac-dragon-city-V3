@@ -29,9 +29,33 @@ jobs:
         run: npm run build
         env:
           CI: false
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
+  supabase-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy Supabase migrations
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - run: supabase db push
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+
+      - name: Deploy Supabase Edge Functions
+        run: |
+          supabase functions deploy submit-application --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
+          supabase functions deploy delete-application --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
