@@ -6,6 +6,19 @@ import MarkdownContent from './MarkdownContent';
 
 type JobForm = Omit<Job, 'id' | 'created_at' | 'updated_at' | 'published_at'>;
 
+const VIETNAM_LOCATIONS = [
+  'An Giang', 'Bà Rịa - Vũng Tàu', 'Bắc Giang', 'Bắc Kạn', 'Bạc Liêu', 'Bắc Ninh',
+  'Bến Tre', 'Bình Định', 'Bình Dương', 'Bình Phước', 'Bình Thuận', 'Cà Mau',
+  'Cao Bằng', 'Đắk Lắk', 'Đắk Nông', 'Điện Biên', 'Đồng Nai', 'Đồng Tháp',
+  'Gia Lai', 'Hà Giang', 'Hà Nam', 'Hà Nội', 'Hà Tĩnh', 'Hải Dương', 'Hải Phòng',
+  'Hậu Giang', 'Hòa Bình', 'Hưng Yên', 'Khánh Hòa', 'Kiên Giang', 'Kon Tum',
+  'Lai Châu', 'Lâm Đồng', 'Lạng Sơn', 'Lào Cai', 'Long An', 'Nam Định', 'Nghệ An',
+  'Ninh Bình', 'Ninh Thuận', 'Phú Thọ', 'Phú Yên', 'Quảng Bình', 'Quảng Nam',
+  'Quảng Ngãi', 'Quảng Ninh', 'Quảng Trị', 'Sóc Trăng', 'Sơn La', 'Tây Ninh',
+  'Thái Bình', 'Thái Nguyên', 'Thanh Hóa', 'Thừa Thiên Huế', 'Tiền Giang', 'Trà Vinh',
+  'Tuyên Quang', 'Vĩnh Long', 'Vĩnh Phúc', 'Yên Bái', 'Đà Nẵng', 'Hồ Chí Minh',
+];
+
 const emptyForm: JobForm = {
   title: '', slug: '', department: '', location: '', employment_type: 'Toàn thời gian', quantity: 1,
   salary_text: '', summary: '', description: '', requirements: '', benefits: '', deadline: '', status: 'draft',
@@ -14,6 +27,7 @@ const emptyForm: JobForm = {
 
 const AdminJobsPage: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [locations, setLocations] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [formOpen, setFormOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -32,7 +46,13 @@ const AdminJobsPage: React.FC = () => {
     setLoading(false);
   };
 
-  useEffect(() => { loadJobs(); }, []);
+  useEffect(() => {
+    loadJobs();
+    supabase.from('locations').select('name').order('name').then(({ data, error }) => {
+      if (!error && data && data.length > 0) setLocations(data.map((l: { name: string }) => l.name));
+      else setLocations([...VIETNAM_LOCATIONS].sort((a, b) => a.localeCompare(b, 'vi')));
+    }).catch(() => setLocations([...VIETNAM_LOCATIONS].sort((a, b) => a.localeCompare(b, 'vi'))));
+  }, []);
 
   const filtered = useMemo(() => jobs.filter((job) => {
     const text = `${job.title} ${job.department}`.toLowerCase();
@@ -40,7 +60,7 @@ const AdminJobsPage: React.FC = () => {
   }), [jobs, query, statusFilter]);
 
   const updateField = <K extends keyof JobForm>(field: K, value: JobForm[K]) => setForm((current) => ({ ...current, [field]: value }));
-  const updateTitle = (title: string) => setForm((current) => ({ ...current, title, slug: editingId && current.slug ? current.slug : generateSlug(title), seo_title: current.seo_title || title }));
+  const updateTitle = (title: string) => setForm((current) => ({ ...current, title, slug: editingId && current.slug ? current.slug : generateSlug(title), seo_title: current.seo_title || title, seo_description: current.seo_description || current.summary }));
 
   const openCreate = () => {
     setEditingId(null);
@@ -137,7 +157,7 @@ const AdminJobsPage: React.FC = () => {
               <div className="p-8 space-y-8"><h1 className="text-4xl font-bold text-royal-900">{form.title || 'Tên vị trí'}</h1><p className="text-lg text-gray-600">{form.summary}</p><section><h2 className="mb-3 text-xl font-bold">Mô tả công việc</h2><MarkdownContent content={form.description || 'Chưa có nội dung'} /></section><section><h2 className="mb-3 text-xl font-bold">Yêu cầu</h2><MarkdownContent content={form.requirements || 'Chưa có nội dung'} /></section><section><h2 className="mb-3 text-xl font-bold">Quyền lợi</h2><MarkdownContent content={form.benefits || 'Chưa có nội dung'} /></section></div>
             ) : (
               <form onSubmit={saveJob} className="p-6 space-y-6">
-                <div className="grid gap-4 md:grid-cols-2"><label className="text-sm font-semibold">Tên vị trí *<input required value={form.title} onChange={(e) => updateTitle(e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Slug *<input required value={form.slug} onChange={(e) => updateField('slug', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Phòng ban *<input required value={form.department} onChange={(e) => updateField('department', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Địa điểm *<input required value={form.location} onChange={(e) => updateField('location', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Loại hình *<select value={form.employment_type} onChange={(e) => updateField('employment_type', e.target.value)} className={fieldClass}><option>Toàn thời gian</option><option>Bán thời gian</option><option>Thực tập</option><option>Hợp đồng</option></select></label><label className="text-sm font-semibold">Số lượng *<input type="number" min={1} required value={form.quantity} onChange={(e) => updateField('quantity', Number(e.target.value))} className={fieldClass} /></label><label className="text-sm font-semibold">Thu nhập<input value={form.salary_text || ''} onChange={(e) => updateField('salary_text', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Hạn tuyển<input type="date" value={form.deadline || ''} onChange={(e) => updateField('deadline', e.target.value)} className={fieldClass} /></label></div>
+                <div className="grid gap-4 md:grid-cols-2"><label className="text-sm font-semibold">Tên vị trí *<input required value={form.title} onChange={(e) => updateTitle(e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Slug *<input required value={form.slug} onChange={(e) => updateField('slug', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Phòng ban *<input required value={form.department} onChange={(e) => updateField('department', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Địa điểm *<select required value={form.location} onChange={(e) => updateField('location', e.target.value)} className={fieldClass}><option value="">Chọn địa điểm</option>{locations.map((loc) => <option key={loc} value={loc}>{loc}</option>)}</select></label><label className="text-sm font-semibold">Loại hình *<select value={form.employment_type} onChange={(e) => updateField('employment_type', e.target.value)} className={fieldClass}><option>Toàn thời gian</option><option>Bán thời gian</option><option>Thực tập</option><option>Hợp đồng</option></select></label><label className="text-sm font-semibold">Số lượng *<input type="number" min={1} required value={form.quantity} onChange={(e) => updateField('quantity', Number(e.target.value))} className={fieldClass} /></label><label className="text-sm font-semibold">Thu nhập<input value={form.salary_text || ''} onChange={(e) => updateField('salary_text', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Hạn tuyển<input type="date" value={form.deadline || ''} onChange={(e) => updateField('deadline', e.target.value)} className={fieldClass} /></label></div>
                 <label className="block text-sm font-semibold">Mô tả ngắn *<textarea required maxLength={500} rows={3} value={form.summary} onChange={(e) => updateField('summary', e.target.value)} className={fieldClass} /></label>
                 {[['description', 'Mô tả công việc'], ['requirements', 'Yêu cầu ứng viên'], ['benefits', 'Quyền lợi']].map(([key, label]) => <label key={key} className="block text-sm font-semibold">{label} *<textarea required rows={8} value={form[key as keyof JobForm] as string} onChange={(e) => updateField(key as 'description' | 'requirements' | 'benefits', e.target.value)} className={`${fieldClass} font-mono text-sm`} /></label>)}
                 <div className="grid gap-4 md:grid-cols-2"><label className="text-sm font-semibold">SEO title <span className="font-normal text-gray-400">({(form.seo_title || '').length}/60)</span><input maxLength={70} value={form.seo_title || ''} onChange={(e) => updateField('seo_title', e.target.value)} className={fieldClass} /></label><label className="text-sm font-semibold">Trạng thái<select value={form.status} onChange={(e) => updateField('status', e.target.value as JobStatus)} className={fieldClass}><option value="draft">Bản nháp</option><option value="published">Đang tuyển</option><option value="closed">Đã đóng</option></select></label></div>
