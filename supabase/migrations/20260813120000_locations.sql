@@ -29,11 +29,17 @@ on conflict (name) do nothing;
 alter table public.locations enable row level security;
 
 -- Policy: ai cũng có thể đọc danh sách tỉnh
-create policy "locations_select_all" on public.locations
-  for select using (true);
+do $$ begin
+  create policy "locations_select_all" on public.locations
+    for select using (true);
+exception when duplicate_object then null;
+end $$;
 
 -- Policy: admin có thể thêm/sửa/xóa locations
-create policy "locations_manage_admin" on public.locations
-  for all using (
-    exists (select 1 from public.recruitment_admins where user_id = auth.uid())
-  );
+do $$ begin
+  create policy "locations_manage_admin" on public.locations
+    for all using (
+      exists (select 1 from public.recruitment_admins where user_id = auth.uid())
+    );
+exception when duplicate_object then null;
+end $$;
