@@ -313,7 +313,7 @@ const Navbar: React.FC = () => {
                <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
              </a>
              <a 
-               href="https://www.youtube.com" 
+               href="https://www.youtube.com/watch?v=ZnlfUdmGtDQ" 
                target="_blank" 
                rel="noopener noreferrer"
                className="transition-transform duration-300 hover:scale-110"
@@ -390,7 +390,7 @@ const Navbar: React.FC = () => {
             <div className="w-full py-4 border-t border-royal-100">
               <div className="flex items-center justify-center gap-5">
                 <a 
-                  href="tel:0388591596" 
+                  href="tel:0986037396" 
                   className="transition-transform duration-300 hover:scale-110"
                 >
                   <img src={telephoneIcon} alt="Hotline" className="w-8 h-8 object-contain rounded-full" />
@@ -404,7 +404,7 @@ const Navbar: React.FC = () => {
                   <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
                 </a>
                 <a 
-                  href="https://www.youtube.com" 
+                  href="https://www.youtube.com/watch?v=ZnlfUdmGtDQ" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="transition-transform duration-300 hover:scale-110"

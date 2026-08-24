@@ -79,7 +79,7 @@ const AppShell: React.FC = () => {
             : 'opacity-0 translate-y-12 pointer-events-none lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto'
         }`}>
           <a 
-            href="https://zalo.me/0388591596" 
+            href="https://zalo.me/0986037396" 
             target="_blank" 
             rel="noopener noreferrer"
             className="w-10 h-10 shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent overflow-hidden rounded-full"
@@ -87,7 +87,7 @@ const AppShell: React.FC = () => {
              <img src={zaloIcon} alt="Zalo" className="w-full h-full object-contain" />
           </a>
           <a 
-            href="tel:0388591596" 
+            href="tel:0986037396" 
             className="w-10 h-10 shadow-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent overflow-hidden rounded-full"
           >
              <img src={telephoneIcon} alt="Hotline" className="w-full h-full object-contain" />

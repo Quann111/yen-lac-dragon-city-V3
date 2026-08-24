@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
                 <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
               </a>
               <a 
-                href="https://www.youtube.com" 
+                href="https://www.youtube.com/watch?v=ZnlfUdmGtDQ" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="transition-transform duration-300 hover:scale-110"
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
                </li>
                <li className="flex items-center gap-3">
                  <Phone size={18} className="shrink-0 text-gold-400" />
-                 <span>0388 591 596</span>
+                 <span>0986 037 396</span>
                </li>
                <li className="flex items-center gap-3">
                  <Mail size={18} className="shrink-0 text-gold-400" />
