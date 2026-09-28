@@ -2,8 +2,10 @@ import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, BriefcaseBusiness, CalendarDays, CheckCircle2, Clock3, FileText, MapPin, Upload, Users } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { formatDate, Job } from '../../lib/recruitment';
+import { buildJobPostingJsonLd } from '../../lib/seo';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import MarkdownContent from './MarkdownContent';
+import SeoHead from '../shared/SeoHead';
 
 const acceptedCvTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
@@ -31,10 +33,7 @@ const JobDetailPage: React.FC = () => {
       else {
         const loadedJob = data as Job;
         if (loadedJob.deadline && new Date(loadedJob.deadline) < new Date()) setError('Vị trí này đã hết hạn ứng tuyển.');
-        else {
-          setJob(loadedJob);
-          document.title = `${loadedJob.seo_title || loadedJob.title} | Tuyển dụng D-Park`;
-        }
+        else setJob(loadedJob);
       }
       setLoading(false);
     };
@@ -84,6 +83,13 @@ const JobDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-20 font-body">
+      <SeoHead
+        title={`${job.seo_title || job.title} | Tuyển dụng Yên Lạc Dragon City`}
+        description={job.seo_description || job.summary}
+        path={`/tuyen-dung/${job.slug}`}
+        type="article"
+        jsonLd={buildJobPostingJsonLd(job)}
+      />
       <div className="container mx-auto px-6">
         <Link to="/tuyen-dung" className="inline-flex items-center gap-2 text-sm font-semibold text-royal-600 hover:text-gold-600"><ArrowLeft size={17} /> Quay lại danh sách</Link>
         <header className="mt-6 rounded-3xl bg-gradient-to-br from-royal-900 to-royal-600 px-7 py-10 md:px-12 text-white shadow-xl">

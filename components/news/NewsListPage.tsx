@@ -3,6 +3,7 @@ import { ArrowRight, Calendar, ChevronRight, Clock, Search } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import { formatDate, NewsPost } from '../../lib/news';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
+import SeoHead from '../shared/SeoHead';
 
 const NewsListPage: React.FC = () => {
   const [posts, setPosts] = useState<NewsPost[]>([]);
@@ -15,7 +16,6 @@ const NewsListPage: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Tin Tức & Sự Kiện | Yên Lạc Dragon City';
 
     const loadPosts = async () => {
       if (!isSupabaseConfigured) {
@@ -56,6 +56,11 @@ const NewsListPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-royal-900">
+      <SeoHead
+        title="Tin Tức & Sự Kiện | Yên Lạc Dragon City"
+        description="Cập nhật những thông tin mới nhất về tiến độ dự án, sự kiện nổi bật và xu hướng thị trường bất động sản Yên Lạc Dragon City."
+        path="/tin-tuc"
+      />
       <div className="relative h-[60vh] w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img

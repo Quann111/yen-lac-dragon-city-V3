@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import heroImage from '../../image/optimized/TT006_optimized.avif';
 import { formatDate, Job } from '../../lib/recruitment';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
+import SeoHead from '../shared/SeoHead';
 
 const RecruitmentPage: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -16,7 +17,6 @@ const RecruitmentPage: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Tuyển dụng | Yên Lạc Dragon City';
 
     const loadJobs = async () => {
       if (!isSupabaseConfigured) {
@@ -54,6 +54,11 @@ const RecruitmentPage: React.FC = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen pt-16 font-body">
+      <SeoHead
+        title="Tuyển dụng | Yên Lạc Dragon City"
+        description="Khám phá cơ hội nghề nghiệp tại Yên Lạc Dragon City — cùng kiến tạo những giá trị bền vững."
+        path="/tuyen-dung"
+      />
       <section className="relative min-h-[540px] flex items-center overflow-hidden">
         <img src={heroImage} alt="Cơ hội nghề nghiệp tại D-Park" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-royal-900 via-royal-900/90 to-royal-800/30" />

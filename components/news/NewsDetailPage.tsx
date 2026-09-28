@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Calendar, Newspaper } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { formatDate, NewsPost } from '../../lib/news';
+import { buildNewsArticleJsonLd } from '../../lib/seo';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import MarkdownContent from '../recruitment/MarkdownContent';
+import SeoHead from '../shared/SeoHead';
 
 const NewsDetailPage: React.FC = () => {
   const { slug } = useParams();
@@ -27,11 +29,7 @@ const NewsDetailPage: React.FC = () => {
         .maybeSingle();
 
       if (loadError || !data) setError('Bài viết này không tồn tại hoặc đã bị gỡ.');
-      else {
-        const loadedPost = data as NewsPost;
-        setPost(loadedPost);
-        document.title = `${loadedPost.seo_title || loadedPost.title} | Yên Lạc Dragon City`;
-      }
+      else setPost(data as NewsPost);
       setLoading(false);
     };
     loadPost();
@@ -52,6 +50,14 @@ const NewsDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-20 font-body">
+      <SeoHead
+        title={`${post.seo_title || post.title} | Yên Lạc Dragon City`}
+        description={post.seo_description || post.excerpt}
+        path={`/tin-tuc/${post.slug}`}
+        image={post.cover_image_url}
+        type="article"
+        jsonLd={buildNewsArticleJsonLd(post)}
+      />
       <div className="container mx-auto px-6 max-w-4xl">
         <Link to="/tin-tuc" className="inline-flex items-center gap-2 text-sm font-semibold text-royal-600 hover:text-gold-600"><ArrowLeft size={17} /> Quay lại tin tức</Link>
 

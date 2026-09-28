@@ -4,6 +4,7 @@ import ArchitectureSection from './ArchitectureSection';
 import CollectionSection from './CollectionSection';
 import AmenitiesSection from './AmenitiesSection';
 import ContactSection from './ContactSection';
+import SeoHead from './shared/SeoHead';
 
 // Lazy load LocationSection to split Leaflet library
 const LocationSection = lazy(() => import('./LocationSection'));
@@ -37,6 +38,12 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      <SeoHead
+        title="Dự án Khu đô thị Yên Lạc Dragon City - Yên Lạc, Vĩnh Phúc"
+        description="Yên Lạc Dragon City – đô thị hiện đại tại trung tâm Yên Lạc, quy mô hơn 39ha, đa dạng sản phẩm shophouse, nhà phố, biệt thự song lập, chung cư cao tầng."
+        path="/"
+        image="https://www.yenlac-dragoncity.com.vn/image/thumnaill.jpg"
+      />
       <div id="home"><HeroSection /></div>
       <div id="architecture"><ArchitectureSection /></div>
       <div id="location">
