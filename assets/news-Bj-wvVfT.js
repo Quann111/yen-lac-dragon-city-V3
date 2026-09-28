@@ -1,0 +1,1 @@
+const a={draft:"Bản nháp",published:"Đã đăng"},t=e=>e.normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,""),r=e=>e?new Intl.DateTimeFormat("vi-VN",{day:"2-digit",month:"2-digit",year:"numeric"}).format(new Date(e)):"";export{r as f,t as g,a as n};
