@@ -2,6 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { LockKeyhole } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { checkRecruitmentAdmin } from '../../lib/recruitment-admin';
+import { checkNewsAdmin } from '../../lib/news-admin';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 
 const AdminLoginPage: React.FC = () => {
@@ -16,15 +17,22 @@ const AdminLoginPage: React.FC = () => {
     const redirectAuthorizedUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) return;
-      const access = await checkRecruitmentAdmin(session.user.id);
-      if (access.status === 'authorized') {
+      const [recruitmentAccess, newsAccess] = await Promise.all([
+        checkRecruitmentAdmin(session.user.id),
+        checkNewsAdmin(session.user.id),
+      ]);
+      if (recruitmentAccess.status === 'authorized') {
         navigate('/admin/tuyen-dung', { replace: true });
         return;
       }
-      if (access.status === 'error') {
+      if (newsAccess.status === 'authorized') {
+        navigate('/admin/tin-tuc', { replace: true });
+        return;
+      }
+      if (recruitmentAccess.status === 'error' && newsAccess.status === 'error') {
         setError('Không thể kiểm tra quyền Admin. Vui lòng thử lại hoặc liên hệ quản trị hệ thống.');
       } else {
-        setError('Tài khoản không có quyền quản trị tuyển dụng.');
+        setError('Tài khoản không có quyền quản trị.');
       }
     };
     redirectAuthorizedUser();
@@ -45,15 +53,19 @@ const AdminLoginPage: React.FC = () => {
       setLoading(false);
       return;
     }
-    const access = await checkRecruitmentAdmin(data.user.id);
-    if (access.status !== 'authorized') {
-      setError(access.status === 'error'
+    const [recruitmentAccess, newsAccess] = await Promise.all([
+      checkRecruitmentAdmin(data.user.id),
+      checkNewsAdmin(data.user.id),
+    ]);
+    if (recruitmentAccess.status !== 'authorized' && newsAccess.status !== 'authorized') {
+      setError(recruitmentAccess.status === 'error' && newsAccess.status === 'error'
         ? 'Không thể kiểm tra quyền Admin. Vui lòng thử lại hoặc liên hệ quản trị hệ thống.'
-        : 'Tài khoản không có quyền quản trị tuyển dụng.');
+        : 'Tài khoản không có quyền quản trị.');
       setLoading(false);
       return;
     }
-    const destination = (location.state as { from?: string } | null)?.from || '/admin/tuyen-dung';
+    const fallback = recruitmentAccess.status === 'authorized' ? '/admin/tuyen-dung' : '/admin/tin-tuc';
+    const destination = (location.state as { from?: string } | null)?.from || fallback;
     navigate(destination, { replace: true });
   };
 

@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
     e.preventDefault();
     
     if (id === 'news') {
-      navigate('/news');
+      navigate('/tin-tuc');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }

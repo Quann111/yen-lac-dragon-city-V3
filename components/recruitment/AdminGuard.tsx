@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { checkRecruitmentAdmin } from '../../lib/recruitment-admin';
+import { checkNewsAdmin } from '../../lib/news-admin';
 import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 
 const AdminGuard: React.FC = () => {
@@ -21,10 +22,13 @@ const AdminGuard: React.FC = () => {
         if (active) setChecking(false);
         return;
       }
-      const access = await checkRecruitmentAdmin(session.user.id);
+      const [recruitmentAccess, newsAccess] = await Promise.all([
+        checkRecruitmentAdmin(session.user.id),
+        checkNewsAdmin(session.user.id),
+      ]);
       if (active) {
-        setAuthorized(access.status === 'authorized');
-        setAccessError(access.status === 'error');
+        setAuthorized(recruitmentAccess.status === 'authorized' || newsAccess.status === 'authorized');
+        setAccessError(recruitmentAccess.status === 'error' && newsAccess.status === 'error');
         setChecking(false);
       }
     };

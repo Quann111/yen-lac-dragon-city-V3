@@ -8,7 +8,8 @@ import telephoneIcon from './image/logo/telephone.png';
 
 // Lazy load pages for performance optimization
 const HomePage = lazy(() => import('./components/HomePage'));
-const NewsPage = lazy(() => import('./components/NewsPage'));
+const NewsListPage = lazy(() => import('./components/news/NewsListPage'));
+const NewsDetailPage = lazy(() => import('./components/news/NewsDetailPage'));
 const RecruitmentPage = lazy(() => import('./components/recruitment/RecruitmentPage'));
 const JobDetailPage = lazy(() => import('./components/recruitment/JobDetailPage'));
 const AdminLoginPage = lazy(() => import('./components/recruitment/AdminLoginPage'));
@@ -16,6 +17,7 @@ const AdminGuard = lazy(() => import('./components/recruitment/AdminGuard'));
 const AdminLayout = lazy(() => import('./components/recruitment/AdminLayout'));
 const AdminJobsPage = lazy(() => import('./components/recruitment/AdminJobsPage'));
 const AdminApplicationsPage = lazy(() => import('./components/recruitment/AdminApplicationsPage'));
+const AdminNewsPage = lazy(() => import('./components/news/AdminNewsPage'));
 
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-screen bg-royal-50 transition-colors duration-500">
@@ -54,7 +56,9 @@ const AppShell: React.FC = () => {
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/news" element={<NewsPage />} />
+              <Route path="/news" element={<Navigate to="/tin-tuc" replace />} />
+              <Route path="/tin-tuc" element={<NewsListPage />} />
+              <Route path="/tin-tuc/:slug" element={<NewsDetailPage />} />
               <Route path="/tuyen-dung" element={<RecruitmentPage />} />
               <Route path="/tuyen-dung/:slug" element={<JobDetailPage />} />
               <Route path="/admin/dang-nhap" element={<AdminLoginPage />} />
@@ -63,6 +67,7 @@ const AppShell: React.FC = () => {
                   <Route path="/admin" element={<Navigate to="/admin/tuyen-dung" replace />} />
                   <Route path="/admin/tuyen-dung" element={<AdminJobsPage />} />
                   <Route path="/admin/ung-vien" element={<AdminApplicationsPage />} />
+                  <Route path="/admin/tin-tuc" element={<AdminNewsPage />} />
                 </Route>
               </Route>
               <Route path="*" element={<Navigate to="/" replace />} />

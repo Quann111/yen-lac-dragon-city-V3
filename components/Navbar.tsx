@@ -29,11 +29,11 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const [activeSection, setActiveSection] = useState(location.pathname === '/news' ? 'news' : 'home');
+  const [activeSection, setActiveSection] = useState(location.pathname.startsWith('/tin-tuc') ? 'news' : 'home');
 
   // Sync active section with path
   useEffect(() => {
-    if (location.pathname === '/news') {
+    if (location.pathname.startsWith('/tin-tuc')) {
       setActiveSection('news');
     }
   }, [location.pathname]);
@@ -155,7 +155,7 @@ const Navbar: React.FC = () => {
     setActiveSection(id);
 
     if (id === 'news') {
-      navigate('/news');
+      navigate('/tin-tuc');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
