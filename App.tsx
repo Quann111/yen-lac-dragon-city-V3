@@ -10,6 +10,7 @@ import telephoneIcon from './image/logo/telephone.png';
 const HomePage = lazy(() => import('./components/HomePage'));
 const NewsListPage = lazy(() => import('./components/news/NewsListPage'));
 const NewsDetailPage = lazy(() => import('./components/news/NewsDetailPage'));
+const Tour360Page = lazy(() => import('./components/Tour360Page'));
 const RecruitmentPage = lazy(() => import('./components/recruitment/RecruitmentPage'));
 const JobDetailPage = lazy(() => import('./components/recruitment/JobDetailPage'));
 const AdminLoginPage = lazy(() => import('./components/recruitment/AdminLoginPage'));
@@ -59,6 +60,7 @@ const AppShell: React.FC = () => {
               <Route path="/news" element={<Navigate to="/tin-tuc" replace />} />
               <Route path="/tin-tuc" element={<NewsListPage />} />
               <Route path="/tin-tuc/:slug" element={<NewsDetailPage />} />
+              <Route path="/360" element={<Tour360Page />} />
               <Route path="/tuyen-dung" element={<RecruitmentPage />} />
               <Route path="/tuyen-dung/:slug" element={<JobDetailPage />} />
               <Route path="/admin/dang-nhap" element={<AdminLoginPage />} />

@@ -16,6 +16,7 @@ const navLinks = [
   { name: 'Sản phẩm', id: 'collection' },
   { name: 'Tiện ích', id: 'amenities' },
   { name: 'Tin tức', id: 'news' },
+  { name: '360 Tổng thể dự án', id: 'tour360' },
   { name: 'Liên hệ', id: 'contact' },
 ];
 
@@ -29,12 +30,20 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const [activeSection, setActiveSection] = useState(location.pathname.startsWith('/tin-tuc') ? 'news' : 'home');
+  const [activeSection, setActiveSection] = useState(
+    location.pathname.startsWith('/tin-tuc')
+      ? 'news'
+      : location.pathname.startsWith('/360')
+        ? 'tour360'
+        : 'home'
+  );
 
   // Sync active section with path
   useEffect(() => {
     if (location.pathname.startsWith('/tin-tuc')) {
       setActiveSection('news');
+    } else if (location.pathname.startsWith('/360')) {
+      setActiveSection('tour360');
     }
   }, [location.pathname]);
 
@@ -156,6 +165,12 @@ const Navbar: React.FC = () => {
 
     if (id === 'news') {
       navigate('/tin-tuc');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (id === 'tour360') {
+      navigate('/360');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
