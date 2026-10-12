@@ -11,6 +11,7 @@ const HomePage = lazy(() => import('./components/HomePage'));
 const NewsListPage = lazy(() => import('./components/news/NewsListPage'));
 const NewsDetailPage = lazy(() => import('./components/news/NewsDetailPage'));
 const Tour360Page = lazy(() => import('./components/Tour360Page'));
+const ProjectProgressPage = lazy(() => import('./components/ProjectProgressPage'));
 const RecruitmentPage = lazy(() => import('./components/recruitment/RecruitmentPage'));
 const JobDetailPage = lazy(() => import('./components/recruitment/JobDetailPage'));
 const AdminLoginPage = lazy(() => import('./components/recruitment/AdminLoginPage'));
@@ -61,6 +62,7 @@ const AppShell: React.FC = () => {
               <Route path="/tin-tuc" element={<NewsListPage />} />
               <Route path="/tin-tuc/:slug" element={<NewsDetailPage />} />
               <Route path="/360" element={<Tour360Page />} />
+              <Route path="/tien-do" element={<ProjectProgressPage />} />
               <Route path="/tuyen-dung" element={<RecruitmentPage />} />
               <Route path="/tuyen-dung/:slug" element={<JobDetailPage />} />
               <Route path="/admin/dang-nhap" element={<AdminLoginPage />} />

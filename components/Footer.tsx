@@ -105,7 +105,15 @@ const Footer: React.FC = () => {
                </li>
                <li className="flex items-center gap-3">
                  <Phone size={18} className="shrink-0 text-gold-400" />
-                 <span>0986 037 396</span>
+                 <a href="tel:0986037396" className="hover:text-white">0986 037 396</a>
+               </li>
+               <li className="flex items-center gap-3">
+                 <Phone size={18} className="shrink-0 text-gold-400" />
+                 <a href="tel:0868826236" className="hover:text-white">0868 826 236 <span className="text-gray-400">– Hotline Thủ tục (Chị Gấm)</span></a>
+               </li>
+               <li className="flex items-center gap-3">
+                 <Phone size={18} className="shrink-0 text-gold-400" />
+                 <a href="tel:0868012336" className="hover:text-white">0868 012 336 <span className="text-gray-400">– Hotline KD (Nam)</span></a>
                </li>
                <li className="flex items-center gap-3">
                  <Mail size={18} className="shrink-0 text-gold-400" />

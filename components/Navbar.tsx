@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ExternalLink } from 'lucide-react';
+import { Menu, X, ExternalLink, ChevronDown } from 'lucide-react';
+import ProjectDocsModal from './ProjectDocsModal';
 import { useLocation, useNavigate } from 'react-router-dom';
 import logo from '../image/optimized/logo/CLLOGO-1.avif';
 import logo2 from '../image/optimized/logo/LOGO3.avif';
@@ -14,13 +15,21 @@ const navLinks = [
   { name: 'Tổng quan', id: 'home' },
   { name: 'Vị trí', id: 'location' },
   { name: 'Sản phẩm', id: 'collection' },
+  { name: 'Dự án', id: 'project' },
   { name: 'Tiện ích', id: 'amenities' },
   { name: 'Tin tức', id: 'news' },
   { name: '360 Tổng thể dự án', id: 'tour360' },
   { name: 'Liên hệ', id: 'contact' },
 ];
 
+const projectMenu = [
+  { name: 'Tư liệu dự án', action: 'docs' },
+  { name: 'Tiến độ dự án', action: 'progress' },
+] as const;
+
 const Navbar: React.FC = () => {
+  const [isDocsOpen, setIsDocsOpen] = useState(false);
+  const [isProjectMenuOpen, setIsProjectMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoMenuOpen, setIsLogoMenuOpen] = useState(false);
@@ -35,7 +44,9 @@ const Navbar: React.FC = () => {
       ? 'news'
       : location.pathname.startsWith('/360')
         ? 'tour360'
-        : 'home'
+        : location.pathname.startsWith('/tien-do')
+          ? 'project'
+          : 'home'
   );
 
   // Sync active section with path
@@ -44,8 +55,22 @@ const Navbar: React.FC = () => {
       setActiveSection('news');
     } else if (location.pathname.startsWith('/360')) {
       setActiveSection('tour360');
+    } else if (location.pathname.startsWith('/tien-do')) {
+      setActiveSection('project');
     }
   }, [location.pathname]);
+
+  const handleProjectItem = (action: 'docs' | 'progress') => {
+    setIsMobileMenuOpen(false);
+    setIsProjectMenuOpen(false);
+    if (action === 'docs') {
+      setIsDocsOpen(true);
+    } else {
+      setActiveSection('project');
+      navigate('/tien-do');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   // Set initial state for Logo Menu
   useEffect(() => {
@@ -114,7 +139,7 @@ const Navbar: React.FC = () => {
       }
 
       for (const link of navLinks) {
-        if (link.id === 'news') continue; // Skip news as it's a separate page
+        if (link.id === 'news' || link.id === 'project') continue; // Skip news as it's a separate page
         
         const element = document.getElementById(link.id);
         if (element) {
@@ -292,6 +317,45 @@ const Navbar: React.FC = () => {
           <div className="hidden xl:flex items-center space-x-8">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
+              if (link.id === 'project') {
+                return (
+                  <div
+                    key={link.id}
+                    className="relative"
+                    onMouseEnter={() => setIsProjectMenuOpen(true)}
+                    onMouseLeave={() => setIsProjectMenuOpen(false)}
+                  >
+                    <button
+                      onClick={() => setIsProjectMenuOpen((o) => !o)}
+                      aria-haspopup="menu"
+                      aria-expanded={isProjectMenuOpen}
+                      className={`inline-flex items-center gap-1 text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
+                    >
+                      {link.name}
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${isProjectMenuOpen ? 'rotate-180' : ''}`} />
+                      <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ease-out bg-royal-600 ${isActive ? 'w-full shadow-glow' : 'w-0 group-hover:w-1/2'}`} />
+                    </button>
+                    <div
+                      className={`absolute left-1/2 top-full -translate-x-1/2 pt-3 transition-all duration-200 ${
+                        isProjectMenuOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'
+                      }`}
+                    >
+                      <div role="menu" className="min-w-[220px] overflow-hidden rounded-xl border border-royal-200 bg-white py-2 shadow-2xl">
+                        {projectMenu.map((item) => (
+                          <button
+                            key={item.action}
+                            role="menuitem"
+                            onClick={() => handleProjectItem(item.action)}
+                            className="block w-full px-5 py-3 text-left text-sm font-medium uppercase tracking-wider text-gray-600 transition-colors hover:bg-royal-50 hover:text-royal-700"
+                          >
+                            {item.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <button
                   key={link.id}
@@ -378,6 +442,35 @@ const Navbar: React.FC = () => {
           <div className="flex flex-col w-full">
             {navLinks.map((link) => {
                const isActive = activeSection === link.id;
+               if (link.id === 'project') {
+                 return (
+                   <div key={link.id} className="border-b border-royal-100">
+                     <button
+                       onClick={() => setIsProjectMenuOpen((o) => !o)}
+                       aria-expanded={isProjectMenuOpen}
+                       className={`flex w-full items-center justify-between py-5 text-left font-body uppercase tracking-widest text-sm transition-all duration-300 ${
+                         isActive ? 'text-royal-800 font-bold pl-2 bg-royal-50/50' : 'text-gray-600'
+                       }`}
+                     >
+                       {link.name}
+                       <ChevronDown size={18} className={`transition-transform duration-300 ${isProjectMenuOpen ? 'rotate-180' : ''}`} />
+                     </button>
+                     <div className={`grid transition-all duration-300 ${isProjectMenuOpen ? 'grid-rows-[1fr] pb-2' : 'grid-rows-[0fr]'}`}>
+                       <div className="overflow-hidden">
+                         {projectMenu.map((item) => (
+                           <button
+                             key={item.action}
+                             onClick={() => handleProjectItem(item.action)}
+                             className="block w-full border-l-2 border-royal-200 py-3.5 pl-5 text-left font-body text-sm uppercase tracking-wider text-gray-600 hover:bg-royal-50/50 hover:text-royal-700"
+                           >
+                             {item.name}
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+                   </div>
+                 );
+               }
                return (
                 <button
                   key={link.id}
@@ -439,6 +532,8 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <ProjectDocsModal open={isDocsOpen} onClose={() => setIsDocsOpen(false)} />
     </>
   );
 };
