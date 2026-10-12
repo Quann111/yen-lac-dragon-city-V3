@@ -30,6 +30,7 @@ const projectMenu = [
 const Navbar: React.FC = () => {
   const [isDocsOpen, setIsDocsOpen] = useState(false);
   const [isProjectMenuOpen, setIsProjectMenuOpen] = useState(false);
+  const [isMobileProjectOpen, setIsMobileProjectOpen] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoMenuOpen, setIsLogoMenuOpen] = useState(false);
@@ -446,16 +447,16 @@ const Navbar: React.FC = () => {
                  return (
                    <div key={link.id} className="border-b border-royal-100">
                      <button
-                       onClick={() => setIsProjectMenuOpen((o) => !o)}
-                       aria-expanded={isProjectMenuOpen}
+                       onClick={() => setIsMobileProjectOpen((o) => !o)}
+                       aria-expanded={isMobileProjectOpen}
                        className={`flex w-full items-center justify-between py-5 text-left font-body uppercase tracking-widest text-sm transition-all duration-300 ${
                          isActive ? 'text-royal-800 font-bold pl-2 bg-royal-50/50' : 'text-gray-600'
                        }`}
                      >
                        {link.name}
-                       <ChevronDown size={18} className={`transition-transform duration-300 ${isProjectMenuOpen ? 'rotate-180' : ''}`} />
+                       <ChevronDown size={18} className={`transition-transform duration-300 ${isMobileProjectOpen ? 'rotate-180' : ''}`} />
                      </button>
-                     <div className={`grid transition-all duration-300 ${isProjectMenuOpen ? 'grid-rows-[1fr] pb-2' : 'grid-rows-[0fr]'}`}>
+                     <div className={`grid transition-all duration-300 ${isMobileProjectOpen ? 'grid-rows-[1fr] pb-2' : 'grid-rows-[0fr]'}`}>
                        <div className="overflow-hidden">
                          {projectMenu.map((item) => (
                            <button
