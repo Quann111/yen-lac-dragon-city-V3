@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // Using optimized images for faster load times
-import heroBgAvif from '../image/TongTheDem.avif';
+import heroBg1920 from '../image/optimized/hero-night-1920.avif';
+import heroBg2560 from '../image/optimized/hero-night-2560.avif';
 import mobileHeroBg from '../image/optimized/logo/mobileTongTheDemFix_opt.avif';
 
 const HeroSection: React.FC = () => {
@@ -19,7 +20,9 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 z-0 bg-black">
         {/* Desktop Hero Image */}
         <img 
-          src={heroBgAvif}
+          src={heroBg1920}
+          srcSet={`${heroBg1920} 1920w, ${heroBg2560} 2560w`}
+          sizes="100vw"
           alt="Yên Lạc Dragon City" 
           fetchPriority="high"
           loading="eager"
