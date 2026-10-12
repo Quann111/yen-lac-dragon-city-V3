@@ -78,16 +78,23 @@ const ProjectProgressPage: React.FC = () => {
           <p className="mt-3 max-w-xl text-sm text-white/85 md:text-base">
             Hành trình khám phá Yên Lạc Dragon City qua video và hình ảnh phối cảnh: từ tổng thể, vị trí đến sản phẩm và tiện ích.
           </p>
-          <a href="#video" className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wider text-royal-800 shadow-lg transition hover:bg-royal-50">
+          <button
+            onClick={() => {
+              const el = document.getElementById('video-player');
+              if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 110, behavior: 'smooth' });
+              setPlaying(true);
+            }}
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wider text-royal-800 shadow-lg transition hover:bg-royal-50"
+          >
             <Play size={16} fill="currentColor" /> Xem video
-          </a>
+          </button>
         </div>
       </section>
 
       {/* Video */}
       <section id="video" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-12 md:px-10 md:py-16">
         <h2 className="mb-6 font-heading text-xl font-bold uppercase tracking-wider text-royal-800 md:text-3xl">Video dự án</h2>
-        <div className="overflow-hidden rounded-2xl bg-black shadow-xl">
+        <div id="video-player" className="overflow-hidden rounded-2xl bg-black shadow-xl">
           <div className="relative aspect-video">
             {playing ? (
               <video key={video.id} src={videoUrl(video.src)} poster={video.poster} controls autoPlay playsInline preload="metadata" className="h-full w-full" />
