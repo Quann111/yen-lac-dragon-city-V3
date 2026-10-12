@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from 'lucide-react';
 import brochure from '../image/optimized/brochure/brochure.webp';
 import masterplan from '../image/optimized/brochure/masterplan.webp';
@@ -34,6 +34,55 @@ const ProjectDocsModal: React.FC<Props> = ({ open, onClose }) => {
   const [tab, setTab] = useState<Tab>('brochure');
   const [zoomed, setZoomed] = useState(false);
   const [panelIndex, setPanelIndex] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({ x: 0, y: 0, left: 0, top: 0, moved: false });
+  const focus = useRef({ x: 0.5, y: 0.5 });
+
+  // Centre the zoomed view on the point that was clicked
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (!zoomed || !el) return;
+    el.scrollLeft = focus.current.x * el.scrollWidth - el.clientWidth / 2;
+    el.scrollTop = focus.current.y * el.scrollHeight - el.clientHeight / 2;
+  }, [zoomed]);
+
+  const onPointerDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!zoomed || !el || e.button !== 0) return;
+    drag.current = { x: e.clientX, y: e.clientY, left: el.scrollLeft, top: el.scrollTop, moved: false };
+    setDragging(true);
+  };
+
+  useEffect(() => {
+    if (!dragging) return;
+    const onMove = (e: MouseEvent) => {
+      const el = scrollRef.current;
+      if (!el) return;
+      const dx = e.clientX - drag.current.x;
+      const dy = e.clientY - drag.current.y;
+      if (Math.abs(dx) + Math.abs(dy) > 4) drag.current.moved = true;
+      el.scrollLeft = drag.current.left - dx;
+      el.scrollTop = drag.current.top - dy;
+    };
+    const onUp = () => setDragging(false);
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    };
+  }, [dragging]);
+
+  const onImageClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (drag.current.moved) {
+      drag.current.moved = false;
+      return;
+    }
+    const r = e.currentTarget.getBoundingClientRect();
+    focus.current = { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
+    setZoomed((z) => !z);
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -87,7 +136,7 @@ const ProjectDocsModal: React.FC<Props> = ({ open, onClose }) => {
 
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setZoomed((z) => !z)}
+            onClick={() => { focus.current = { x: 0.5, y: 0.5 }; setZoomed((z) => !z); }}
             className="hidden h-10 w-10 items-center justify-center rounded-full bg-royal-50 text-royal-800 transition-colors hover:bg-royal-100 md:flex"
             aria-label={zoomed ? 'Thu nhỏ' : 'Phóng to'}
           >
@@ -124,16 +173,18 @@ const ProjectDocsModal: React.FC<Props> = ({ open, onClose }) => {
         onClick={(e) => e.target === e.currentTarget && onClose()}
       >
         <div
-          className={`h-full w-full ${zoomed ? 'overflow-auto' : 'flex items-center justify-center overflow-hidden'}`}
+          ref={scrollRef}
+          onMouseDown={onPointerDown}
+          className={`h-full w-full ${zoomed ? `overflow-auto select-none ${dragging ? 'cursor-grabbing' : 'cursor-grab'}` : 'flex items-center justify-center overflow-hidden'}`}
           onClick={(e) => e.target === e.currentTarget && onClose()}
         >
           <img
             src={desktopSrc}
             alt={tab === 'brochure' ? 'Tờ gấp Yên Lạc Dragon City' : 'Tổng mặt bằng Yên Lạc Dragon City'}
-            onClick={() => setZoomed((z) => !z)}
+            onClick={onImageClick}
             className={`rounded-lg shadow-2xl ${
               zoomed
-                ? 'max-w-none cursor-zoom-out'
+                ? 'max-w-none'
                 : 'max-h-full max-w-full cursor-zoom-in object-contain'
             }`}
             style={zoomed ? { width: '200%' } : undefined}
