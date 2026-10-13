@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, Calendar, Newspaper } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, Clock, Newspaper } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { formatDate, NewsPost } from '../../lib/news';
 import { buildNewsArticleJsonLd } from '../../lib/seo';
@@ -7,14 +7,23 @@ import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import MarkdownContent from '../recruitment/MarkdownContent';
 import SeoHead from '../shared/SeoHead';
 
+type RelatedPost = Pick<NewsPost, 'id' | 'title' | 'slug' | 'category' | 'excerpt' | 'cover_image_url' | 'published_at'>;
+
+const RELATED_LIMIT = 3;
+
 const NewsDetailPage: React.FC = () => {
   const { slug } = useParams();
   const [post, setPost] = useState<NewsPost | null>(null);
+  const [related, setRelated] = useState<RelatedPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // 'instant': html có scroll-behavior: smooth, nếu animate thì bị ngắt khi trang co lại lúc loading
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setLoading(true);
+    setError('');
+    setRelated([]);
     const loadPost = async () => {
       if (!isSupabaseConfigured) {
         setError('Hệ thống tin tức đang được cấu hình.');
@@ -31,6 +40,18 @@ const NewsDetailPage: React.FC = () => {
       if (loadError || !data) setError('Bài viết này không tồn tại hoặc đã bị gỡ.');
       else setPost(data as NewsPost);
       setLoading(false);
+
+      if (loadError || !data) return;
+      const { data: others } = await supabase
+        .from('news_posts')
+        .select('id, title, slug, category, excerpt, cover_image_url, published_at')
+        .eq('status', 'published')
+        .neq('slug', slug)
+        .order('published_at', { ascending: false })
+        .limit(12);
+      const sameCategoryFirst = [...((others || []) as RelatedPost[])]
+        .sort((a, b) => Number(b.category === data.category) - Number(a.category === data.category));
+      setRelated(sameCategoryFirst.slice(0, RELATED_LIMIT));
     };
     loadPost();
   }, [slug]);
@@ -84,6 +105,56 @@ const NewsDetailPage: React.FC = () => {
           <p className="text-lg text-gray-700 font-semibold leading-relaxed mb-8">{post.excerpt}</p>
           <MarkdownContent content={post.content} />
         </article>
+
+        {related.length > 0 && (
+          <section className="mt-16" aria-labelledby="related-news-heading">
+            <h2 id="related-news-heading" className="text-2xl font-plus font-semibold text-royal-800 flex items-center gap-3 mb-8">
+              <span className="w-8 h-[2px] bg-current"></span>
+              Bài viết liên quan
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {related.map((item) => (
+                <Link
+                  key={item.id}
+                  to={`/tin-tuc/${item.slug}`}
+                  className="group flex flex-col h-full rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+                >
+                  <div className="relative h-40 overflow-hidden bg-gray-100">
+                    {item.cover_image_url && (
+                      <img
+                        src={item.cover_image_url}
+                        alt={item.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
+                    <div className="absolute top-3 left-3 bg-black/30 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">
+                      {item.category}
+                    </div>
+                  </div>
+                  <div className="p-5 flex flex-col flex-grow">
+                    <div className="flex items-center gap-2 text-xs text-gray-500 mb-2 font-mono">
+                      <Clock size={13} />
+                      <span>{formatDate(item.published_at)}</span>
+                    </div>
+                    <h3 className="text-base font-plus font-semibold line-clamp-3 text-royal-900 transition-colors duration-300 group-hover:text-gold-500">
+                      {item.title}
+                    </h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div className="mt-14 flex justify-center">
+          <Link
+            to="/tin-tuc"
+            className="inline-flex items-center gap-2 rounded-full bg-royal-600 px-8 py-3 text-sm font-bold uppercase tracking-wider text-white shadow-lg transition-colors duration-300 hover:bg-royal-800"
+          >
+            Xem tất cả tin tức <ArrowRight size={18} />
+          </Link>
+        </div>
       </div>
     </div>
   );
