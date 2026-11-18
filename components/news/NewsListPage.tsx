@@ -103,7 +103,7 @@ const NewsListPage: React.FC = () => {
               to={`/tin-tuc/${featuredPost.slug}`}
               className="group relative grid md:grid-cols-2 gap-0 overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-glow-gold bg-white"
             >
-              <div className="relative h-64 md:h-auto overflow-hidden">
+              <div className={`relative h-64 md:h-auto overflow-hidden ${featuredPost.cover_image_url ? '' : 'bg-gradient-to-br from-navy-900 to-royal-900'}`}>
                 {featuredPost.cover_image_url && (
                   <img
                     src={featuredPost.cover_image_url}
@@ -171,7 +171,7 @@ const NewsListPage: React.FC = () => {
                   to={`/tin-tuc/${post.slug}`}
                   className="group flex flex-col h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white"
                 >
-                  <div className="relative h-56 overflow-hidden">
+                  <div className={`relative h-56 overflow-hidden ${post.cover_image_url ? '' : 'bg-gradient-to-br from-navy-900 to-royal-900'}`}>
                     {post.cover_image_url && (
                       <img
                         src={post.cover_image_url}

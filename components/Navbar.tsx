@@ -330,7 +330,7 @@ const Navbar: React.FC = () => {
                       onClick={() => setIsProjectMenuOpen((o) => !o)}
                       aria-haspopup="menu"
                       aria-expanded={isProjectMenuOpen}
-                      className={`inline-flex items-center gap-1 text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
+                      className={`inline-flex items-center gap-1 whitespace-nowrap text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
                     >
                       {link.name}
                       <ChevronDown size={14} className={`transition-transform duration-300 ${isProjectMenuOpen ? 'rotate-180' : ''}`} />
@@ -361,7 +361,7 @@ const Navbar: React.FC = () => {
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className={`text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
+                  className={`whitespace-nowrap text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
                 >
                   {link.name}
                   <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ease-out 
@@ -375,7 +375,7 @@ const Navbar: React.FC = () => {
               href="#/tuyen-dung"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-1.5 py-2 text-sm font-medium uppercase tracking-widest text-gray-600 transition-all duration-300 hover:text-royal-600"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 text-sm font-medium uppercase tracking-widest text-gray-600 transition-all duration-300 hover:text-royal-600"
             >
               Tuyển dụng <ExternalLink size={14} />
               <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-royal-600 transition-all duration-300 group-hover:w-1/2" />
