@@ -37,6 +37,11 @@ const AppShell: React.FC = () => {
     document.documentElement.classList.remove('dark');
   }, []);
 
+  // Reset scroll position on every route change (e.g. Navbar links)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   // Scroll to Top visibility logic
   useEffect(() => {
     const handleScroll = () => {

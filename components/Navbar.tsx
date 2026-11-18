@@ -266,9 +266,9 @@ const Navbar: React.FC = () => {
         {/* Top Accent Line */}
         <div className="absolute top-0 left-0 w-full h-[3px] transition-all duration-500 bg-gradient-to-r from-royal-700 via-royal-400 to-royal-700 opacity-100"></div>
 
-        <div className="w-full px-6 md:px-10 lg:px-20 flex items-center justify-between">
+        <div className="w-full px-6 md:px-10 2xl:px-20 flex items-center justify-between gap-4">
           {/* Logo Container */}
-          <div className="relative group -ml-2">
+          <div className="relative group -ml-2 shrink-0">
             {/* Logo */}
             <div 
               ref={logoButtonRef}
@@ -315,7 +315,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden xl:flex items-center space-x-8">
+          <div className="hidden xl:flex min-w-0 items-center gap-4 2xl:gap-8">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               if (link.id === 'project') {
@@ -330,7 +330,7 @@ const Navbar: React.FC = () => {
                       onClick={() => setIsProjectMenuOpen((o) => !o)}
                       aria-haspopup="menu"
                       aria-expanded={isProjectMenuOpen}
-                      className={`inline-flex items-center gap-1 whitespace-nowrap text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
+                      className={`inline-flex items-center gap-1 whitespace-nowrap text-[13px] 2xl:text-sm uppercase tracking-wide 2xl:tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
                     >
                       {link.name}
                       <ChevronDown size={14} className={`transition-transform duration-300 ${isProjectMenuOpen ? 'rotate-180' : ''}`} />
@@ -361,7 +361,7 @@ const Navbar: React.FC = () => {
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className={`whitespace-nowrap text-sm uppercase tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
+                  className={`whitespace-nowrap text-[13px] 2xl:text-sm uppercase tracking-wide 2xl:tracking-widest transition-all duration-300 font-body relative group py-2 font-medium ${getTextColorClass(isActive)}`}
                 >
                   {link.name}
                   <span className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ease-out 
@@ -373,9 +373,7 @@ const Navbar: React.FC = () => {
             })}
             <a
               href="#/tuyen-dung"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 text-sm font-medium uppercase tracking-widest text-gray-600 transition-all duration-300 hover:text-royal-600"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 text-[13px] 2xl:text-sm font-medium uppercase tracking-wide 2xl:tracking-widest text-gray-600 transition-all duration-300 hover:text-royal-600"
             >
               Tuyển dụng <ExternalLink size={14} />
               <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-royal-600 transition-all duration-300 group-hover:w-1/2" />
@@ -383,14 +381,14 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Social Icons & Tools (Right) */}
-          <div className="hidden xl:flex items-center gap-4 ml-6">
+          <div className="hidden xl:flex shrink-0 items-center gap-3 2xl:gap-4">
              <a 
                href="https://www.facebook.com" 
                target="_blank" 
                rel="noopener noreferrer"
                className="transition-transform duration-300 hover:scale-110"
              >
-               <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
+               <img src={facebookIcon} alt="Facebook" className="w-7 h-7 2xl:w-8 2xl:h-8 object-contain" />
              </a>
              <a 
                href="https://www.youtube.com/watch?v=ZnlfUdmGtDQ" 
@@ -398,7 +396,7 @@ const Navbar: React.FC = () => {
                rel="noopener noreferrer"
                className="transition-transform duration-300 hover:scale-110"
              >
-               <img src={youtubeIcon} alt="Youtube" className="w-8 h-8 object-contain" />
+               <img src={youtubeIcon} alt="Youtube" className="w-7 h-7 2xl:w-8 2xl:h-8 object-contain" />
              </a>
              <a 
                href="https://www.tiktok.com" 
@@ -406,7 +404,7 @@ const Navbar: React.FC = () => {
                rel="noopener noreferrer"
                className="transition-transform duration-300 hover:scale-110"
              >
-               <img src={tiktokIcon} alt="Tiktok" className="w-8 h-8 object-contain" />
+               <img src={tiktokIcon} alt="Tiktok" className="w-7 h-7 2xl:w-8 2xl:h-8 object-contain" />
              </a>
           </div>
 
@@ -488,8 +486,6 @@ const Navbar: React.FC = () => {
             })}
             <a
               href="#/tuyen-dung"
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex w-full items-center justify-between border-b border-royal-100 py-5 text-left font-body text-sm font-medium uppercase tracking-widest text-gray-600 transition-all duration-300 hover:bg-royal-50/30 hover:pl-2 hover:text-royal-600"
             >
@@ -510,7 +506,7 @@ const Navbar: React.FC = () => {
                   rel="noopener noreferrer"
                   className="transition-transform duration-300 hover:scale-110"
                 >
-                  <img src={facebookIcon} alt="Facebook" className="w-8 h-8 object-contain" />
+                  <img src={facebookIcon} alt="Facebook" className="w-7 h-7 2xl:w-8 2xl:h-8 object-contain" />
                 </a>
                 <a 
                   href="https://www.youtube.com/watch?v=ZnlfUdmGtDQ" 
@@ -518,7 +514,7 @@ const Navbar: React.FC = () => {
                   rel="noopener noreferrer"
                   className="transition-transform duration-300 hover:scale-110"
                 >
-                  <img src={youtubeIcon} alt="Youtube" className="w-8 h-8 object-contain" />
+                  <img src={youtubeIcon} alt="Youtube" className="w-7 h-7 2xl:w-8 2xl:h-8 object-contain" />
                 </a>
                 <a 
                   href="https://www.tiktok.com" 
@@ -526,7 +522,7 @@ const Navbar: React.FC = () => {
                   rel="noopener noreferrer"
                   className="transition-transform duration-300 hover:scale-110"
                 >
-                  <img src={tiktokIcon} alt="Tiktok" className="w-8 h-8 object-contain" />
+                  <img src={tiktokIcon} alt="Tiktok" className="w-7 h-7 2xl:w-8 2xl:h-8 object-contain" />
                 </a>
               </div>
             </div>
