@@ -47,12 +47,16 @@ const Navbar: React.FC = () => {
         ? 'tour360'
         : location.pathname.startsWith('/tien-do')
           ? 'project'
-          : 'home'
+          : location.pathname.startsWith('/tuyen-dung')
+            ? 'recruitment'
+            : 'home'
   );
 
   // Sync active section with path
   useEffect(() => {
-    if (location.pathname.startsWith('/tin-tuc')) {
+    if (location.pathname.startsWith('/tuyen-dung')) {
+      setActiveSection('recruitment');
+    } else if (location.pathname.startsWith('/tin-tuc')) {
       setActiveSection('news');
     } else if (location.pathname.startsWith('/360')) {
       setActiveSection('tour360');
@@ -373,10 +377,10 @@ const Navbar: React.FC = () => {
             })}
             <a
               href="#/tuyen-dung"
-              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 text-[13px] min-[1800px]:text-sm font-medium uppercase tracking-normal min-[1440px]:tracking-wide min-[1800px]:tracking-widest text-gray-600 transition-all duration-300 hover:text-royal-600"
+              className={`group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 text-[13px] min-[1800px]:text-sm font-medium uppercase tracking-normal min-[1440px]:tracking-wide min-[1800px]:tracking-widest transition-all duration-300 hover:text-royal-600 ${getTextColorClass(activeSection === 'recruitment')}`}
             >
               Tuyển dụng <ExternalLink size={14} />
-              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-royal-600 transition-all duration-300 group-hover:w-1/2" />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-royal-600 transition-all duration-300 ${activeSection === 'recruitment' ? 'w-full shadow-glow' : 'w-0 group-hover:w-1/2'}`} />
             </a>
           </div>
 
